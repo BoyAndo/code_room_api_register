@@ -1,18 +1,18 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { Express } from "express";
 
-const AWS_REGION = process.env.AWS_REGION!;
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID!;
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY!;
-const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME!;
-const AWS_BUCKET_URL = process.env.AWS_BUCKET_URL!;
+const MINIO_ENDPOINT = process.env.MINIO_ENDPOINT!;
+const MINIO_USER = process.env.MINIO_USER!;
+const MINIO_PASS = process.env.MINIO_PASS!;
+const URL_S3 = process.env.URL_S3!;
 
 const s3 = new S3Client({
-  region: AWS_REGION,
+  region: "us-east-1",
+  endpoint: MINIO_ENDPOINT,
   credentials: {
-    accessKeyId: AWS_ACCESS_KEY_ID,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    accessKeyId: MINIO_USER,
+    secretAccessKey: MINIO_PASS,
   },
+  forcePathStyle: true,
 });
 
 /**
@@ -28,14 +28,14 @@ export const uploadPdfToBucket = async (
   try {
     await s3.send(
       new PutObjectCommand({
-        Bucket: AWS_BUCKET_NAME,
+        Bucket: "certificados",
         Key: uniqueName,
         Body: file.buffer,
         ContentType: file.mimetype,
       })
     );
 
-    const url = `${AWS_BUCKET_URL}${uniqueName}`;
+    const url = `${URL_S3}${uniqueName}`;
     return url;
   } catch (err) {
     console.error("Error al subir a S3:", err);
