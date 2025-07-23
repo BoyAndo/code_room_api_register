@@ -1,0 +1,51 @@
+{
+  "name": "backend_auth_reg_code_room",
+  "version": "1.0.0",
+  "description": "auth and register backend for code_room project",
+  "main": "src/app.ts",
+  "scripts": {
+    "dev": "ts-node src/debug-loader.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reaien/backend_auth_reg_code_room.git"
+  },
+  "author": "Ivan Duarte Herrera",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Reaien/backend_auth_reg_code_room/issues"
+  },
+  "homepage": "https://github.com/Reaien/backend_auth_reg_code_room#readme",
+  "devDependencies": {
+    "@prisma/client": "^6.8.2",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express": "^5.0.1",
+    "@types/jimp": "^0.2.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^22.15.18",
+    "npm": "^11.4.0",
+    "prisma": "^6.8.2",
+    "rimraf": "^5.0.10",
+    "ts-node-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.830.0",
+    "@aws-sdk/s3-request-presigner": "^3.830.0",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "form-data": "^4.0.2",
+    "jimp": "^1.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.1",
+    "node-fetch": "^3.3.2",
+    "pdf2pic": "^3.2.0",
+    "qrcode-reader": "^1.0.4",
+    "typescript": "^5.8.3",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.4"
+  }
+}

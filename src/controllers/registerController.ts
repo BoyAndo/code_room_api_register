@@ -1,0 +1,71 @@
+import { Request, Response } from "express";
+import { userSchema } from "../schemas/user.schema";
+import { createUser, generateClientToken } from "../services/auth.service";
+import { extractStudentInfo } from "../services/extractStudentInfo";
+import { allWordsExist, normalizeRut } from "../services/normalize";
+import { uploadPdfToBucket } from "../services/s3Service";
+
+export const registerUser = async (req: Request, res: Response) => {
+  try {
+    // Validar y obtener datos del formulario
+    const studentRegisterInfo = userSchema.parse(req.body);
+
+    // Verificar si se recibió un archivo PDF
+    if (!req.file || !req.file.buffer) {
+      res.status(400).json({
+        success: false,
+        message: "Archivo PDF no enviado o vacío",
+      });
+      return;
+    }
+
+    // Extraer datos del certificado desde el buffer
+    const studentCertInfo = await extractStudentInfo(req.file.buffer);
+
+    // Comparación de RUT y nombre
+    const rutCoincide =
+      normalizeRut(studentRegisterInfo.studentRut) ===
+      normalizeRut(studentCertInfo.studentRut);
+    const nombreCoincide = allWordsExist(
+      studentRegisterInfo.studentName,
+      studentCertInfo.studentName
+    );
+
+    if (!rutCoincide && !nombreCoincide) {
+      res.status(400).json({
+        success: false,
+        message: "Los datos del certificado no coinciden con los del usuario",
+      });
+      return;
+    }
+
+    // Subir el PDF a S3 y obtener la URL
+    const pdfUrl = await uploadPdfToBucket(req.file);
+
+    // Registrar al usuario
+    const newStudent = await createUser(studentRegisterInfo, pdfUrl);
+
+    // Generar token
+    const token = generateClientToken(newStudent);
+
+    // Responder al frontend
+    res.status(200).json(token);
+  } catch (error: any) {
+    console.error("Error en el registro:", error);
+
+    if (error?.errors) {
+      res.status(400).json({
+        success: false,
+        message: "Datos inválidos",
+        errors: error.errors,
+      });
+      return;
+    }
+
+    res.status(500).json({
+      success: false,
+      message: "Error interno del servidor",
+    });
+    return;
+  }
+};

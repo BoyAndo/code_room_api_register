@@ -1,0 +1,19 @@
+node_modules
+# Keep environment variables out of version control
+.env
+*.log
+logs/
+dist/
+build/
+.vscode/
+.DS_Store
+Thumbs.db
+prisma/dev.db
+keypair.sh
+private.pem
+public.pem
+
+#certificados autodestruidos
+uploads
+
+venv
