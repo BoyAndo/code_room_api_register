@@ -38,3 +38,16 @@ services:
 volumes:
   minio_data:
     driver: local
+# 📝 Nota: El servicio Python ahora está en un repositorio separado
+# Para usar el servicio de scraping Python:
+# 1. Clonar: https://github.com/TU_USUARIO/certificate-scraper-service
+# 2. Ejecutar: docker-compose up -d (en ese proyecto)
+# 3. El servicio estará disponible en http://localhost:8001
+#
+# Alternativamente, puedes agregar aquí la referencia a la imagen:
+#
+# python-scraper:
+#   image: tu-usuario/certificate-scraper:latest
+#   ports:
+#     - "8001:8001"
+#   restart: unless-stopped

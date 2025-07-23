@@ -4,7 +4,7 @@
   "description": "auth and register backend for code_room project",
   "main": "src/app.ts",
   "scripts": {
-    "dev": "ts-node src/debug-loader.ts"
+    "dev": "tsnd --respawn --clear src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -37,13 +37,12 @@
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "form-data": "^4.0.2",
     "jimp": "^1.6.0",
     "jsonwebtoken": "^9.0.2",
+    "jsqr": "^1.4.0",
     "multer": "^2.0.1",
     "node-fetch": "^3.3.2",
-    "pdf2pic": "^3.2.0",
-    "qrcode-reader": "^1.0.4",
+    "pdf-poppler": "^0.2.1",
     "typescript": "^5.8.3",
     "uuid": "^11.1.0",
     "zod": "^3.24.4"

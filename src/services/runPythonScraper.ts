@@ -1,43 +1,77 @@
 import { parseStudentInfo } from "./parseStudentInfo";
-import { spawn } from "child_process";
-import path from "path";
+
+interface ScrapingResponse {
+  success: boolean;
+  data?: string;
+  error?: string;
+  session_id?: string;
+}
 
 /**
- * Ejecuta el script Python pasándole una URL, y retorna los datos extraídos (como JSON)
+ * Ejecuta el scraping usando el microservicio Python containerizado
  * @param url Enlace obtenido del código QR
  * @returns Objeto con los datos del estudiante
  */
-export const runPythonScraper = (url: string): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    const scriptPath = path.join(__dirname, "../../python/scrap.py");
-
-    const process = spawn(
-      "/home/ando-server/Escritorio/back_auth_code_room/venv/bin/python",
-      [scriptPath, url]
-    );
-
-    let output = "";
-    let errorOutput = "";
-
-    process.stdout.on("data", (data) => {
-      output += data.toString();
+export const runPythonScraper = async (url: string): Promise<any> => {
+  const PYTHON_SERVICE_URL = process.env.PYTHON_SERVICE_URL || 'http://localhost:8001';
+  
+  console.log(`🔗 Making request to Python scraper service: ${PYTHON_SERVICE_URL}/scrape`);
+  console.log(`📄 URL to process: ${url}`);
+  
+  try {
+    const response = await fetch(`${PYTHON_SERVICE_URL}/scrape`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url }),
+      // Timeout de 2 minutos para CAPTCHA complejos
+      signal: AbortSignal.timeout(120000)
     });
 
-    process.stderr.on("data", (data) => {
-      errorOutput += data.toString();
-    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+    }
 
-    process.on("close", (code) => {
-      if (code !== 0) {
-        console.error("Python script failed:", errorOutput);
-        return reject(new Error("Falló el scraping del certificado"));
-      }
-      try {
-        const parsed = parseStudentInfo(output);
-        resolve(parsed);
-      } catch (err) {
-        reject(new Error("Error al interpretar los datos del certificado"));
-      }
+    const result: ScrapingResponse = await response.json();
+    
+    console.log(`🐍 Python service response:`, { 
+      success: result.success, 
+      session_id: result.session_id,
+      hasData: !!result.data,
+      errorMessage: result.error 
     });
-  });
+    
+    if (!result.success) {
+      throw new Error(`Scraping failed: ${result.error}`);
+    }
+
+    if (!result.data) {
+      throw new Error('No data received from scraping service');
+    }
+
+    // Parsear los datos usando nuestro parser existente
+    console.log("📄 Parsing extracted certificate data...");
+    const parsed = parseStudentInfo(result.data);
+    
+    console.log("✅ Certificate data parsed successfully");
+    return parsed;
+    
+  } catch (error) {
+    console.error('❌ Error communicating with Python scraper service:', error);
+    
+    // Crear un error más descriptivo
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      throw new Error(
+        `No se pudo conectar al servicio de scraping. Asegúrate de que el servicio Python esté corriendo en ${PYTHON_SERVICE_URL}`
+      );
+    }
+    
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw new Error('El scraping tardó demasiado tiempo (timeout). Intenta nuevamente.');
+    }
+    
+    // Re-throw el error original si es un error de negocio
+    throw error;
+  }
 };

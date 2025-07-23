@@ -10,6 +10,10 @@ export const registerUser = async (req: Request, res: Response) => {
     // Validar y obtener datos del formulario
     const studentRegisterInfo = userSchema.parse(req.body);
 
+    // debugging: Imprimir datos del formulario
+    console.log("Datos del formulario:", studentRegisterInfo);
+    console.log("Archivo PDF recibido:", req.file?.originalname);
+
     // Verificar si se recibió un archivo PDF
     if (!req.file || !req.file.buffer) {
       res.status(400).json({
@@ -21,22 +25,21 @@ export const registerUser = async (req: Request, res: Response) => {
 
     // Extraer datos del certificado desde el buffer
     const studentCertInfo = await extractStudentInfo(req.file.buffer);
-
-    // Comparación de RUT y nombre
-    const rutCoincide =
-      normalizeRut(studentRegisterInfo.studentRut) ===
-      normalizeRut(studentCertInfo.studentRut);
-    const nombreCoincide = allWordsExist(
-      studentRegisterInfo.studentName,
-      studentCertInfo.studentName
-    );
-
-    if (!rutCoincide && !nombreCoincide) {
-      res.status(400).json({
+    console.log("Datos del certificado extraídos:", studentCertInfo);
+    //Comparar los datos del certificado con los datos del usuario
+    //falta validar studentCollege evaluar si es necesario
+    if (
+      normalizeRut(studentRegisterInfo.studentRut) !==
+        normalizeRut(studentCertInfo.studentRut) &&
+      !allWordsExist(
+        studentRegisterInfo.studentName,
+        studentCertInfo.studentName
+      )
+    ) {
+      return res.status(400).json({
         success: false,
         message: "Los datos del certificado no coinciden con los del usuario",
       });
-      return;
     }
 
     // Subir el PDF a S3 y obtener la URL
@@ -49,20 +52,19 @@ export const registerUser = async (req: Request, res: Response) => {
     const token = generateClientToken(newStudent);
 
     // Responder al frontend
-    res.status(200).json(token);
+    return res.status(200).json(token);
   } catch (error: any) {
     console.error("Error en el registro:", error);
 
     if (error?.errors) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Datos inválidos",
         errors: error.errors,
       });
-      return;
     }
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Error interno del servidor",
     });

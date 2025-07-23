@@ -1,19 +1,47 @@
-node_modules
-# Keep environment variables out of version control
+# ==============================================
+# 📦 DEPENDENCIES
+# ==============================================
+node_modules/
+
+# ==============================================
+# 🔐 ENVIRONMENT & SECRETS
+# ==============================================
 .env
-*.log
-logs/
+*.pem
+keypair.sh
+
+# ==============================================
+# 📁 BUILD & DISTRIBUTION
+# ==============================================
 dist/
 build/
+*.log
+logs/
+
+# ==============================================
+# 🗄️ DATABASE
+# ==============================================
+prisma/dev.db
+
+# ==============================================
+# 📄 TEMPORARY FILES & UPLOADS
+# ==============================================
+uploads/
+temp/
+*.tmp
+
+# ==============================================
+# 🖥️ OS & IDE FILES
+# ==============================================
 .vscode/
 .DS_Store
 Thumbs.db
-prisma/dev.db
-keypair.sh
-private.pem
-public.pem
 
-#certificados autodestruidos
-uploads
-
-venv
+# ==============================================
+# 🐍 PYTHON (si hay archivos temporales)
+# ==============================================
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
