@@ -6,11 +6,6 @@ import {
   checkExistingLandlord,
 } from "../services/landlordServices/landlord.auth.service";
 import { extractLandlordInfo } from "../services/landlordServices/extractLandlordInfo";
-import {
-  allWordsExist,
-  normalizeRut,
-  wordsMatchPercentage,
-} from "../services/shared/normalize";
 import { uploadImageToBucket } from "../services/shared/s3Service";
 
 export const registerLandlord = async (req: Request, res: Response) => {
@@ -45,45 +40,57 @@ export const registerLandlord = async (req: Request, res: Response) => {
       return;
     }
 
-    // Extraer datos del carnet desde el buffer
-    const landlordCarnetInfo = await extractLandlordInfo(req.file.buffer);
-    console.log("Datos del carnet extraídos:", landlordCarnetInfo);
+    // Extraer y validar datos del carnet contra el formulario
+    const validationResult = await extractLandlordInfo(req.file.buffer, {
+      landlordName: landlordRegisterInfo.landlordName,
+      landlordRut: landlordRegisterInfo.landlordRut,
+    });
 
-    // Comparar los datos del carnet con los datos del formulario
-    if (landlordCarnetInfo && landlordCarnetInfo.success) {
-      const normalizedFormRut = normalizeRut(landlordRegisterInfo.landlordRut);
-      const normalizedCarnetRut = normalizeRut(landlordCarnetInfo.data.rut);
+    console.log("🔍 Resultado de validación:", validationResult);
 
-      // Verificar que el RUT coincida
-      if (normalizedFormRut !== normalizedCarnetRut) {
-        res.status(400).json({
-          success: false,
-          message: "El RUT del formulario no coincide con el del carnet",
-        });
-        return;
+    // Verificar si la validación fue exitosa
+    if (!validationResult.isValid) {
+      let errorMessage = "Los datos del carnet no coinciden con el formulario:";
+      if (!validationResult.matchDetails.nameFound) {
+        errorMessage += " El nombre no se encontró en el carnet.";
+      }
+      if (!validationResult.matchDetails.rutFound) {
+        errorMessage += " El RUT no se encontró en el carnet.";
       }
 
-      // Verificar que el nombre coincida (al menos 80% de las palabras)
-      const formNameWords = landlordRegisterInfo.landlordName
-        .toLowerCase()
-        .split(" ");
-      const carnetNameWords = landlordCarnetInfo.data.name
-        .toLowerCase()
-        .split(" ");
-
-      if (!wordsMatchPercentage(formNameWords, carnetNameWords, 0.8)) {
-        res.status(400).json({
-          success: false,
-          message:
-            "El nombre del formulario no coincide suficientemente con el del carnet",
-        });
-        return;
-      }
-    } else {
-      console.warn(
-        "⚠️ No se pudo extraer información del carnet, continuando sin validación"
-      );
+      res.status(400).json({
+        success: false,
+        message: errorMessage,
+        details: {
+          form: {
+            name: landlordRegisterInfo.landlordName,
+            rut: landlordRegisterInfo.landlordRut,
+          },
+          matchDetails: validationResult.matchDetails,
+          rawTextSample: validationResult.rawText.substring(0, 200) + "...",
+        },
+      });
+      return;
     }
+
+    // Verificar confianza mínima en la extracción
+    if (validationResult.confidence < 60) {
+      console.warn(
+        `⚠️ Confianza baja en validación: ${validationResult.confidence}%`
+      );
+
+      res.status(400).json({
+        success: false,
+        message: `La calidad de la imagen del carnet es insuficiente. Confianza: ${validationResult.confidence}%. Por favor, envía una imagen más clara.`,
+        details: {
+          confidence: validationResult.confidence,
+          matchDetails: validationResult.matchDetails,
+        },
+      });
+      return;
+    }
+
+    console.log("✅ Validación del carnet exitosa con alta confianza");
 
     // Subir imagen del carnet a S3/MinIO
     const carnetUrl = await uploadImageToBucket(
@@ -121,6 +128,12 @@ export const registerLandlord = async (req: Request, res: Response) => {
           role: newLandlord.role,
         },
         token,
+        validation: {
+          confidence: validationResult.confidence,
+          verified: true,
+          message: "Identidad verificada exitosamente mediante carnet",
+          matchDetails: validationResult.matchDetails,
+        },
       },
     });
   } catch (error) {
