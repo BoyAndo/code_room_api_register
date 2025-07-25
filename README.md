@@ -277,24 +277,43 @@ Iniciar sesión con credenciales.
 }
 ```
 
-### **📋 Registro**
+### **📋 Registro de Estudiantes**
 
-#### **POST** `/auth/register`
+#### **POST** `/auth/students-register`
 
-Registrar nuevo usuario (estudiante o arrendador).
+Registrar nuevo estudiante con verificación automática de certificado.
 
 **Content-Type:** `multipart/form-data`
 
-**Request (Estudiante):**
+**Request:**
 
 ```bash
-curl -X POST http://localhost:3000/auth/register \
+curl -X POST http://localhost:3000/auth/students-register \
   -F "studentName=Juan Pérez García" \
   -F "studentRut=12345678-9" \
   -F "studentEmail=juan@ejemplo.com" \
   -F "password=password123" \
   -F "studentCollege=Universidad de Santiago" \
-  -F "file=@certificado_estudiantil.pdf"
+  -F "studentCertificateUrl=@certificado_estudiantil.pdf"
+```
+
+### **🏠 Registro de Arrendadores**
+
+#### **POST** `/auth/landlords-register`
+
+Registrar nuevo arrendador con verificación automática de carnet de identidad.
+
+**Content-Type:** `multipart/form-data`
+
+**Request:**
+
+```bash
+curl -X POST http://localhost:3000/auth/landlords-register \
+  -F "landlordName=María González López" \
+  -F "landlordRut=98765432-1" \
+  -F "landlordEmail=maria@ejemplo.com" \
+  -F "password=password123" \
+  -F "landlordCarnet=@carnet_identidad.jpg"
 ```
 
 **Response:**

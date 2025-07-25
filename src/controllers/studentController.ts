@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
 import { userSchema } from "../schemas/user.schema";
-import { createUser, generateClientToken } from "../services/auth.service";
-import { extractStudentInfo } from "../services/extractStudentInfo";
-import { allWordsExist, normalizeRut } from "../services/normalize";
-import { uploadPdfToBucket } from "../services/s3Service";
+import {
+  createUser,
+  generateClientToken,
+} from "../services/studentServices/student.auth.service";
+import { extractStudentInfo } from "../services/studentServices/extractStudentInfo";
+import { allWordsExist, normalizeRut } from "../services/shared/normalize";
+import { uploadPdfToBucket } from "../services/shared/s3Service";
 
-export const registerUser = async (req: Request, res: Response) => {
+export const registerStudent = async (req: Request, res: Response) => {
   try {
     // Validar y obtener datos del formulario
     const studentRegisterInfo = userSchema.parse(req.body);
@@ -49,7 +52,15 @@ export const registerUser = async (req: Request, res: Response) => {
     const newStudent = await createUser(studentRegisterInfo, pdfUrl);
 
     // Generar token
-    const token = generateClientToken(newStudent);
+    const token = generateClientToken({
+      id: newStudent.id,
+      studentRut: newStudent.studentRut,
+      studentEmail: newStudent.studentEmail,
+      studentName: newStudent.studentName,
+      studentCollege: newStudent.studentCollege,
+      studentCertificateUrl: newStudent.studentCertificateUrl,
+      role: newStudent.role,
+    });
 
     // Responder al frontend
     return res.status(200).json(token);

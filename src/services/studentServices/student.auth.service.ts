@@ -1,8 +1,11 @@
-import prisma from "../models/user";
+import prisma from "../../models/user";
 import jwt from "jsonwebtoken";
-import { UserRegisterInput, UserRegisterToken } from "../schemas/user.schema";
+import {
+  UserRegisterInput,
+  UserRegisterToken,
+} from "../../schemas/user.schema";
 import fs from "node:fs";
-import { hashPassword } from "./password.service";
+import { hashPassword } from "../shared/password.service";
 const PRIVATE_KEY_PATH = process.env.PRIVATE_KEY_PATH;
 
 // Función para crear un nuevo usuario estudiante en la base de datos
@@ -33,9 +36,23 @@ export const findUserByEmail = async (email: string) => {
 };
 
 //Generar un token para el usuario al loguearse
-export const generateClientToken = (user: UserRegisterToken) => {
-  if (PRIVATE_KEY_PATH) {
-    const privateKey = fs.readFileSync(PRIVATE_KEY_PATH, "utf8");
-    return jwt.sign(user, privateKey, { algorithm: "RS256", expiresIn: "1h" });
+export const generateClientToken = (user: UserRegisterToken): string => {
+  if (!PRIVATE_KEY_PATH) {
+    throw new Error("PRIVATE_KEY_PATH no está configurado");
   }
+
+  const privateKey = fs.readFileSync(PRIVATE_KEY_PATH, "utf8");
+
+  const payload = {
+    id: user.id,
+    studentRut: user.studentRut,
+    studentEmail: user.studentEmail,
+    studentName: user.studentName,
+    role: user.role,
+  };
+
+  return jwt.sign(payload, privateKey, {
+    algorithm: "RS256",
+    expiresIn: "24h",
+  });
 };

@@ -26,6 +26,7 @@ export type FinalUser = UserRegisterInput & {
 };
 
 export type UserRegisterToken = {
+  id: number;
   studentRut: string;
   studentEmail: string;
   studentName: string;

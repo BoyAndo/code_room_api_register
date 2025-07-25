@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
-import { findUserByEmail, generateClientToken } from "../services/auth.service";
+import {
+  findUserByEmail,
+  generateClientToken,
+} from "../services/studentServices/student.auth.service";
 import { compare } from "bcrypt";
 
 export const loginController = async (req: Request, res: Response) => {
@@ -35,6 +38,7 @@ export const loginController = async (req: Request, res: Response) => {
     // Generar el payload para el token
     if (user.role == "student") {
       const clientTokenPayload = {
+        id: user.id,
         studentRut: user.studentRut,
         studentEmail: user.studentEmail,
         studentName: user.studentName,
