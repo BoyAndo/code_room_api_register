@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { userSchema } from "../schemas/user.schema";
+import { studentSchema } from "../schemas/student.schema";
 import {
   createUser,
   generateClientToken,
@@ -11,7 +11,7 @@ import { uploadPdfToBucket } from "../services/shared/s3Service";
 export const registerStudent = async (req: Request, res: Response) => {
   try {
     // Validar y obtener datos del formulario
-    const studentRegisterInfo = userSchema.parse(req.body);
+    const studentRegisterInfo = studentSchema.parse(req.body);
 
     // debugging: Imprimir datos del formulario
     console.log("Datos del formulario:", studentRegisterInfo);

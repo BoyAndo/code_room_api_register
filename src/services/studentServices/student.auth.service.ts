@@ -1,17 +1,22 @@
-import prisma from "../../models/user";
+import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import {
-  UserRegisterInput,
-  UserRegisterToken,
-} from "../../schemas/user.schema";
+  StudentRegisterInput,
+  StudentRegisterToken,
+} from "../../schemas/student.schema";
 import fs from "node:fs";
 import { hashPassword } from "../shared/password.service";
+
+const prisma = new PrismaClient();
 const PRIVATE_KEY_PATH = process.env.PRIVATE_KEY_PATH;
 
 // Función para crear un nuevo usuario estudiante en la base de datos
-export const createUser = async (user: UserRegisterInput, pdfUrl: string) => {
+export const createUser = async (
+  user: StudentRegisterInput,
+  pdfUrl: string
+) => {
   const hashedPassword = await hashPassword(user.password);
-  const newUser = await prisma.create({
+  const newUser = await prisma.student.create({
     data: {
       studentRut: user.studentRut,
       studentEmail: user.studentEmail,
@@ -27,7 +32,7 @@ export const createUser = async (user: UserRegisterInput, pdfUrl: string) => {
 
 //Buscar usuario por email para el login
 export const findUserByEmail = async (email: string) => {
-  const user = await prisma.findUnique({
+  const user = await prisma.student.findUnique({
     where: {
       studentEmail: email,
     },
@@ -36,7 +41,7 @@ export const findUserByEmail = async (email: string) => {
 };
 
 //Generar un token para el usuario al loguearse
-export const generateClientToken = (user: UserRegisterToken): string => {
+export const generateClientToken = (user: StudentRegisterToken): string => {
   if (!PRIVATE_KEY_PATH) {
     throw new Error("PRIVATE_KEY_PATH no está configurado");
   }

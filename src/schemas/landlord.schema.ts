@@ -1,13 +1,16 @@
 import { z } from "zod";
 
+// Regex para validar RUT chileno (acepta formatos: 1.234.567-8, 12.345.678-9, 7.848.777-1, 15.222.746-2, etc.)
+const rutRegex = /^(\d{1,2}\.?\d{3}\.?\d{3}-[\dkK])$/;
+
 // Schema para validar los datos de registro del arrendador
 export const landlordSchema = z.object({
   landlordRut: z
     .string()
     .min(1, "El RUT del arrendador es obligatorio")
     .regex(
-      /^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$/,
-      "Formato de RUT inválido (ej: 12.345.678-9)"
+      rutRegex,
+      "Formato de RUT inválido. Debe ser como: 12.345.678-9 o 12.345.678-K"
     ),
 
   landlordEmail: z
