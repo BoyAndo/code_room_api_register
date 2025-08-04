@@ -27,13 +27,13 @@ model Student {
 }
 
 model Landlord {
-  id            Int      @id @default(autoincrement())
-  landlordRut   String   @unique
-  landlordEmail String   @unique
-  landlordName  String
-  password      String
-  landlordCarnetUrl String
-  role          String   @default("landlord")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id                    Int      @id @default(autoincrement())
+  landlordRut           String   @unique
+  landlordEmail         String   @unique
+  landlordName          String
+  password              String
+  landlordCarnetUrl     String
+  role                  String   @default("landlord")
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }

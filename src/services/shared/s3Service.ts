@@ -64,7 +64,7 @@ export const uploadImageToBucket = async (
         Bucket: "carnets",
         Key: uniqueName,
         Body: buffer,
-        ContentType: "image/jpeg", // Asumimos JPEG por defecto
+        ContentType: "image/jpeg",
       })
     );
 

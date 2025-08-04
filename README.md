@@ -530,24 +530,33 @@ curl http://localhost:3000/health
 - **Conventional Commits** para mensajes
 - **TypeScript strict mode** habilitado
 
+---
+
 ## 📞 Soporte y Contacto
+
+## 👨‍💻 Autor
 
 ### **Desarrollador Principal**
 
+- **Ivan Duarte Herrera**
+
 - **GitHub**: [@BoyAndo](https://github.com/BoyAndo)
-- **Email**: contacto@coderoom.com
+- **Email**: ivanduarteherrera@gmail.com - Institucional: iva.duarte@duocuc.cl
 
 ### **Repositorios Relacionados**
 
-- **API Principal**: [code_room_api_auth](https://github.com/BoyAndo/code_room_api_auth)
+- **API Principal de registro**: [code_room_api_auth](https://github.com/BoyAndo/code_room_api_auth)
 - **Storage Service**: [code_room_storage_service](https://github.com/BoyAndo/code_room_storage_service)
 - **Certificate Scraper**: [certificate-scraper-service](https://github.com/BoyAndo/certificate-scraper-service)
+- **API de registro de propiedades de landlords**: [code_room_api_properties](https://github.com/BoyAndo/code_room_api_properties)
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+Este proyecto está bajo licencia privada y es parte del proyecto de mi proyecto de título.
 
----
+- Proyecto Code Room - API de registro de estudiantes y landlords
+- Integración con sistema de registro de propiedades
+- Validación OCR avanzada para validación de carnet de identidades chilenos
 
 **🏠 Code Room** - _Conectando estudiantes con su hogar ideal para el éxito académico_
 
