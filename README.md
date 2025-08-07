@@ -496,15 +496,11 @@ curl http://localhost:3000/health
 
 ### **🔍 Funcionalidades Planificadas**
 
-- [ ] **Verificación 2FA** para cuentas de arrendador
-- [ ] **API de geolocalización** para propiedades
-- [ ] **Sistema de mensajería** entre usuarios
-- [ ] **Integración de pagos** (Stripe/PayPal)
-- [ ] **Notificaciones push** en tiempo real
-- [ ] **Analytics y métricas** de uso
-- [ ] **API de matching** inteligente estudiante-propiedad
+- [ ] **Generar propiedades a nombre de arrendadores** para cuentas de arrendador
+- [ ] **AutoLogin con tocken de respuesta de registro** para estudiantes y propiedades
 
-### **🧪 Mejoras Técnicas**
+
+### **🧪 Mejoras Técnicas Futuras**
 
 - [ ] **Rate limiting** avanzado
 - [ ] **Caching con Redis** para performance
@@ -513,15 +509,6 @@ curl http://localhost:3000/health
 - [ ] **CI/CD pipeline** con GitHub Actions
 - [ ] **Documentación OpenAPI** (Swagger)
 
-## 🤝 Contribución
-
-### **Desarrollo Local**
-
-1. Fork del repositorio
-2. Crear rama feature: `git checkout -b feature/nueva-funcionalidad`
-3. Commit cambios: `git commit -m 'Agregar nueva funcionalidad'`
-4. Push a la rama: `git push origin feature/nueva-funcionalidad`
-5. Crear Pull Request
 
 ### **Estándares de Código**
 
