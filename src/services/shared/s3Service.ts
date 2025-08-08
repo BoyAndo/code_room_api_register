@@ -3,7 +3,7 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 const MINIO_ENDPOINT = process.env.MINIO_ENDPOINT!;
 const MINIO_USER = process.env.MINIO_USER!;
 const MINIO_PASS = process.env.MINIO_PASS!;
-const URL_S3 = process.env.URL_S3!;
+const URL_S3_CERTIFICADOS = process.env.URL_S3_CERTIFICADOS!;
 const URL_S3_CARNETS = process.env.URL_S3_CARNETS!;
 
 const s3 = new S3Client({
@@ -36,7 +36,7 @@ export const uploadPdfToBucket = async (
       })
     );
 
-    const url = `${URL_S3}${uniqueName}`;
+    const url = `${URL_S3_CERTIFICADOS}${uniqueName}`;
     return url;
   } catch (err) {
     console.error("Error al subir a S3:", err);
