@@ -7,6 +7,9 @@ import {
 } from "../services/landlordServices/landlord.auth.service";
 import { extractLandlordInfo } from "../services/landlordServices/extractLandlordInfo";
 import { uploadImageToBucket } from "../services/shared/s3Service";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export const registerLandlord = async (req: Request, res: Response) => {
   try {
@@ -151,5 +154,21 @@ export const registerLandlord = async (req: Request, res: Response) => {
         message: "Error interno del servidor desconocido",
       });
     }
+  }
+};
+
+export const getLandlords = async (req: Request, res: Response) => {
+  try {
+    const landlords = await prisma.landlord.findMany({
+      select: {
+        id: true,
+        landlordName: true,
+      },
+    });
+    res.json({ success: true, landlords });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Error al obtener landlords" });
   }
 };
