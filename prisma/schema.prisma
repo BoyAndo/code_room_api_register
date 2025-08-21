@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -13,27 +14,118 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ============================================
+// MODELOS DE USUARIOS
+// ============================================
+
 model Student {
-  id        Int  @id @default(autoincrement())
-  studentRut      String  @unique
-  studentEmail     String  @unique
-  studentName String
-  password  String
-  studentCollege   String
+  id                    Int      @id @default(autoincrement())
+  studentRut            String   @unique
+  studentEmail          String   @unique
+  studentName           String
+  password              String
+  studentCollege        String
   studentCertificateUrl String
-  role String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  role                  String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
 
 model Landlord {
+  id                Int      @id @default(autoincrement())
+  landlordRut       String   @unique
+  landlordEmail     String   @unique
+  landlordName      String
+  password          String
+  landlordCarnetUrl String
+  role              String   @default("landlord")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relación con propiedades (si necesitas consultar desde aquí)
+  properties        Property[]
+}
+
+// ============================================
+// MODELOS DE PROPIEDADES (para referencia)
+// ============================================
+
+// Enum para tipos de propiedad
+enum PropertyType {
+  APARTMENT
+  HOUSE
+  ROOM
+}
+
+model Property {
   id                    Int      @id @default(autoincrement())
-  landlordRut           String   @unique
-  landlordEmail         String   @unique
-  landlordName          String
-  password              String
-  landlordCarnetUrl     String
-  role                  String   @default("landlord")
+  landlordId            Int      // Foreign key al landlord
+  title                 String
+  description           String?  @db.Text
+  address               String
+  comuna                String
+  region                String
+  zipCode               String?
+  propertyType          PropertyType
+  bedrooms              Int
+  bathrooms             Int
+  squareMeters          Float?
+  monthlyRent           Decimal  @db.Decimal(10, 2)
+  isAvailable          Boolean  @default(true)
+  utilityBillUrl        String
+  utilityBillValidated  Boolean  @default(false)
+  rules                 String?  @db.Text
+  latitude              Decimal? @db.Decimal(10, 8)
+  longitude             Decimal? @db.Decimal(11, 8)
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
+  
+  // Relaciones
+  landlord              Landlord          @relation(fields: [landlordId], references: [id], onDelete: Cascade)
+  propertyImages        PropertyImage[]
+  propertyAmenities     PropertyAmenity[]
+  
+  @@index([landlordId])
+}
+
+model PropertyImage {
+  id           Int      @id @default(autoincrement())
+  propertyId   Int
+  imageUrl     String   @db.VarChar(500)
+  displayOrder Int      @default(0)
+  altText      String?  @db.VarChar(255)
+  isPrimary    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  property     Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  
+  @@index([propertyId, displayOrder])
+  @@index([propertyId, isPrimary])
+}
+
+model Amenity {
+  id                Int                @id @default(autoincrement())
+  name              String             @unique @db.VarChar(100)
+  description       String?            @db.Text
+  icon              String?            @db.VarChar(50)
+  category          String?            @db.VarChar(50)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  
+  propertyAmenities PropertyAmenity[]
+}
+
+model PropertyAmenity {
+  id         Int      @id @default(autoincrement())
+  propertyId Int
+  amenityId  Int
+  createdAt  DateTime @default(now())
+  
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  amenity    Amenity  @relation(fields: [amenityId], references: [id], onDelete: Cascade)
+  
+  @@unique([propertyId, amenityId])
+  @@index([propertyId])
+  @@index([amenityId])
 }

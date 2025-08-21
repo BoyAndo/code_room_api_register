@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.8.2
- * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+ * Prisma Client JS version: 6.12.0
+ * Query Engine version: 8047c96bbd92db98a2abc7c9323ce77c02c89dbc
  */
 Prisma.prismaVersion = {
-  client: "6.8.2",
-  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
+  client: "6.12.0",
+  engine: "8047c96bbd92db98a2abc7c9323ce77c02c89dbc"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -120,14 +120,81 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.StudentScalarFieldEnum = {
   id: 'id',
-  rut: 'rut',
-  email: 'email',
+  studentRut: 'studentRut',
+  studentEmail: 'studentEmail',
   studentName: 'studentName',
   password: 'password',
-  college: 'college',
-  studentCertificateUrl: 'studentCertificateUrl'
+  studentCollege: 'studentCollege',
+  studentCertificateUrl: 'studentCertificateUrl',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LandlordScalarFieldEnum = {
+  id: 'id',
+  landlordRut: 'landlordRut',
+  landlordEmail: 'landlordEmail',
+  landlordName: 'landlordName',
+  password: 'password',
+  landlordCarnetUrl: 'landlordCarnetUrl',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PropertyScalarFieldEnum = {
+  id: 'id',
+  landlordId: 'landlordId',
+  title: 'title',
+  description: 'description',
+  address: 'address',
+  comuna: 'comuna',
+  region: 'region',
+  zipCode: 'zipCode',
+  propertyType: 'propertyType',
+  bedrooms: 'bedrooms',
+  bathrooms: 'bathrooms',
+  squareMeters: 'squareMeters',
+  monthlyRent: 'monthlyRent',
+  isAvailable: 'isAvailable',
+  utilityBillUrl: 'utilityBillUrl',
+  utilityBillValidated: 'utilityBillValidated',
+  rules: 'rules',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PropertyImageScalarFieldEnum = {
+  id: 'id',
+  propertyId: 'propertyId',
+  imageUrl: 'imageUrl',
+  displayOrder: 'displayOrder',
+  altText: 'altText',
+  isPrimary: 'isPrimary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AmenityScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  icon: 'icon',
+  category: 'category',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PropertyAmenityScalarFieldEnum = {
+  id: 'id',
+  propertyId: 'propertyId',
+  amenityId: 'amenityId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -135,18 +202,65 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  rut: 'rut',
-  email: 'email',
+exports.Prisma.StudentOrderByRelevanceFieldEnum = {
+  studentRut: 'studentRut',
+  studentEmail: 'studentEmail',
   studentName: 'studentName',
   password: 'password',
-  college: 'college',
-  studentCertificateUrl: 'studentCertificateUrl'
+  studentCollege: 'studentCollege',
+  studentCertificateUrl: 'studentCertificateUrl',
+  role: 'role'
 };
 
+exports.Prisma.LandlordOrderByRelevanceFieldEnum = {
+  landlordRut: 'landlordRut',
+  landlordEmail: 'landlordEmail',
+  landlordName: 'landlordName',
+  password: 'password',
+  landlordCarnetUrl: 'landlordCarnetUrl',
+  role: 'role'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.PropertyOrderByRelevanceFieldEnum = {
+  title: 'title',
+  description: 'description',
+  address: 'address',
+  comuna: 'comuna',
+  region: 'region',
+  zipCode: 'zipCode',
+  utilityBillUrl: 'utilityBillUrl',
+  rules: 'rules'
+};
+
+exports.Prisma.PropertyImageOrderByRelevanceFieldEnum = {
+  imageUrl: 'imageUrl',
+  altText: 'altText'
+};
+
+exports.Prisma.AmenityOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description',
+  icon: 'icon',
+  category: 'category'
+};
+exports.PropertyType = exports.$Enums.PropertyType = {
+  APARTMENT: 'APARTMENT',
+  HOUSE: 'HOUSE',
+  ROOM: 'ROOM'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  Student: 'Student',
+  Landlord: 'Landlord',
+  Property: 'Property',
+  PropertyImage: 'PropertyImage',
+  Amenity: 'Amenity',
+  PropertyAmenity: 'PropertyAmenity'
 };
 
 /**
