@@ -32,15 +32,17 @@ export const findLandlordByEmail = async (email: string) => {
   return await LandlordModel.findByEmail(email);
 };
 
-// Función para generar token JWT para arrendador
+// Función para generar token JWT para arrendador usando HMAC
 export const generateLandlordToken = (
   landlord: LandlordRegisterToken
 ): string => {
-  if (!PRIVATE_KEY_PATH) {
-    throw new Error("PRIVATE_KEY_PATH no está configurado");
-  }
+  const JWT_SECRET = process.env.JWT_SECRET;
 
-  const privateKey = fs.readFileSync(PRIVATE_KEY_PATH, "utf8");
+  if (!JWT_SECRET) {
+    throw new Error(
+      "JWT_SECRET no está configurado en las variables de entorno"
+    );
+  }
 
   const payload = {
     id: landlord.id,
@@ -50,10 +52,10 @@ export const generateLandlordToken = (
     role: landlord.role,
   };
 
-  return jwt.sign(payload, privateKey, {
-    algorithm: "RS256",
-    expiresIn: "24h",
-  });
+  return jwt.sign(payload, JWT_SECRET!, {
+    algorithm: "HS256",
+    expiresIn: process.env.JWT_EXPIRES_IN || "24h",
+  } as jwt.SignOptions);
 };
 
 // Función para verificar si ya existe un arrendador
