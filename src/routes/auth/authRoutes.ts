@@ -23,4 +23,12 @@ router.post(
 
 router.get("/landlords", getLandlords);
 
+router.get("/health", (req, res) => {
+  res.status(200).json({ 
+    success: true, 
+    message: "Auth API is working!",
+    timestamp: new Date().toISOString()
+  });
+});
+
 export default router;

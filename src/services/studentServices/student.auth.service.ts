@@ -53,8 +53,12 @@ export const generateClientToken = (user: StudentRegisterToken): string => {
     studentRut: user.studentRut,
     studentEmail: user.studentEmail,
     studentName: user.studentName,
+    studentCollege: user.studentCollege, // ← Agrega este campo
+    studentCertificateUrl: user.studentCertificateUrl, // ← Y este también
     role: user.role,
   };
+
+  console.log('JWT Payload:', payload); // ← Para debug
 
   return jwt.sign(payload, privateKey, {
     algorithm: "RS256",

@@ -31,12 +31,12 @@ export type FinalStudent = StudentRegisterInput & {
   role: string;
 };
 
-export type StudentRegisterToken = {
+export interface StudentRegisterToken {
   id: number;
   studentRut: string;
   studentEmail: string;
   studentName: string;
-  studentCollege: string;
-  studentCertificateUrl: string;
+  studentCollege: string; // ← Asegúrate de que esté
+  studentCertificateUrl: string; // ← Y este también
   role: string;
-};
+}
