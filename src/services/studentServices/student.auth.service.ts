@@ -88,6 +88,6 @@ export const generateClientToken = (user: StudentRegisterToken): string => {
 
   return jwt.sign(payload, JWT_SECRET!, {
     algorithm: "HS256",
-    expiresIn: process.env.JWT_EXPIRES_IN || "24h",
+    expiresIn: process.env.JWT_EXPIRES_IN || "120h",
   } as jwt.SignOptions);
 };

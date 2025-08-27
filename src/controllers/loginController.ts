@@ -51,7 +51,7 @@ export const loginController = async (req: Request, res: Response) => {
       res.cookie("authToken", token, {
         httpOnly: true, //no accesible con xss
         sameSite: "strict", //evita el envío en solicitudes de otros dominios
-        maxAge: 24 * 60 * 60 * 1000, //1 día
+        maxAge: 7 * 24 * 60 * 60 * 1000, // ← 7 días
       });
 
       res.status(200).json({ success: true, token });

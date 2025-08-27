@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { PrismaClient } from "../generated/prisma";
 import { studentSchema } from "../schemas/student.schema";
 import {
   createUser,
@@ -7,6 +8,7 @@ import {
 import { extractStudentInfo } from "../services/studentServices/extractStudentInfo";
 import { allWordsExist, normalizeRut } from "../services/shared/normalize";
 import { uploadPdfToBucket } from "../services/shared/s3Service";
+import prisma from "../models/user";
 
 export const registerStudent = async (req: Request, res: Response) => {
   try {
@@ -80,5 +82,22 @@ export const registerStudent = async (req: Request, res: Response) => {
       message: "Error interno del servidor",
     });
     return;
+  }
+};
+
+//get all students
+export const getAllStudents = async (req: Request, res: Response) => {
+  try {
+    const students = await prisma.student.findMany({
+      select: {
+        id: true,
+        studentName: true,
+        studentCollege: true,
+      },
+    });
+    return res.status(200).json({ students });
+  } catch (error) {
+    console.error("Error al obtener estudiantes:", error);
+    throw error;
   }
 };
