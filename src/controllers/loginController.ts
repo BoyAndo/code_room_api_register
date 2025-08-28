@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import {
-  findUserByEmail,
-  generateClientToken,
-} from "../services/studentServices/student.auth.service";
 import { compare } from "bcrypt";
+import { 
+  findUserByEmail, 
+  generateStudentToken, 
+  generateLandlordToken 
+} from "../services/auth.service";
 
 export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -16,7 +17,9 @@ export const loginController = async (req: Request, res: Response) => {
       });
     }
 
+    // Buscar usuario en ambas tablas
     const user = await findUserByEmail(email);
+
     if (!user) {
       return res.status(404).json({ 
         success: false, 
@@ -32,21 +35,9 @@ export const loginController = async (req: Request, res: Response) => {
       });
     }
 
-    if (user.role == "student") {
-      const clientTokenPayload = {
-        id: user.id,
-        studentRut: user.studentRut,
-        studentEmail: user.studentEmail,
-        studentName: user.studentName,
-        studentCollege: user.studentCollege, // ← Asegúrate de que esto existe
-        studentCertificateUrl: user.studentCertificateUrl, // ← Y esto también
-        role: user.role,
-      };
-
-      console.log('User object from DB:', user); // ← Debug
-      console.log('Token payload:', clientTokenPayload); // ← Debug
-
-      const token = generateClientToken(clientTokenPayload);
+    // Generar token según el rol
+    if (user.role === "student") {
+      const token = generateStudentToken(user);
       
       res.cookie("authToken", token, {
         httpOnly: true,
@@ -57,14 +48,28 @@ export const loginController = async (req: Request, res: Response) => {
       return res.status(200).json({ 
         success: true, 
         token,
-        user: clientTokenPayload // ← Envía también los datos del usuario para debug
+        userType: 'student'
+      });
+    } else if (user.role === "landlord") {
+      const token = generateLandlordToken(user);
+      
+      res.cookie("authToken", token, {
+        httpOnly: true,
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+
+      return res.status(200).json({ 
+        success: true, 
+        token,
+        userType: 'landlord'
+      });
+    } else {
+      return res.status(403).json({ 
+        success: false, 
+        message: "Rol no válido" 
       });
     }
-
-    return res.status(403).json({ 
-      success: false, 
-      message: "Rol no válido" 
-    });
 
   } catch (error) {
     console.error("Error en el controlador de inicio de sesión:", error);

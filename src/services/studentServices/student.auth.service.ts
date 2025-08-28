@@ -1,22 +1,22 @@
 import { PrismaClient } from "@prisma/client";
-import jwt from "jsonwebtoken";
-import {
-  StudentRegisterInput,
-  StudentRegisterToken,
-} from "../../schemas/student.schema";
-import fs from "node:fs";
 import { hashPassword } from "../shared/password.service";
 
 const prisma = new PrismaClient();
-const PRIVATE_KEY_PATH = process.env.PRIVATE_KEY_PATH;
 
-// Función para crear un nuevo usuario estudiante en la base de datos
-export const createUser = async (
-  user: StudentRegisterInput,
-  pdfUrl: string
-) => {
+// Función para verificar si ya existe un estudiante
+export const checkExistingStudent = async (email: string, rut: string) => {
+  return await prisma.student.findFirst({
+    where: {
+      OR: [{ studentEmail: email }, { studentRut: rut }],
+    },
+  });
+};
+
+// Función para crear un nuevo estudiante
+export const createStudent = async (user: any, pdfUrl: string) => {
   const hashedPassword = await hashPassword(user.password);
-  const newUser = await prisma.student.create({
+  
+  return await prisma.student.create({
     data: {
       studentRut: user.studentRut,
       studentEmail: user.studentEmail,
@@ -26,42 +26,5 @@ export const createUser = async (
       studentCertificateUrl: pdfUrl,
       role: "student",
     },
-  });
-  return newUser;
-};
-
-//Buscar usuario por email para el login
-export const findUserByEmail = async (email: string) => {
-  const user = await prisma.student.findUnique({
-    where: {
-      studentEmail: email,
-    },
-  });
-  return user;
-};
-
-//Generar un token para el usuario al loguearse
-export const generateClientToken = (user: StudentRegisterToken): string => {
-  if (!PRIVATE_KEY_PATH) {
-    throw new Error("PRIVATE_KEY_PATH no está configurado");
-  }
-
-  const privateKey = fs.readFileSync(PRIVATE_KEY_PATH, "utf8");
-
-  const payload = {
-    id: user.id,
-    studentRut: user.studentRut,
-    studentEmail: user.studentEmail,
-    studentName: user.studentName,
-    studentCollege: user.studentCollege, // ← Agrega este campo
-    studentCertificateUrl: user.studentCertificateUrl, // ← Y este también
-    role: user.role,
-  };
-
-  console.log('JWT Payload:', payload); // ← Para debug
-
-  return jwt.sign(payload, privateKey, {
-    algorithm: "RS256",
-    expiresIn: "24h",
   });
 };

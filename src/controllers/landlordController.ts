@@ -2,48 +2,40 @@ import { Request, Response } from "express";
 import { landlordSchema } from "../schemas/landlord.schema";
 import {
   createLandlord,
-  generateLandlordToken,
   checkExistingLandlord,
 } from "../services/landlordServices/landlord.auth.service";
+import { generateLandlordToken } from "../services/auth.service"; // ← Importar desde el nuevo servicio
 import { extractLandlordInfo } from "../services/landlordServices/extractLandlordInfo";
 import { uploadImageToBucket } from "../services/shared/s3Service";
 import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
-
 export const registerLandlord = async (req: Request, res: Response) => {
   try {
-    // Validar y obtener datos del formulario
     const landlordRegisterInfo = landlordSchema.parse(req.body);
 
-    // debugging: Imprimir datos del formulario
     console.log("Datos del formulario arrendador:", landlordRegisterInfo);
     console.log("Archivo de carnet recibido:", req.file?.originalname);
 
-    // Verificar si se recibió un archivo de imagen del carnet
     if (!req.file || !req.file.buffer) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Imagen del carnet no enviada o vacía",
       });
-      return;
     }
 
-    // Verificar si ya existe un arrendador con el mismo email o RUT
+    // Verificar si ya existe un arrendador
     const existingLandlord = await checkExistingLandlord(
       landlordRegisterInfo.landlordEmail,
       landlordRegisterInfo.landlordRut
     );
 
     if (existingLandlord) {
-      res.status(409).json({
+      return res.status(409).json({
         success: false,
         message: "Ya existe un arrendador registrado con este email o RUT",
       });
-      return;
     }
 
-    // Extraer y validar datos del carnet contra el formulario
+    // Extraer y validar datos del carnet
     const validationResult = await extractLandlordInfo(req.file.buffer, {
       landlordName: landlordRegisterInfo.landlordName,
       landlordRut: landlordRegisterInfo.landlordRut,
@@ -51,7 +43,6 @@ export const registerLandlord = async (req: Request, res: Response) => {
 
     console.log("🔍 Resultado de validación:", validationResult);
 
-    // Verificar si la validación fue exitosa
     if (!validationResult.isValid) {
       let errorMessage = "Los datos del carnet no coinciden con el formulario:";
       if (!validationResult.matchDetails.nameFound) {
@@ -61,7 +52,7 @@ export const registerLandlord = async (req: Request, res: Response) => {
         errorMessage += " El RUT no se encontró en el carnet.";
       }
 
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: errorMessage,
         details: {
@@ -73,16 +64,11 @@ export const registerLandlord = async (req: Request, res: Response) => {
           rawTextSample: validationResult.rawText.substring(0, 200) + "...",
         },
       });
-      return;
     }
 
-    // Verificar confianza mínima en la extracción
     if (validationResult.confidence < 60) {
-      console.warn(
-        `⚠️ Confianza baja en validación: ${validationResult.confidence}%`
-      );
-
-      res.status(400).json({
+      console.warn(`⚠️ Confianza baja en validación: ${validationResult.confidence}%`);
+      return res.status(400).json({
         success: false,
         message: `La calidad de la imagen del carnet es insuficiente. Confianza: ${validationResult.confidence}%. Por favor, envía una imagen más clara.`,
         details: {
@@ -90,66 +76,44 @@ export const registerLandlord = async (req: Request, res: Response) => {
           matchDetails: validationResult.matchDetails,
         },
       });
-      return;
     }
 
     console.log("✅ Validación del carnet exitosa con alta confianza");
 
-    // Subir imagen del carnet a S3/MinIO
+    // Subir imagen del carnet
     const carnetUrl = await uploadImageToBucket(
       req.file.buffer,
       req.file.originalname || "carnet.jpg"
     );
     console.log("Carnet subido a:", carnetUrl);
 
-    // Crear arrendador en la base de datos
+    // Crear arrendador
     const newLandlord = await createLandlord(landlordRegisterInfo, carnetUrl);
 
-    // Generar token JWT
-    const token = generateLandlordToken({
-      id: newLandlord.id,
-      landlordRut: newLandlord.landlordRut,
-      landlordEmail: newLandlord.landlordEmail,
-      landlordName: newLandlord.landlordName,
-      role: newLandlord.role,
-    });
+    // Generar token
+    const token = generateLandlordToken(newLandlord);
 
-    console.log(
-      "✅ Arrendador registrado exitosamente:",
-      newLandlord.landlordEmail
-    );
+    console.log("✅ Arrendador registrado exitosamente:", newLandlord.landlordEmail);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Arrendador registrado exitosamente",
       data: {
-        landlord: {
-          id: newLandlord.id,
-          landlordRut: newLandlord.landlordRut,
-          landlordEmail: newLandlord.landlordEmail,
-          landlordName: newLandlord.landlordName,
-          role: newLandlord.role,
-        },
         token,
-        validation: {
-          confidence: validationResult.confidence,
-          verified: true,
-          message: "Identidad verificada exitosamente mediante carnet",
-          matchDetails: validationResult.matchDetails,
-        },
+        userType: 'landlord'
       },
     });
   } catch (error) {
     console.error("❌ Error registrando arrendador:", error);
 
     if (error instanceof Error) {
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: "Error interno del servidor",
         error: error.message,
       });
     } else {
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: "Error interno del servidor desconocido",
       });
@@ -167,8 +131,6 @@ export const getLandlords = async (req: Request, res: Response) => {
     });
     res.json({ success: true, landlords });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error al obtener landlords" });
+    res.status(500).json({ success: false, message: "Error al obtener landlords" });
   }
 };
