@@ -8,6 +8,8 @@ import { generateLandlordToken } from "../services/auth.service"; // ← Importa
 import { extractLandlordInfo } from "../services/landlordServices/extractLandlordInfo";
 import { uploadImageToBucket } from "../services/shared/s3Service";
 import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
 export const registerLandlord = async (req: Request, res: Response) => {
   try {
     const landlordRegisterInfo = landlordSchema.parse(req.body);
@@ -92,6 +94,13 @@ export const registerLandlord = async (req: Request, res: Response) => {
 
     // Generar token
     const token = generateLandlordToken(newLandlord);
+
+    // Setear cookie con el token
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
 
     console.log("✅ Arrendador registrado exitosamente:", newLandlord.landlordEmail);
 

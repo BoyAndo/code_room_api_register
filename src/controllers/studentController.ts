@@ -49,6 +49,12 @@ export const registerStudent = async (req: Request, res: Response) => {
     // Generar token
     const token = generateStudentToken(newStudent);
 
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
     // Responder al frontend
     return res.status(200).json({
       success: true,

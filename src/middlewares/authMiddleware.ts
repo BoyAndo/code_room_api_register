@@ -6,20 +6,20 @@ export interface AuthenticatedRequest extends Request {
 }
 
 export const authenticateToken = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+  // Leer el token desde la cookie authToken
+  const token = req.cookies?.authToken;
 
   if (!token) {
     return res.status(401).json({ success: false, message: 'Token requerido' });
   }
 
-  if (!process.env.JWT_PUBLIC_KEY) {
+  if (!process.env.JWT_SECRET) {
     return res.status(500).json({ success: false, message: 'Error de configuración del servidor' });
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_PUBLIC_KEY, {
-      algorithms: ['RS256']
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, {
+      algorithms: ['HS256']
     });
     req.user = decoded;
     next();

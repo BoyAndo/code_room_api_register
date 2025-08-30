@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 const prisma = new PrismaClient();
 
 // Interfaces para los tipos de usuarios
-interface Student {
+export interface Student {
   id: number;
   studentRut: string;
   studentEmail: string;
@@ -17,7 +17,7 @@ interface Student {
   updatedAt: Date;
 }
 
-interface Landlord {
+export interface Landlord {
   id: number;
   landlordRut: string;
   landlordEmail: string;

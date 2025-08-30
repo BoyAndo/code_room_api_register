@@ -3,7 +3,9 @@ import { compare } from "bcrypt";
 import { 
   findUserByEmail, 
   generateStudentToken, 
-  generateLandlordToken 
+  generateLandlordToken,
+  Student,
+  Landlord
 } from "../services/auth.service";
 
 export const loginController = async (req: Request, res: Response) => {
@@ -37,11 +39,12 @@ export const loginController = async (req: Request, res: Response) => {
 
     // Generar token según el rol
     if (user.role === "student") {
-      const token = generateStudentToken(user);
+      const token = generateStudentToken(user as Student);
       
       res.cookie("authToken", token, {
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "lax", // Permite entre puertos distintos
+        secure: false,    // true si usas HTTPS
         maxAge: 24 * 60 * 60 * 1000,
       });
 
@@ -51,11 +54,12 @@ export const loginController = async (req: Request, res: Response) => {
         userType: 'student'
       });
     } else if (user.role === "landlord") {
-      const token = generateLandlordToken(user);
+      const token = generateLandlordToken(user as Landlord);
       
       res.cookie("authToken", token, {
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "lax", // Permite entre puertos distintos
+        secure: false,    // true si usas HTTPS
         maxAge: 24 * 60 * 60 * 1000,
       });
 
