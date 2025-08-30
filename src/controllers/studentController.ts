@@ -64,8 +64,27 @@ export const registerStudent = async (req: Request, res: Response) => {
       role: newStudent.role,
     });
 
+    // Configurar cookie httpOnly para auto-login después del registro
+    res.cookie("authToken", token, {
+      httpOnly: true, //no accesible con xss
+      sameSite: "lax", //balance entre seguridad y UX - permite navegación por enlaces externos
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+    });
+
     // Responder al frontend
-    return res.status(200).json(token);
+    return res.status(201).json({
+      success: true,
+      message: "Estudiante registrado exitosamente",
+      data: {
+        user: {
+          id: newStudent.id,
+          studentEmail: newStudent.studentEmail,
+          studentName: newStudent.studentName,
+          role: newStudent.role,
+        },
+      },
+      token, // Token visible para desarrollo/testing
+    });
   } catch (error: any) {
     console.error("Error en el registro:", error);
 

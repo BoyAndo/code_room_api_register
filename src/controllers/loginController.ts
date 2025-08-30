@@ -50,7 +50,7 @@ export const loginController = async (req: Request, res: Response) => {
       //configurar cookie que contendrá el token con httpOnly
       res.cookie("authToken", token, {
         httpOnly: true, //no accesible con xss
-        sameSite: "strict", //evita el envío en solicitudes de otros dominios
+        sameSite: "lax", //balance entre seguridad y UX - permite navegación por enlaces externos
         maxAge: 7 * 24 * 60 * 60 * 1000, // ← 7 días
       });
 

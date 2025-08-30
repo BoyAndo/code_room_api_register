@@ -114,6 +114,13 @@ export const registerLandlord = async (req: Request, res: Response) => {
       role: newLandlord.role,
     });
 
+    // Configurar cookie httpOnly para auto-login después del registro
+    res.cookie("authToken", token, {
+      httpOnly: true, //no accesible con xss
+      sameSite: "lax", //balance entre seguridad y UX - permite navegación por enlaces externos
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+    });
+
     console.log(
       "✅ Arrendador registrado exitosamente:",
       newLandlord.landlordEmail
@@ -130,7 +137,7 @@ export const registerLandlord = async (req: Request, res: Response) => {
           landlordName: newLandlord.landlordName,
           role: newLandlord.role,
         },
-        token,
+        token, // Token visible para desarrollo/testing
         validation: {
           confidence: validationResult.confidence,
           verified: true,
