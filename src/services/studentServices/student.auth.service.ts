@@ -83,6 +83,7 @@ export const generateClientToken = (user: StudentRegisterToken): string => {
     studentRut: user.studentRut,
     studentEmail: user.studentEmail,
     studentName: user.studentName,
+    studentCollege: user.studentCollege,
     role: user.role,
   };
 
