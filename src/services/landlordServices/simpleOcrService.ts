@@ -59,6 +59,7 @@ export const extractTextFromImage = async (
   try {
     console.log("📝 Iniciando extracción de texto con Tesseract...");
 
+    let ocrStarted = false;
     const {
       data: { text, confidence },
     } = await Tesseract.recognize(
@@ -66,14 +67,15 @@ export const extractTextFromImage = async (
       "spa", // Idioma español
       {
         logger: (m) => {
-          if (m.status === "recognizing text") {
-            console.log(`🔍 Progreso OCR: ${Math.round(m.progress * 100)}%`);
+          if (m.status === "recognizing text" && !ocrStarted) {
+            console.log("🔍 Escaneando documento...");
+            ocrStarted = true;
           }
         },
       }
     );
 
-    console.log(`✅ Texto extraído exitosamente con confianza: ${confidence}%`);
+    console.log(`✅ Escaneado completado con confianza: ${confidence}%`);
     console.log("📄 Texto completo extraído:");
     console.log("---START TEXT---");
     console.log(text);
