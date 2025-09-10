@@ -17,7 +17,7 @@ export const parseStudentInfo = (rawText: string): ParsedStudentInfo => {
   let result: ParsedStudentInfo = {
     studentName: "Nombre no detectado",
     studentRut: "",
-    studentCollege: "Institución desconocida",
+    studentCollege: "Duoc UC",
     studentCertEmissionDate: "",
   };
 
@@ -101,6 +101,5 @@ export const parseStudentInfo = (rawText: string): ParsedStudentInfo => {
     }
   }
 
-  console.log("✅ Información parseada:", result);
   return result;
 };

@@ -33,9 +33,8 @@ export const extractStudentInfo = async (
     console.log("✅ URL extraída del QR:", urlDesdeQr);
 
     // Paso 3: Ejecutar scraping Python con la URL
-    console.log("🐍 Ejecutando scraping Python...");
+
     const datos = await runPythonScraper(urlDesdeQr);
-    console.log("✅ Datos extraídos:", datos);
 
     // Paso 4: Devolver los datos esenciales del estudiante
     return {

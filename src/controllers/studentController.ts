@@ -75,14 +75,6 @@ export const registerStudent = async (req: Request, res: Response) => {
     return res.status(201).json({
       success: true,
       message: "Estudiante registrado exitosamente",
-      data: {
-        user: {
-          id: newStudent.id,
-          studentEmail: newStudent.studentEmail,
-          studentName: newStudent.studentName,
-          role: newStudent.role,
-        },
-      },
       token, // Token visible para desarrollo/testing
     });
   } catch (error: any) {
