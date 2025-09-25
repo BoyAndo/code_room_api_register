@@ -8,11 +8,23 @@ export const studentSchema = z.object({
   studentRut: z
     .string()
     .min(1, "El RUT es requerido")
-    .regex(rutRegex, "Formato de RUT inválido. Debe ser como: 12.345.678-9 o 12.345.678-K"),
+    .regex(
+      rutRegex,
+      "Formato de RUT inválido. Debe ser como: 12.345.678-9 o 12.345.678-K"
+    ),
   studentEmail: z.string().email("El email no es válido"),
   studentName: z.string().min(1, "El nombre es requerido"),
   password: z.string().min(8, "La contraseña debe tener al menos 8 caracteres"),
   studentCollege: z.string().min(1, "Tu casa de estudios es requerida"),
+  // Campos obligatorios de ubicación
+  regionId: z
+    .string()
+    .min(1, "La región es requerida")
+    .transform((val) => parseInt(val)),
+  comunaId: z
+    .string()
+    .min(1, "La comuna es requerida")
+    .transform((val) => parseInt(val)),
 });
 
 //Esto genera automáticamente el tipo Student en typescript

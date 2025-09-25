@@ -22,6 +22,8 @@ export const createLandlord = async (
     landlordName: landlord.landlordName,
     password: hashedPassword,
     landlordCarnetUrl: carnetUrl,
+    regionId: landlord.regionId,
+    comunaId: landlord.comunaId,
   });
 
   return newLandlord;

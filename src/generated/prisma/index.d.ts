@@ -43,6 +43,16 @@ export type Amenity = $Result.DefaultSelection<Prisma.$AmenityPayload>
  * 
  */
 export type PropertyAmenity = $Result.DefaultSelection<Prisma.$PropertyAmenityPayload>
+/**
+ * Model Region
+ * 
+ */
+export type Region = $Result.DefaultSelection<Prisma.$RegionPayload>
+/**
+ * Model Comuna
+ * 
+ */
+export type Comuna = $Result.DefaultSelection<Prisma.$ComunaPayload>
 
 /**
  * Enums
@@ -246,6 +256,26 @@ export class PrismaClient<
     * ```
     */
   get propertyAmenity(): Prisma.PropertyAmenityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.region`: Exposes CRUD operations for the **Region** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Regions
+    * const regions = await prisma.region.findMany()
+    * ```
+    */
+  get region(): Prisma.RegionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comuna`: Exposes CRUD operations for the **Comuna** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Comunas
+    * const comunas = await prisma.comuna.findMany()
+    * ```
+    */
+  get comuna(): Prisma.ComunaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -691,7 +721,9 @@ export namespace Prisma {
     Property: 'Property',
     PropertyImage: 'PropertyImage',
     Amenity: 'Amenity',
-    PropertyAmenity: 'PropertyAmenity'
+    PropertyAmenity: 'PropertyAmenity',
+    Region: 'Region',
+    Comuna: 'Comuna'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -710,7 +742,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "student" | "landlord" | "property" | "propertyImage" | "amenity" | "propertyAmenity"
+      modelProps: "student" | "landlord" | "property" | "propertyImage" | "amenity" | "propertyAmenity" | "region" | "comuna"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1110,6 +1142,138 @@ export namespace Prisma {
           }
         }
       }
+      Region: {
+        payload: Prisma.$RegionPayload<ExtArgs>
+        fields: Prisma.RegionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RegionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RegionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload>
+          }
+          findFirst: {
+            args: Prisma.RegionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RegionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload>
+          }
+          findMany: {
+            args: Prisma.RegionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload>[]
+          }
+          create: {
+            args: Prisma.RegionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload>
+          }
+          createMany: {
+            args: Prisma.RegionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.RegionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload>
+          }
+          update: {
+            args: Prisma.RegionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload>
+          }
+          deleteMany: {
+            args: Prisma.RegionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RegionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.RegionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegionPayload>
+          }
+          aggregate: {
+            args: Prisma.RegionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRegion>
+          }
+          groupBy: {
+            args: Prisma.RegionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RegionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RegionCountArgs<ExtArgs>
+            result: $Utils.Optional<RegionCountAggregateOutputType> | number
+          }
+        }
+      }
+      Comuna: {
+        payload: Prisma.$ComunaPayload<ExtArgs>
+        fields: Prisma.ComunaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ComunaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ComunaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload>
+          }
+          findFirst: {
+            args: Prisma.ComunaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ComunaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload>
+          }
+          findMany: {
+            args: Prisma.ComunaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload>[]
+          }
+          create: {
+            args: Prisma.ComunaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload>
+          }
+          createMany: {
+            args: Prisma.ComunaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ComunaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload>
+          }
+          update: {
+            args: Prisma.ComunaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload>
+          }
+          deleteMany: {
+            args: Prisma.ComunaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ComunaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ComunaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComunaPayload>
+          }
+          aggregate: {
+            args: Prisma.ComunaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComuna>
+          }
+          groupBy: {
+            args: Prisma.ComunaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ComunaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ComunaCountArgs<ExtArgs>
+            result: $Utils.Optional<ComunaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1200,6 +1364,8 @@ export namespace Prisma {
     propertyImage?: PropertyImageOmit
     amenity?: AmenityOmit
     propertyAmenity?: PropertyAmenityOmit
+    region?: RegionOmit
+    comuna?: ComunaOmit
   }
 
   /* Types for Logging */
@@ -1392,6 +1558,113 @@ export namespace Prisma {
 
 
   /**
+   * Count Type RegionCountOutputType
+   */
+
+  export type RegionCountOutputType = {
+    comunas: number
+    properties: number
+    students: number
+    landlords: number
+  }
+
+  export type RegionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comunas?: boolean | RegionCountOutputTypeCountComunasArgs
+    properties?: boolean | RegionCountOutputTypeCountPropertiesArgs
+    students?: boolean | RegionCountOutputTypeCountStudentsArgs
+    landlords?: boolean | RegionCountOutputTypeCountLandlordsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RegionCountOutputType without action
+   */
+  export type RegionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RegionCountOutputType
+     */
+    select?: RegionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RegionCountOutputType without action
+   */
+  export type RegionCountOutputTypeCountComunasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComunaWhereInput
+  }
+
+  /**
+   * RegionCountOutputType without action
+   */
+  export type RegionCountOutputTypeCountPropertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PropertyWhereInput
+  }
+
+  /**
+   * RegionCountOutputType without action
+   */
+  export type RegionCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentWhereInput
+  }
+
+  /**
+   * RegionCountOutputType without action
+   */
+  export type RegionCountOutputTypeCountLandlordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LandlordWhereInput
+  }
+
+
+  /**
+   * Count Type ComunaCountOutputType
+   */
+
+  export type ComunaCountOutputType = {
+    properties: number
+    students: number
+    landlords: number
+  }
+
+  export type ComunaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    properties?: boolean | ComunaCountOutputTypeCountPropertiesArgs
+    students?: boolean | ComunaCountOutputTypeCountStudentsArgs
+    landlords?: boolean | ComunaCountOutputTypeCountLandlordsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ComunaCountOutputType without action
+   */
+  export type ComunaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComunaCountOutputType
+     */
+    select?: ComunaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ComunaCountOutputType without action
+   */
+  export type ComunaCountOutputTypeCountPropertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PropertyWhereInput
+  }
+
+  /**
+   * ComunaCountOutputType without action
+   */
+  export type ComunaCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentWhereInput
+  }
+
+  /**
+   * ComunaCountOutputType without action
+   */
+  export type ComunaCountOutputTypeCountLandlordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LandlordWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1409,10 +1682,14 @@ export namespace Prisma {
 
   export type StudentAvgAggregateOutputType = {
     id: number | null
+    comunaId: number | null
+    regionId: number | null
   }
 
   export type StudentSumAggregateOutputType = {
     id: number | null
+    comunaId: number | null
+    regionId: number | null
   }
 
   export type StudentMinAggregateOutputType = {
@@ -1424,6 +1701,8 @@ export namespace Prisma {
     studentCollege: string | null
     studentCertificateUrl: string | null
     role: string | null
+    comunaId: number | null
+    regionId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1437,6 +1716,8 @@ export namespace Prisma {
     studentCollege: string | null
     studentCertificateUrl: string | null
     role: string | null
+    comunaId: number | null
+    regionId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1450,6 +1731,8 @@ export namespace Prisma {
     studentCollege: number
     studentCertificateUrl: number
     role: number
+    comunaId: number
+    regionId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1458,10 +1741,14 @@ export namespace Prisma {
 
   export type StudentAvgAggregateInputType = {
     id?: true
+    comunaId?: true
+    regionId?: true
   }
 
   export type StudentSumAggregateInputType = {
     id?: true
+    comunaId?: true
+    regionId?: true
   }
 
   export type StudentMinAggregateInputType = {
@@ -1473,6 +1760,8 @@ export namespace Prisma {
     studentCollege?: true
     studentCertificateUrl?: true
     role?: true
+    comunaId?: true
+    regionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1486,6 +1775,8 @@ export namespace Prisma {
     studentCollege?: true
     studentCertificateUrl?: true
     role?: true
+    comunaId?: true
+    regionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1499,6 +1790,8 @@ export namespace Prisma {
     studentCollege?: true
     studentCertificateUrl?: true
     role?: true
+    comunaId?: true
+    regionId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1599,6 +1892,8 @@ export namespace Prisma {
     studentCollege: string
     studentCertificateUrl: string
     role: string
+    comunaId: number
+    regionId: number
     createdAt: Date
     updatedAt: Date
     _count: StudentCountAggregateOutputType | null
@@ -1631,8 +1926,12 @@ export namespace Prisma {
     studentCollege?: boolean
     studentCertificateUrl?: boolean
     role?: boolean
+    comunaId?: boolean
+    regionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    comuna?: boolean | ComunaDefaultArgs<ExtArgs>
+    region?: boolean | RegionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
 
@@ -1646,15 +1945,24 @@ export namespace Prisma {
     studentCollege?: boolean
     studentCertificateUrl?: boolean
     role?: boolean
+    comunaId?: boolean
+    regionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentRut" | "studentEmail" | "studentName" | "password" | "studentCollege" | "studentCertificateUrl" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentRut" | "studentEmail" | "studentName" | "password" | "studentCollege" | "studentCertificateUrl" | "role" | "comunaId" | "regionId" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
+  export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comuna?: boolean | ComunaDefaultArgs<ExtArgs>
+    region?: boolean | RegionDefaultArgs<ExtArgs>
+  }
 
   export type $StudentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Student"
-    objects: {}
+    objects: {
+      comuna: Prisma.$ComunaPayload<ExtArgs>
+      region: Prisma.$RegionPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       studentRut: string
@@ -1664,6 +1972,8 @@ export namespace Prisma {
       studentCollege: string
       studentCertificateUrl: string
       role: string
+      comunaId: number
+      regionId: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["student"]>
@@ -2006,6 +2316,8 @@ export namespace Prisma {
    */
   export interface Prisma__StudentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    comuna<T extends ComunaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComunaDefaultArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    region<T extends RegionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RegionDefaultArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2043,6 +2355,8 @@ export namespace Prisma {
     readonly studentCollege: FieldRef<"Student", 'String'>
     readonly studentCertificateUrl: FieldRef<"Student", 'String'>
     readonly role: FieldRef<"Student", 'String'>
+    readonly comunaId: FieldRef<"Student", 'Int'>
+    readonly regionId: FieldRef<"Student", 'Int'>
     readonly createdAt: FieldRef<"Student", 'DateTime'>
     readonly updatedAt: FieldRef<"Student", 'DateTime'>
   }
@@ -2062,6 +2376,10 @@ export namespace Prisma {
      */
     omit?: StudentOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    /**
      * Filter, which Student to fetch.
      */
     where: StudentWhereUniqueInput
@@ -2080,6 +2398,10 @@ export namespace Prisma {
      */
     omit?: StudentOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    /**
      * Filter, which Student to fetch.
      */
     where: StudentWhereUniqueInput
@@ -2097,6 +2419,10 @@ export namespace Prisma {
      * Omit specific fields from the Student
      */
     omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
     /**
      * Filter, which Student to fetch.
      */
@@ -2146,6 +2472,10 @@ export namespace Prisma {
      */
     omit?: StudentOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    /**
      * Filter, which Student to fetch.
      */
     where?: StudentWhereInput
@@ -2194,6 +2524,10 @@ export namespace Prisma {
      */
     omit?: StudentOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    /**
      * Filter, which Students to fetch.
      */
     where?: StudentWhereInput
@@ -2237,6 +2571,10 @@ export namespace Prisma {
      */
     omit?: StudentOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    /**
      * The data needed to create a Student.
      */
     data: XOR<StudentCreateInput, StudentUncheckedCreateInput>
@@ -2265,6 +2603,10 @@ export namespace Prisma {
      * Omit specific fields from the Student
      */
     omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
     /**
      * The data needed to update a Student.
      */
@@ -2306,6 +2648,10 @@ export namespace Prisma {
      */
     omit?: StudentOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    /**
      * The filter to search for the Student to update in case it exists.
      */
     where: StudentWhereUniqueInput
@@ -2331,6 +2677,10 @@ export namespace Prisma {
      * Omit specific fields from the Student
      */
     omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
     /**
      * Filter which Student to delete.
      */
@@ -2363,6 +2713,10 @@ export namespace Prisma {
      * Omit specific fields from the Student
      */
     omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
   }
 
 
@@ -2380,10 +2734,14 @@ export namespace Prisma {
 
   export type LandlordAvgAggregateOutputType = {
     id: number | null
+    comunaId: number | null
+    regionId: number | null
   }
 
   export type LandlordSumAggregateOutputType = {
     id: number | null
+    comunaId: number | null
+    regionId: number | null
   }
 
   export type LandlordMinAggregateOutputType = {
@@ -2394,6 +2752,8 @@ export namespace Prisma {
     password: string | null
     landlordCarnetUrl: string | null
     role: string | null
+    comunaId: number | null
+    regionId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2406,6 +2766,8 @@ export namespace Prisma {
     password: string | null
     landlordCarnetUrl: string | null
     role: string | null
+    comunaId: number | null
+    regionId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2418,6 +2780,8 @@ export namespace Prisma {
     password: number
     landlordCarnetUrl: number
     role: number
+    comunaId: number
+    regionId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2426,10 +2790,14 @@ export namespace Prisma {
 
   export type LandlordAvgAggregateInputType = {
     id?: true
+    comunaId?: true
+    regionId?: true
   }
 
   export type LandlordSumAggregateInputType = {
     id?: true
+    comunaId?: true
+    regionId?: true
   }
 
   export type LandlordMinAggregateInputType = {
@@ -2440,6 +2808,8 @@ export namespace Prisma {
     password?: true
     landlordCarnetUrl?: true
     role?: true
+    comunaId?: true
+    regionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2452,6 +2822,8 @@ export namespace Prisma {
     password?: true
     landlordCarnetUrl?: true
     role?: true
+    comunaId?: true
+    regionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2464,6 +2836,8 @@ export namespace Prisma {
     password?: true
     landlordCarnetUrl?: true
     role?: true
+    comunaId?: true
+    regionId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2563,6 +2937,8 @@ export namespace Prisma {
     password: string
     landlordCarnetUrl: string
     role: string
+    comunaId: number
+    regionId: number
     createdAt: Date
     updatedAt: Date
     _count: LandlordCountAggregateOutputType | null
@@ -2594,9 +2970,13 @@ export namespace Prisma {
     password?: boolean
     landlordCarnetUrl?: boolean
     role?: boolean
+    comunaId?: boolean
+    regionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     properties?: boolean | Landlord$propertiesArgs<ExtArgs>
+    comuna?: boolean | ComunaDefaultArgs<ExtArgs>
+    region?: boolean | RegionDefaultArgs<ExtArgs>
     _count?: boolean | LandlordCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["landlord"]>
 
@@ -2610,13 +2990,17 @@ export namespace Prisma {
     password?: boolean
     landlordCarnetUrl?: boolean
     role?: boolean
+    comunaId?: boolean
+    regionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LandlordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordRut" | "landlordEmail" | "landlordName" | "password" | "landlordCarnetUrl" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["landlord"]>
+  export type LandlordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordRut" | "landlordEmail" | "landlordName" | "password" | "landlordCarnetUrl" | "role" | "comunaId" | "regionId" | "createdAt" | "updatedAt", ExtArgs["result"]["landlord"]>
   export type LandlordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     properties?: boolean | Landlord$propertiesArgs<ExtArgs>
+    comuna?: boolean | ComunaDefaultArgs<ExtArgs>
+    region?: boolean | RegionDefaultArgs<ExtArgs>
     _count?: boolean | LandlordCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2624,6 +3008,8 @@ export namespace Prisma {
     name: "Landlord"
     objects: {
       properties: Prisma.$PropertyPayload<ExtArgs>[]
+      comuna: Prisma.$ComunaPayload<ExtArgs>
+      region: Prisma.$RegionPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2633,6 +3019,8 @@ export namespace Prisma {
       password: string
       landlordCarnetUrl: string
       role: string
+      comunaId: number
+      regionId: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["landlord"]>
@@ -2976,6 +3364,8 @@ export namespace Prisma {
   export interface Prisma__LandlordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     properties<T extends Landlord$propertiesArgs<ExtArgs> = {}>(args?: Subset<T, Landlord$propertiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comuna<T extends ComunaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComunaDefaultArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    region<T extends RegionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RegionDefaultArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3012,6 +3402,8 @@ export namespace Prisma {
     readonly password: FieldRef<"Landlord", 'String'>
     readonly landlordCarnetUrl: FieldRef<"Landlord", 'String'>
     readonly role: FieldRef<"Landlord", 'String'>
+    readonly comunaId: FieldRef<"Landlord", 'Int'>
+    readonly regionId: FieldRef<"Landlord", 'Int'>
     readonly createdAt: FieldRef<"Landlord", 'DateTime'>
     readonly updatedAt: FieldRef<"Landlord", 'DateTime'>
   }
@@ -3414,6 +3806,8 @@ export namespace Prisma {
   export type PropertyAvgAggregateOutputType = {
     id: number | null
     landlordId: number | null
+    comunaId: number | null
+    regionId: number | null
     bedrooms: number | null
     bathrooms: number | null
     squareMeters: number | null
@@ -3425,6 +3819,8 @@ export namespace Prisma {
   export type PropertySumAggregateOutputType = {
     id: number | null
     landlordId: number | null
+    comunaId: number | null
+    regionId: number | null
     bedrooms: number | null
     bathrooms: number | null
     squareMeters: number | null
@@ -3439,8 +3835,8 @@ export namespace Prisma {
     title: string | null
     description: string | null
     address: string | null
-    comuna: string | null
-    region: string | null
+    comunaId: number | null
+    regionId: number | null
     zipCode: string | null
     propertyType: $Enums.PropertyType | null
     bedrooms: number | null
@@ -3463,8 +3859,8 @@ export namespace Prisma {
     title: string | null
     description: string | null
     address: string | null
-    comuna: string | null
-    region: string | null
+    comunaId: number | null
+    regionId: number | null
     zipCode: string | null
     propertyType: $Enums.PropertyType | null
     bedrooms: number | null
@@ -3487,8 +3883,8 @@ export namespace Prisma {
     title: number
     description: number
     address: number
-    comuna: number
-    region: number
+    comunaId: number
+    regionId: number
     zipCode: number
     propertyType: number
     bedrooms: number
@@ -3510,6 +3906,8 @@ export namespace Prisma {
   export type PropertyAvgAggregateInputType = {
     id?: true
     landlordId?: true
+    comunaId?: true
+    regionId?: true
     bedrooms?: true
     bathrooms?: true
     squareMeters?: true
@@ -3521,6 +3919,8 @@ export namespace Prisma {
   export type PropertySumAggregateInputType = {
     id?: true
     landlordId?: true
+    comunaId?: true
+    regionId?: true
     bedrooms?: true
     bathrooms?: true
     squareMeters?: true
@@ -3535,8 +3935,8 @@ export namespace Prisma {
     title?: true
     description?: true
     address?: true
-    comuna?: true
-    region?: true
+    comunaId?: true
+    regionId?: true
     zipCode?: true
     propertyType?: true
     bedrooms?: true
@@ -3559,8 +3959,8 @@ export namespace Prisma {
     title?: true
     description?: true
     address?: true
-    comuna?: true
-    region?: true
+    comunaId?: true
+    regionId?: true
     zipCode?: true
     propertyType?: true
     bedrooms?: true
@@ -3583,8 +3983,8 @@ export namespace Prisma {
     title?: true
     description?: true
     address?: true
-    comuna?: true
-    region?: true
+    comunaId?: true
+    regionId?: true
     zipCode?: true
     propertyType?: true
     bedrooms?: true
@@ -3694,8 +4094,8 @@ export namespace Prisma {
     title: string
     description: string | null
     address: string
-    comuna: string
-    region: string
+    comunaId: number
+    regionId: number
     zipCode: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -3737,8 +4137,8 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     address?: boolean
-    comuna?: boolean
-    region?: boolean
+    comunaId?: boolean
+    regionId?: boolean
     zipCode?: boolean
     propertyType?: boolean
     bedrooms?: boolean
@@ -3754,6 +4154,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     landlord?: boolean | LandlordDefaultArgs<ExtArgs>
+    comuna?: boolean | ComunaDefaultArgs<ExtArgs>
+    region?: boolean | RegionDefaultArgs<ExtArgs>
     propertyImages?: boolean | Property$propertyImagesArgs<ExtArgs>
     propertyAmenities?: boolean | Property$propertyAmenitiesArgs<ExtArgs>
     _count?: boolean | PropertyCountOutputTypeDefaultArgs<ExtArgs>
@@ -3767,8 +4169,8 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     address?: boolean
-    comuna?: boolean
-    region?: boolean
+    comunaId?: boolean
+    regionId?: boolean
     zipCode?: boolean
     propertyType?: boolean
     bedrooms?: boolean
@@ -3785,9 +4187,11 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordId" | "title" | "description" | "address" | "comuna" | "region" | "zipCode" | "propertyType" | "bedrooms" | "bathrooms" | "squareMeters" | "monthlyRent" | "isAvailable" | "utilityBillUrl" | "utilityBillValidated" | "rules" | "latitude" | "longitude" | "createdAt" | "updatedAt", ExtArgs["result"]["property"]>
+  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordId" | "title" | "description" | "address" | "comunaId" | "regionId" | "zipCode" | "propertyType" | "bedrooms" | "bathrooms" | "squareMeters" | "monthlyRent" | "isAvailable" | "utilityBillUrl" | "utilityBillValidated" | "rules" | "latitude" | "longitude" | "createdAt" | "updatedAt", ExtArgs["result"]["property"]>
   export type PropertyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     landlord?: boolean | LandlordDefaultArgs<ExtArgs>
+    comuna?: boolean | ComunaDefaultArgs<ExtArgs>
+    region?: boolean | RegionDefaultArgs<ExtArgs>
     propertyImages?: boolean | Property$propertyImagesArgs<ExtArgs>
     propertyAmenities?: boolean | Property$propertyAmenitiesArgs<ExtArgs>
     _count?: boolean | PropertyCountOutputTypeDefaultArgs<ExtArgs>
@@ -3797,6 +4201,8 @@ export namespace Prisma {
     name: "Property"
     objects: {
       landlord: Prisma.$LandlordPayload<ExtArgs>
+      comuna: Prisma.$ComunaPayload<ExtArgs>
+      region: Prisma.$RegionPayload<ExtArgs>
       propertyImages: Prisma.$PropertyImagePayload<ExtArgs>[]
       propertyAmenities: Prisma.$PropertyAmenityPayload<ExtArgs>[]
     }
@@ -3806,8 +4212,8 @@ export namespace Prisma {
       title: string
       description: string | null
       address: string
-      comuna: string
-      region: string
+      comunaId: number
+      regionId: number
       zipCode: string | null
       propertyType: $Enums.PropertyType
       bedrooms: number
@@ -4163,6 +4569,8 @@ export namespace Prisma {
   export interface Prisma__PropertyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     landlord<T extends LandlordDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LandlordDefaultArgs<ExtArgs>>): Prisma__LandlordClient<$Result.GetResult<Prisma.$LandlordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    comuna<T extends ComunaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComunaDefaultArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    region<T extends RegionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RegionDefaultArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     propertyImages<T extends Property$propertyImagesArgs<ExtArgs> = {}>(args?: Subset<T, Property$propertyImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     propertyAmenities<T extends Property$propertyAmenitiesArgs<ExtArgs> = {}>(args?: Subset<T, Property$propertyAmenitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyAmenityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -4199,8 +4607,8 @@ export namespace Prisma {
     readonly title: FieldRef<"Property", 'String'>
     readonly description: FieldRef<"Property", 'String'>
     readonly address: FieldRef<"Property", 'String'>
-    readonly comuna: FieldRef<"Property", 'String'>
-    readonly region: FieldRef<"Property", 'String'>
+    readonly comunaId: FieldRef<"Property", 'Int'>
+    readonly regionId: FieldRef<"Property", 'Int'>
     readonly zipCode: FieldRef<"Property", 'String'>
     readonly propertyType: FieldRef<"Property", 'PropertyType'>
     readonly bedrooms: FieldRef<"Property", 'Int'>
@@ -7604,6 +8012,2143 @@ export namespace Prisma {
 
 
   /**
+   * Model Region
+   */
+
+  export type AggregateRegion = {
+    _count: RegionCountAggregateOutputType | null
+    _avg: RegionAvgAggregateOutputType | null
+    _sum: RegionSumAggregateOutputType | null
+    _min: RegionMinAggregateOutputType | null
+    _max: RegionMaxAggregateOutputType | null
+  }
+
+  export type RegionAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RegionSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RegionMinAggregateOutputType = {
+    id: number | null
+    code: string | null
+    name: string | null
+    romanNumber: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RegionMaxAggregateOutputType = {
+    id: number | null
+    code: string | null
+    name: string | null
+    romanNumber: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RegionCountAggregateOutputType = {
+    id: number
+    code: number
+    name: number
+    romanNumber: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RegionAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type RegionSumAggregateInputType = {
+    id?: true
+  }
+
+  export type RegionMinAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    romanNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RegionMaxAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    romanNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RegionCountAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    romanNumber?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RegionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Region to aggregate.
+     */
+    where?: RegionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Regions to fetch.
+     */
+    orderBy?: RegionOrderByWithRelationInput | RegionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RegionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Regions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Regions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Regions
+    **/
+    _count?: true | RegionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RegionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RegionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RegionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RegionMaxAggregateInputType
+  }
+
+  export type GetRegionAggregateType<T extends RegionAggregateArgs> = {
+        [P in keyof T & keyof AggregateRegion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRegion[P]>
+      : GetScalarType<T[P], AggregateRegion[P]>
+  }
+
+
+
+
+  export type RegionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RegionWhereInput
+    orderBy?: RegionOrderByWithAggregationInput | RegionOrderByWithAggregationInput[]
+    by: RegionScalarFieldEnum[] | RegionScalarFieldEnum
+    having?: RegionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RegionCountAggregateInputType | true
+    _avg?: RegionAvgAggregateInputType
+    _sum?: RegionSumAggregateInputType
+    _min?: RegionMinAggregateInputType
+    _max?: RegionMaxAggregateInputType
+  }
+
+  export type RegionGroupByOutputType = {
+    id: number
+    code: string
+    name: string
+    romanNumber: string
+    createdAt: Date
+    updatedAt: Date
+    _count: RegionCountAggregateOutputType | null
+    _avg: RegionAvgAggregateOutputType | null
+    _sum: RegionSumAggregateOutputType | null
+    _min: RegionMinAggregateOutputType | null
+    _max: RegionMaxAggregateOutputType | null
+  }
+
+  type GetRegionGroupByPayload<T extends RegionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RegionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RegionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RegionGroupByOutputType[P]>
+            : GetScalarType<T[P], RegionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RegionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    romanNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    comunas?: boolean | Region$comunasArgs<ExtArgs>
+    properties?: boolean | Region$propertiesArgs<ExtArgs>
+    students?: boolean | Region$studentsArgs<ExtArgs>
+    landlords?: boolean | Region$landlordsArgs<ExtArgs>
+    _count?: boolean | RegionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["region"]>
+
+
+
+  export type RegionSelectScalar = {
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    romanNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RegionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "romanNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["region"]>
+  export type RegionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comunas?: boolean | Region$comunasArgs<ExtArgs>
+    properties?: boolean | Region$propertiesArgs<ExtArgs>
+    students?: boolean | Region$studentsArgs<ExtArgs>
+    landlords?: boolean | Region$landlordsArgs<ExtArgs>
+    _count?: boolean | RegionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $RegionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Region"
+    objects: {
+      comunas: Prisma.$ComunaPayload<ExtArgs>[]
+      properties: Prisma.$PropertyPayload<ExtArgs>[]
+      students: Prisma.$StudentPayload<ExtArgs>[]
+      landlords: Prisma.$LandlordPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      code: string
+      name: string
+      romanNumber: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["region"]>
+    composites: {}
+  }
+
+  type RegionGetPayload<S extends boolean | null | undefined | RegionDefaultArgs> = $Result.GetResult<Prisma.$RegionPayload, S>
+
+  type RegionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RegionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RegionCountAggregateInputType | true
+    }
+
+  export interface RegionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Region'], meta: { name: 'Region' } }
+    /**
+     * Find zero or one Region that matches the filter.
+     * @param {RegionFindUniqueArgs} args - Arguments to find a Region
+     * @example
+     * // Get one Region
+     * const region = await prisma.region.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RegionFindUniqueArgs>(args: SelectSubset<T, RegionFindUniqueArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Region that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RegionFindUniqueOrThrowArgs} args - Arguments to find a Region
+     * @example
+     * // Get one Region
+     * const region = await prisma.region.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RegionFindUniqueOrThrowArgs>(args: SelectSubset<T, RegionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Region that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RegionFindFirstArgs} args - Arguments to find a Region
+     * @example
+     * // Get one Region
+     * const region = await prisma.region.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RegionFindFirstArgs>(args?: SelectSubset<T, RegionFindFirstArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Region that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RegionFindFirstOrThrowArgs} args - Arguments to find a Region
+     * @example
+     * // Get one Region
+     * const region = await prisma.region.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RegionFindFirstOrThrowArgs>(args?: SelectSubset<T, RegionFindFirstOrThrowArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Regions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RegionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Regions
+     * const regions = await prisma.region.findMany()
+     * 
+     * // Get first 10 Regions
+     * const regions = await prisma.region.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const regionWithIdOnly = await prisma.region.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RegionFindManyArgs>(args?: SelectSubset<T, RegionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Region.
+     * @param {RegionCreateArgs} args - Arguments to create a Region.
+     * @example
+     * // Create one Region
+     * const Region = await prisma.region.create({
+     *   data: {
+     *     // ... data to create a Region
+     *   }
+     * })
+     * 
+     */
+    create<T extends RegionCreateArgs>(args: SelectSubset<T, RegionCreateArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Regions.
+     * @param {RegionCreateManyArgs} args - Arguments to create many Regions.
+     * @example
+     * // Create many Regions
+     * const region = await prisma.region.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RegionCreateManyArgs>(args?: SelectSubset<T, RegionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Region.
+     * @param {RegionDeleteArgs} args - Arguments to delete one Region.
+     * @example
+     * // Delete one Region
+     * const Region = await prisma.region.delete({
+     *   where: {
+     *     // ... filter to delete one Region
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RegionDeleteArgs>(args: SelectSubset<T, RegionDeleteArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Region.
+     * @param {RegionUpdateArgs} args - Arguments to update one Region.
+     * @example
+     * // Update one Region
+     * const region = await prisma.region.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RegionUpdateArgs>(args: SelectSubset<T, RegionUpdateArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Regions.
+     * @param {RegionDeleteManyArgs} args - Arguments to filter Regions to delete.
+     * @example
+     * // Delete a few Regions
+     * const { count } = await prisma.region.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RegionDeleteManyArgs>(args?: SelectSubset<T, RegionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Regions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RegionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Regions
+     * const region = await prisma.region.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RegionUpdateManyArgs>(args: SelectSubset<T, RegionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Region.
+     * @param {RegionUpsertArgs} args - Arguments to update or create a Region.
+     * @example
+     * // Update or create a Region
+     * const region = await prisma.region.upsert({
+     *   create: {
+     *     // ... data to create a Region
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Region we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RegionUpsertArgs>(args: SelectSubset<T, RegionUpsertArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Regions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RegionCountArgs} args - Arguments to filter Regions to count.
+     * @example
+     * // Count the number of Regions
+     * const count = await prisma.region.count({
+     *   where: {
+     *     // ... the filter for the Regions we want to count
+     *   }
+     * })
+    **/
+    count<T extends RegionCountArgs>(
+      args?: Subset<T, RegionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RegionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Region.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RegionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RegionAggregateArgs>(args: Subset<T, RegionAggregateArgs>): Prisma.PrismaPromise<GetRegionAggregateType<T>>
+
+    /**
+     * Group by Region.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RegionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RegionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RegionGroupByArgs['orderBy'] }
+        : { orderBy?: RegionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RegionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRegionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Region model
+   */
+  readonly fields: RegionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Region.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RegionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    comunas<T extends Region$comunasArgs<ExtArgs> = {}>(args?: Subset<T, Region$comunasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    properties<T extends Region$propertiesArgs<ExtArgs> = {}>(args?: Subset<T, Region$propertiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    students<T extends Region$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Region$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    landlords<T extends Region$landlordsArgs<ExtArgs> = {}>(args?: Subset<T, Region$landlordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandlordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Region model
+   */
+  interface RegionFieldRefs {
+    readonly id: FieldRef<"Region", 'Int'>
+    readonly code: FieldRef<"Region", 'String'>
+    readonly name: FieldRef<"Region", 'String'>
+    readonly romanNumber: FieldRef<"Region", 'String'>
+    readonly createdAt: FieldRef<"Region", 'DateTime'>
+    readonly updatedAt: FieldRef<"Region", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Region findUnique
+   */
+  export type RegionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * Filter, which Region to fetch.
+     */
+    where: RegionWhereUniqueInput
+  }
+
+  /**
+   * Region findUniqueOrThrow
+   */
+  export type RegionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * Filter, which Region to fetch.
+     */
+    where: RegionWhereUniqueInput
+  }
+
+  /**
+   * Region findFirst
+   */
+  export type RegionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * Filter, which Region to fetch.
+     */
+    where?: RegionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Regions to fetch.
+     */
+    orderBy?: RegionOrderByWithRelationInput | RegionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Regions.
+     */
+    cursor?: RegionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Regions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Regions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Regions.
+     */
+    distinct?: RegionScalarFieldEnum | RegionScalarFieldEnum[]
+  }
+
+  /**
+   * Region findFirstOrThrow
+   */
+  export type RegionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * Filter, which Region to fetch.
+     */
+    where?: RegionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Regions to fetch.
+     */
+    orderBy?: RegionOrderByWithRelationInput | RegionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Regions.
+     */
+    cursor?: RegionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Regions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Regions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Regions.
+     */
+    distinct?: RegionScalarFieldEnum | RegionScalarFieldEnum[]
+  }
+
+  /**
+   * Region findMany
+   */
+  export type RegionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * Filter, which Regions to fetch.
+     */
+    where?: RegionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Regions to fetch.
+     */
+    orderBy?: RegionOrderByWithRelationInput | RegionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Regions.
+     */
+    cursor?: RegionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Regions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Regions.
+     */
+    skip?: number
+    distinct?: RegionScalarFieldEnum | RegionScalarFieldEnum[]
+  }
+
+  /**
+   * Region create
+   */
+  export type RegionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Region.
+     */
+    data: XOR<RegionCreateInput, RegionUncheckedCreateInput>
+  }
+
+  /**
+   * Region createMany
+   */
+  export type RegionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Regions.
+     */
+    data: RegionCreateManyInput | RegionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Region update
+   */
+  export type RegionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Region.
+     */
+    data: XOR<RegionUpdateInput, RegionUncheckedUpdateInput>
+    /**
+     * Choose, which Region to update.
+     */
+    where: RegionWhereUniqueInput
+  }
+
+  /**
+   * Region updateMany
+   */
+  export type RegionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Regions.
+     */
+    data: XOR<RegionUpdateManyMutationInput, RegionUncheckedUpdateManyInput>
+    /**
+     * Filter which Regions to update
+     */
+    where?: RegionWhereInput
+    /**
+     * Limit how many Regions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Region upsert
+   */
+  export type RegionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Region to update in case it exists.
+     */
+    where: RegionWhereUniqueInput
+    /**
+     * In case the Region found by the `where` argument doesn't exist, create a new Region with this data.
+     */
+    create: XOR<RegionCreateInput, RegionUncheckedCreateInput>
+    /**
+     * In case the Region was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RegionUpdateInput, RegionUncheckedUpdateInput>
+  }
+
+  /**
+   * Region delete
+   */
+  export type RegionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+    /**
+     * Filter which Region to delete.
+     */
+    where: RegionWhereUniqueInput
+  }
+
+  /**
+   * Region deleteMany
+   */
+  export type RegionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Regions to delete
+     */
+    where?: RegionWhereInput
+    /**
+     * Limit how many Regions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Region.comunas
+   */
+  export type Region$comunasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    where?: ComunaWhereInput
+    orderBy?: ComunaOrderByWithRelationInput | ComunaOrderByWithRelationInput[]
+    cursor?: ComunaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComunaScalarFieldEnum | ComunaScalarFieldEnum[]
+  }
+
+  /**
+   * Region.properties
+   */
+  export type Region$propertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Property
+     */
+    select?: PropertySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Property
+     */
+    omit?: PropertyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PropertyInclude<ExtArgs> | null
+    where?: PropertyWhereInput
+    orderBy?: PropertyOrderByWithRelationInput | PropertyOrderByWithRelationInput[]
+    cursor?: PropertyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[]
+  }
+
+  /**
+   * Region.students
+   */
+  export type Region$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+    orderBy?: StudentOrderByWithRelationInput | StudentOrderByWithRelationInput[]
+    cursor?: StudentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+  /**
+   * Region.landlords
+   */
+  export type Region$landlordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landlord
+     */
+    select?: LandlordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landlord
+     */
+    omit?: LandlordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandlordInclude<ExtArgs> | null
+    where?: LandlordWhereInput
+    orderBy?: LandlordOrderByWithRelationInput | LandlordOrderByWithRelationInput[]
+    cursor?: LandlordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LandlordScalarFieldEnum | LandlordScalarFieldEnum[]
+  }
+
+  /**
+   * Region without action
+   */
+  export type RegionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Region
+     */
+    select?: RegionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Region
+     */
+    omit?: RegionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Comuna
+   */
+
+  export type AggregateComuna = {
+    _count: ComunaCountAggregateOutputType | null
+    _avg: ComunaAvgAggregateOutputType | null
+    _sum: ComunaSumAggregateOutputType | null
+    _min: ComunaMinAggregateOutputType | null
+    _max: ComunaMaxAggregateOutputType | null
+  }
+
+  export type ComunaAvgAggregateOutputType = {
+    id: number | null
+    regionId: number | null
+  }
+
+  export type ComunaSumAggregateOutputType = {
+    id: number | null
+    regionId: number | null
+  }
+
+  export type ComunaMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    regionId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ComunaMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    regionId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ComunaCountAggregateOutputType = {
+    id: number
+    name: number
+    regionId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ComunaAvgAggregateInputType = {
+    id?: true
+    regionId?: true
+  }
+
+  export type ComunaSumAggregateInputType = {
+    id?: true
+    regionId?: true
+  }
+
+  export type ComunaMinAggregateInputType = {
+    id?: true
+    name?: true
+    regionId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ComunaMaxAggregateInputType = {
+    id?: true
+    name?: true
+    regionId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ComunaCountAggregateInputType = {
+    id?: true
+    name?: true
+    regionId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ComunaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comuna to aggregate.
+     */
+    where?: ComunaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comunas to fetch.
+     */
+    orderBy?: ComunaOrderByWithRelationInput | ComunaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ComunaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comunas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comunas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Comunas
+    **/
+    _count?: true | ComunaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ComunaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ComunaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ComunaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ComunaMaxAggregateInputType
+  }
+
+  export type GetComunaAggregateType<T extends ComunaAggregateArgs> = {
+        [P in keyof T & keyof AggregateComuna]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComuna[P]>
+      : GetScalarType<T[P], AggregateComuna[P]>
+  }
+
+
+
+
+  export type ComunaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComunaWhereInput
+    orderBy?: ComunaOrderByWithAggregationInput | ComunaOrderByWithAggregationInput[]
+    by: ComunaScalarFieldEnum[] | ComunaScalarFieldEnum
+    having?: ComunaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ComunaCountAggregateInputType | true
+    _avg?: ComunaAvgAggregateInputType
+    _sum?: ComunaSumAggregateInputType
+    _min?: ComunaMinAggregateInputType
+    _max?: ComunaMaxAggregateInputType
+  }
+
+  export type ComunaGroupByOutputType = {
+    id: number
+    name: string
+    regionId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: ComunaCountAggregateOutputType | null
+    _avg: ComunaAvgAggregateOutputType | null
+    _sum: ComunaSumAggregateOutputType | null
+    _min: ComunaMinAggregateOutputType | null
+    _max: ComunaMaxAggregateOutputType | null
+  }
+
+  type GetComunaGroupByPayload<T extends ComunaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ComunaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ComunaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ComunaGroupByOutputType[P]>
+            : GetScalarType<T[P], ComunaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ComunaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    regionId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    region?: boolean | RegionDefaultArgs<ExtArgs>
+    properties?: boolean | Comuna$propertiesArgs<ExtArgs>
+    students?: boolean | Comuna$studentsArgs<ExtArgs>
+    landlords?: boolean | Comuna$landlordsArgs<ExtArgs>
+    _count?: boolean | ComunaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["comuna"]>
+
+
+
+  export type ComunaSelectScalar = {
+    id?: boolean
+    name?: boolean
+    regionId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ComunaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "regionId" | "createdAt" | "updatedAt", ExtArgs["result"]["comuna"]>
+  export type ComunaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    region?: boolean | RegionDefaultArgs<ExtArgs>
+    properties?: boolean | Comuna$propertiesArgs<ExtArgs>
+    students?: boolean | Comuna$studentsArgs<ExtArgs>
+    landlords?: boolean | Comuna$landlordsArgs<ExtArgs>
+    _count?: boolean | ComunaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ComunaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Comuna"
+    objects: {
+      region: Prisma.$RegionPayload<ExtArgs>
+      properties: Prisma.$PropertyPayload<ExtArgs>[]
+      students: Prisma.$StudentPayload<ExtArgs>[]
+      landlords: Prisma.$LandlordPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      regionId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["comuna"]>
+    composites: {}
+  }
+
+  type ComunaGetPayload<S extends boolean | null | undefined | ComunaDefaultArgs> = $Result.GetResult<Prisma.$ComunaPayload, S>
+
+  type ComunaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ComunaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ComunaCountAggregateInputType | true
+    }
+
+  export interface ComunaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Comuna'], meta: { name: 'Comuna' } }
+    /**
+     * Find zero or one Comuna that matches the filter.
+     * @param {ComunaFindUniqueArgs} args - Arguments to find a Comuna
+     * @example
+     * // Get one Comuna
+     * const comuna = await prisma.comuna.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ComunaFindUniqueArgs>(args: SelectSubset<T, ComunaFindUniqueArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Comuna that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ComunaFindUniqueOrThrowArgs} args - Arguments to find a Comuna
+     * @example
+     * // Get one Comuna
+     * const comuna = await prisma.comuna.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ComunaFindUniqueOrThrowArgs>(args: SelectSubset<T, ComunaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comuna that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComunaFindFirstArgs} args - Arguments to find a Comuna
+     * @example
+     * // Get one Comuna
+     * const comuna = await prisma.comuna.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ComunaFindFirstArgs>(args?: SelectSubset<T, ComunaFindFirstArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comuna that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComunaFindFirstOrThrowArgs} args - Arguments to find a Comuna
+     * @example
+     * // Get one Comuna
+     * const comuna = await prisma.comuna.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ComunaFindFirstOrThrowArgs>(args?: SelectSubset<T, ComunaFindFirstOrThrowArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Comunas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComunaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Comunas
+     * const comunas = await prisma.comuna.findMany()
+     * 
+     * // Get first 10 Comunas
+     * const comunas = await prisma.comuna.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const comunaWithIdOnly = await prisma.comuna.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ComunaFindManyArgs>(args?: SelectSubset<T, ComunaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Comuna.
+     * @param {ComunaCreateArgs} args - Arguments to create a Comuna.
+     * @example
+     * // Create one Comuna
+     * const Comuna = await prisma.comuna.create({
+     *   data: {
+     *     // ... data to create a Comuna
+     *   }
+     * })
+     * 
+     */
+    create<T extends ComunaCreateArgs>(args: SelectSubset<T, ComunaCreateArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Comunas.
+     * @param {ComunaCreateManyArgs} args - Arguments to create many Comunas.
+     * @example
+     * // Create many Comunas
+     * const comuna = await prisma.comuna.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ComunaCreateManyArgs>(args?: SelectSubset<T, ComunaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Comuna.
+     * @param {ComunaDeleteArgs} args - Arguments to delete one Comuna.
+     * @example
+     * // Delete one Comuna
+     * const Comuna = await prisma.comuna.delete({
+     *   where: {
+     *     // ... filter to delete one Comuna
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ComunaDeleteArgs>(args: SelectSubset<T, ComunaDeleteArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Comuna.
+     * @param {ComunaUpdateArgs} args - Arguments to update one Comuna.
+     * @example
+     * // Update one Comuna
+     * const comuna = await prisma.comuna.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ComunaUpdateArgs>(args: SelectSubset<T, ComunaUpdateArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Comunas.
+     * @param {ComunaDeleteManyArgs} args - Arguments to filter Comunas to delete.
+     * @example
+     * // Delete a few Comunas
+     * const { count } = await prisma.comuna.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ComunaDeleteManyArgs>(args?: SelectSubset<T, ComunaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comunas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComunaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Comunas
+     * const comuna = await prisma.comuna.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ComunaUpdateManyArgs>(args: SelectSubset<T, ComunaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Comuna.
+     * @param {ComunaUpsertArgs} args - Arguments to update or create a Comuna.
+     * @example
+     * // Update or create a Comuna
+     * const comuna = await prisma.comuna.upsert({
+     *   create: {
+     *     // ... data to create a Comuna
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Comuna we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ComunaUpsertArgs>(args: SelectSubset<T, ComunaUpsertArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Comunas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComunaCountArgs} args - Arguments to filter Comunas to count.
+     * @example
+     * // Count the number of Comunas
+     * const count = await prisma.comuna.count({
+     *   where: {
+     *     // ... the filter for the Comunas we want to count
+     *   }
+     * })
+    **/
+    count<T extends ComunaCountArgs>(
+      args?: Subset<T, ComunaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ComunaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Comuna.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComunaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ComunaAggregateArgs>(args: Subset<T, ComunaAggregateArgs>): Prisma.PrismaPromise<GetComunaAggregateType<T>>
+
+    /**
+     * Group by Comuna.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComunaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ComunaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ComunaGroupByArgs['orderBy'] }
+        : { orderBy?: ComunaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ComunaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetComunaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Comuna model
+   */
+  readonly fields: ComunaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Comuna.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ComunaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    region<T extends RegionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RegionDefaultArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    properties<T extends Comuna$propertiesArgs<ExtArgs> = {}>(args?: Subset<T, Comuna$propertiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    students<T extends Comuna$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Comuna$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    landlords<T extends Comuna$landlordsArgs<ExtArgs> = {}>(args?: Subset<T, Comuna$landlordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LandlordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Comuna model
+   */
+  interface ComunaFieldRefs {
+    readonly id: FieldRef<"Comuna", 'Int'>
+    readonly name: FieldRef<"Comuna", 'String'>
+    readonly regionId: FieldRef<"Comuna", 'Int'>
+    readonly createdAt: FieldRef<"Comuna", 'DateTime'>
+    readonly updatedAt: FieldRef<"Comuna", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Comuna findUnique
+   */
+  export type ComunaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * Filter, which Comuna to fetch.
+     */
+    where: ComunaWhereUniqueInput
+  }
+
+  /**
+   * Comuna findUniqueOrThrow
+   */
+  export type ComunaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * Filter, which Comuna to fetch.
+     */
+    where: ComunaWhereUniqueInput
+  }
+
+  /**
+   * Comuna findFirst
+   */
+  export type ComunaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * Filter, which Comuna to fetch.
+     */
+    where?: ComunaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comunas to fetch.
+     */
+    orderBy?: ComunaOrderByWithRelationInput | ComunaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comunas.
+     */
+    cursor?: ComunaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comunas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comunas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comunas.
+     */
+    distinct?: ComunaScalarFieldEnum | ComunaScalarFieldEnum[]
+  }
+
+  /**
+   * Comuna findFirstOrThrow
+   */
+  export type ComunaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * Filter, which Comuna to fetch.
+     */
+    where?: ComunaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comunas to fetch.
+     */
+    orderBy?: ComunaOrderByWithRelationInput | ComunaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comunas.
+     */
+    cursor?: ComunaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comunas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comunas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comunas.
+     */
+    distinct?: ComunaScalarFieldEnum | ComunaScalarFieldEnum[]
+  }
+
+  /**
+   * Comuna findMany
+   */
+  export type ComunaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * Filter, which Comunas to fetch.
+     */
+    where?: ComunaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comunas to fetch.
+     */
+    orderBy?: ComunaOrderByWithRelationInput | ComunaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Comunas.
+     */
+    cursor?: ComunaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comunas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comunas.
+     */
+    skip?: number
+    distinct?: ComunaScalarFieldEnum | ComunaScalarFieldEnum[]
+  }
+
+  /**
+   * Comuna create
+   */
+  export type ComunaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Comuna.
+     */
+    data: XOR<ComunaCreateInput, ComunaUncheckedCreateInput>
+  }
+
+  /**
+   * Comuna createMany
+   */
+  export type ComunaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Comunas.
+     */
+    data: ComunaCreateManyInput | ComunaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Comuna update
+   */
+  export type ComunaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Comuna.
+     */
+    data: XOR<ComunaUpdateInput, ComunaUncheckedUpdateInput>
+    /**
+     * Choose, which Comuna to update.
+     */
+    where: ComunaWhereUniqueInput
+  }
+
+  /**
+   * Comuna updateMany
+   */
+  export type ComunaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Comunas.
+     */
+    data: XOR<ComunaUpdateManyMutationInput, ComunaUncheckedUpdateManyInput>
+    /**
+     * Filter which Comunas to update
+     */
+    where?: ComunaWhereInput
+    /**
+     * Limit how many Comunas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Comuna upsert
+   */
+  export type ComunaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Comuna to update in case it exists.
+     */
+    where: ComunaWhereUniqueInput
+    /**
+     * In case the Comuna found by the `where` argument doesn't exist, create a new Comuna with this data.
+     */
+    create: XOR<ComunaCreateInput, ComunaUncheckedCreateInput>
+    /**
+     * In case the Comuna was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ComunaUpdateInput, ComunaUncheckedUpdateInput>
+  }
+
+  /**
+   * Comuna delete
+   */
+  export type ComunaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+    /**
+     * Filter which Comuna to delete.
+     */
+    where: ComunaWhereUniqueInput
+  }
+
+  /**
+   * Comuna deleteMany
+   */
+  export type ComunaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comunas to delete
+     */
+    where?: ComunaWhereInput
+    /**
+     * Limit how many Comunas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Comuna.properties
+   */
+  export type Comuna$propertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Property
+     */
+    select?: PropertySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Property
+     */
+    omit?: PropertyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PropertyInclude<ExtArgs> | null
+    where?: PropertyWhereInput
+    orderBy?: PropertyOrderByWithRelationInput | PropertyOrderByWithRelationInput[]
+    cursor?: PropertyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[]
+  }
+
+  /**
+   * Comuna.students
+   */
+  export type Comuna$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+    orderBy?: StudentOrderByWithRelationInput | StudentOrderByWithRelationInput[]
+    cursor?: StudentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+  /**
+   * Comuna.landlords
+   */
+  export type Comuna$landlordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landlord
+     */
+    select?: LandlordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landlord
+     */
+    omit?: LandlordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandlordInclude<ExtArgs> | null
+    where?: LandlordWhereInput
+    orderBy?: LandlordOrderByWithRelationInput | LandlordOrderByWithRelationInput[]
+    cursor?: LandlordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LandlordScalarFieldEnum | LandlordScalarFieldEnum[]
+  }
+
+  /**
+   * Comuna without action
+   */
+  export type ComunaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comuna
+     */
+    select?: ComunaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comuna
+     */
+    omit?: ComunaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComunaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7626,6 +10171,8 @@ export namespace Prisma {
     studentCollege: 'studentCollege',
     studentCertificateUrl: 'studentCertificateUrl',
     role: 'role',
+    comunaId: 'comunaId',
+    regionId: 'regionId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -7641,6 +10188,8 @@ export namespace Prisma {
     password: 'password',
     landlordCarnetUrl: 'landlordCarnetUrl',
     role: 'role',
+    comunaId: 'comunaId',
+    regionId: 'regionId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -7654,8 +10203,8 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     address: 'address',
-    comuna: 'comuna',
-    region: 'region',
+    comunaId: 'comunaId',
+    regionId: 'regionId',
     zipCode: 'zipCode',
     propertyType: 'propertyType',
     bedrooms: 'bedrooms',
@@ -7712,6 +10261,29 @@ export namespace Prisma {
   export type PropertyAmenityScalarFieldEnum = (typeof PropertyAmenityScalarFieldEnum)[keyof typeof PropertyAmenityScalarFieldEnum]
 
 
+  export const RegionScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    name: 'name',
+    romanNumber: 'romanNumber',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RegionScalarFieldEnum = (typeof RegionScalarFieldEnum)[keyof typeof RegionScalarFieldEnum]
+
+
+  export const ComunaScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    regionId: 'regionId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ComunaScalarFieldEnum = (typeof ComunaScalarFieldEnum)[keyof typeof ComunaScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -7757,8 +10329,6 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     address: 'address',
-    comuna: 'comuna',
-    region: 'region',
     zipCode: 'zipCode',
     utilityBillUrl: 'utilityBillUrl',
     rules: 'rules'
@@ -7783,6 +10353,22 @@ export namespace Prisma {
   };
 
   export type AmenityOrderByRelevanceFieldEnum = (typeof AmenityOrderByRelevanceFieldEnum)[keyof typeof AmenityOrderByRelevanceFieldEnum]
+
+
+  export const RegionOrderByRelevanceFieldEnum: {
+    code: 'code',
+    name: 'name',
+    romanNumber: 'romanNumber'
+  };
+
+  export type RegionOrderByRelevanceFieldEnum = (typeof RegionOrderByRelevanceFieldEnum)[keyof typeof RegionOrderByRelevanceFieldEnum]
+
+
+  export const ComunaOrderByRelevanceFieldEnum: {
+    name: 'name'
+  };
+
+  export type ComunaOrderByRelevanceFieldEnum = (typeof ComunaOrderByRelevanceFieldEnum)[keyof typeof ComunaOrderByRelevanceFieldEnum]
 
 
   /**
@@ -7854,8 +10440,12 @@ export namespace Prisma {
     studentCollege?: StringFilter<"Student"> | string
     studentCertificateUrl?: StringFilter<"Student"> | string
     role?: StringFilter<"Student"> | string
+    comunaId?: IntFilter<"Student"> | number
+    regionId?: IntFilter<"Student"> | number
     createdAt?: DateTimeFilter<"Student"> | Date | string
     updatedAt?: DateTimeFilter<"Student"> | Date | string
+    comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -7867,8 +10457,12 @@ export namespace Prisma {
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    comuna?: ComunaOrderByWithRelationInput
+    region?: RegionOrderByWithRelationInput
     _relevance?: StudentOrderByRelevanceInput
   }
 
@@ -7884,8 +10478,12 @@ export namespace Prisma {
     studentCollege?: StringFilter<"Student"> | string
     studentCertificateUrl?: StringFilter<"Student"> | string
     role?: StringFilter<"Student"> | string
+    comunaId?: IntFilter<"Student"> | number
+    regionId?: IntFilter<"Student"> | number
     createdAt?: DateTimeFilter<"Student"> | Date | string
     updatedAt?: DateTimeFilter<"Student"> | Date | string
+    comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
   }, "id" | "studentRut" | "studentEmail">
 
   export type StudentOrderByWithAggregationInput = {
@@ -7897,6 +10495,8 @@ export namespace Prisma {
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: StudentCountOrderByAggregateInput
@@ -7918,6 +10518,8 @@ export namespace Prisma {
     studentCollege?: StringWithAggregatesFilter<"Student"> | string
     studentCertificateUrl?: StringWithAggregatesFilter<"Student"> | string
     role?: StringWithAggregatesFilter<"Student"> | string
+    comunaId?: IntWithAggregatesFilter<"Student"> | number
+    regionId?: IntWithAggregatesFilter<"Student"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
   }
@@ -7933,9 +10535,13 @@ export namespace Prisma {
     password?: StringFilter<"Landlord"> | string
     landlordCarnetUrl?: StringFilter<"Landlord"> | string
     role?: StringFilter<"Landlord"> | string
+    comunaId?: IntFilter<"Landlord"> | number
+    regionId?: IntFilter<"Landlord"> | number
     createdAt?: DateTimeFilter<"Landlord"> | Date | string
     updatedAt?: DateTimeFilter<"Landlord"> | Date | string
     properties?: PropertyListRelationFilter
+    comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
   }
 
   export type LandlordOrderByWithRelationInput = {
@@ -7946,9 +10552,13 @@ export namespace Prisma {
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     properties?: PropertyOrderByRelationAggregateInput
+    comuna?: ComunaOrderByWithRelationInput
+    region?: RegionOrderByWithRelationInput
     _relevance?: LandlordOrderByRelevanceInput
   }
 
@@ -7963,9 +10573,13 @@ export namespace Prisma {
     password?: StringFilter<"Landlord"> | string
     landlordCarnetUrl?: StringFilter<"Landlord"> | string
     role?: StringFilter<"Landlord"> | string
+    comunaId?: IntFilter<"Landlord"> | number
+    regionId?: IntFilter<"Landlord"> | number
     createdAt?: DateTimeFilter<"Landlord"> | Date | string
     updatedAt?: DateTimeFilter<"Landlord"> | Date | string
     properties?: PropertyListRelationFilter
+    comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
   }, "id" | "landlordRut" | "landlordEmail">
 
   export type LandlordOrderByWithAggregationInput = {
@@ -7976,6 +10590,8 @@ export namespace Prisma {
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: LandlordCountOrderByAggregateInput
@@ -7996,6 +10612,8 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"Landlord"> | string
     landlordCarnetUrl?: StringWithAggregatesFilter<"Landlord"> | string
     role?: StringWithAggregatesFilter<"Landlord"> | string
+    comunaId?: IntWithAggregatesFilter<"Landlord"> | number
+    regionId?: IntWithAggregatesFilter<"Landlord"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Landlord"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Landlord"> | Date | string
   }
@@ -8009,8 +10627,8 @@ export namespace Prisma {
     title?: StringFilter<"Property"> | string
     description?: StringNullableFilter<"Property"> | string | null
     address?: StringFilter<"Property"> | string
-    comuna?: StringFilter<"Property"> | string
-    region?: StringFilter<"Property"> | string
+    comunaId?: IntFilter<"Property"> | number
+    regionId?: IntFilter<"Property"> | number
     zipCode?: StringNullableFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntFilter<"Property"> | number
@@ -8026,6 +10644,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Property"> | Date | string
     updatedAt?: DateTimeFilter<"Property"> | Date | string
     landlord?: XOR<LandlordScalarRelationFilter, LandlordWhereInput>
+    comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
     propertyImages?: PropertyImageListRelationFilter
     propertyAmenities?: PropertyAmenityListRelationFilter
   }
@@ -8036,8 +10656,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrderInput | SortOrder
     address?: SortOrder
-    comuna?: SortOrder
-    region?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     zipCode?: SortOrderInput | SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
@@ -8053,6 +10673,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     landlord?: LandlordOrderByWithRelationInput
+    comuna?: ComunaOrderByWithRelationInput
+    region?: RegionOrderByWithRelationInput
     propertyImages?: PropertyImageOrderByRelationAggregateInput
     propertyAmenities?: PropertyAmenityOrderByRelationAggregateInput
     _relevance?: PropertyOrderByRelevanceInput
@@ -8067,8 +10689,8 @@ export namespace Prisma {
     title?: StringFilter<"Property"> | string
     description?: StringNullableFilter<"Property"> | string | null
     address?: StringFilter<"Property"> | string
-    comuna?: StringFilter<"Property"> | string
-    region?: StringFilter<"Property"> | string
+    comunaId?: IntFilter<"Property"> | number
+    regionId?: IntFilter<"Property"> | number
     zipCode?: StringNullableFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntFilter<"Property"> | number
@@ -8084,6 +10706,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Property"> | Date | string
     updatedAt?: DateTimeFilter<"Property"> | Date | string
     landlord?: XOR<LandlordScalarRelationFilter, LandlordWhereInput>
+    comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
     propertyImages?: PropertyImageListRelationFilter
     propertyAmenities?: PropertyAmenityListRelationFilter
   }, "id">
@@ -8094,8 +10718,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrderInput | SortOrder
     address?: SortOrder
-    comuna?: SortOrder
-    region?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     zipCode?: SortOrderInput | SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
@@ -8126,8 +10750,8 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Property"> | string
     description?: StringNullableWithAggregatesFilter<"Property"> | string | null
     address?: StringWithAggregatesFilter<"Property"> | string
-    comuna?: StringWithAggregatesFilter<"Property"> | string
-    region?: StringWithAggregatesFilter<"Property"> | string
+    comunaId?: IntWithAggregatesFilter<"Property"> | number
+    regionId?: IntWithAggregatesFilter<"Property"> | number
     zipCode?: StringNullableWithAggregatesFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeWithAggregatesFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntWithAggregatesFilter<"Property"> | number
@@ -8341,6 +10965,145 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"PropertyAmenity"> | Date | string
   }
 
+  export type RegionWhereInput = {
+    AND?: RegionWhereInput | RegionWhereInput[]
+    OR?: RegionWhereInput[]
+    NOT?: RegionWhereInput | RegionWhereInput[]
+    id?: IntFilter<"Region"> | number
+    code?: StringFilter<"Region"> | string
+    name?: StringFilter<"Region"> | string
+    romanNumber?: StringFilter<"Region"> | string
+    createdAt?: DateTimeFilter<"Region"> | Date | string
+    updatedAt?: DateTimeFilter<"Region"> | Date | string
+    comunas?: ComunaListRelationFilter
+    properties?: PropertyListRelationFilter
+    students?: StudentListRelationFilter
+    landlords?: LandlordListRelationFilter
+  }
+
+  export type RegionOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    romanNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    comunas?: ComunaOrderByRelationAggregateInput
+    properties?: PropertyOrderByRelationAggregateInput
+    students?: StudentOrderByRelationAggregateInput
+    landlords?: LandlordOrderByRelationAggregateInput
+    _relevance?: RegionOrderByRelevanceInput
+  }
+
+  export type RegionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    code?: string
+    AND?: RegionWhereInput | RegionWhereInput[]
+    OR?: RegionWhereInput[]
+    NOT?: RegionWhereInput | RegionWhereInput[]
+    name?: StringFilter<"Region"> | string
+    romanNumber?: StringFilter<"Region"> | string
+    createdAt?: DateTimeFilter<"Region"> | Date | string
+    updatedAt?: DateTimeFilter<"Region"> | Date | string
+    comunas?: ComunaListRelationFilter
+    properties?: PropertyListRelationFilter
+    students?: StudentListRelationFilter
+    landlords?: LandlordListRelationFilter
+  }, "id" | "code">
+
+  export type RegionOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    romanNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RegionCountOrderByAggregateInput
+    _avg?: RegionAvgOrderByAggregateInput
+    _max?: RegionMaxOrderByAggregateInput
+    _min?: RegionMinOrderByAggregateInput
+    _sum?: RegionSumOrderByAggregateInput
+  }
+
+  export type RegionScalarWhereWithAggregatesInput = {
+    AND?: RegionScalarWhereWithAggregatesInput | RegionScalarWhereWithAggregatesInput[]
+    OR?: RegionScalarWhereWithAggregatesInput[]
+    NOT?: RegionScalarWhereWithAggregatesInput | RegionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Region"> | number
+    code?: StringWithAggregatesFilter<"Region"> | string
+    name?: StringWithAggregatesFilter<"Region"> | string
+    romanNumber?: StringWithAggregatesFilter<"Region"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Region"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Region"> | Date | string
+  }
+
+  export type ComunaWhereInput = {
+    AND?: ComunaWhereInput | ComunaWhereInput[]
+    OR?: ComunaWhereInput[]
+    NOT?: ComunaWhereInput | ComunaWhereInput[]
+    id?: IntFilter<"Comuna"> | number
+    name?: StringFilter<"Comuna"> | string
+    regionId?: IntFilter<"Comuna"> | number
+    createdAt?: DateTimeFilter<"Comuna"> | Date | string
+    updatedAt?: DateTimeFilter<"Comuna"> | Date | string
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
+    properties?: PropertyListRelationFilter
+    students?: StudentListRelationFilter
+    landlords?: LandlordListRelationFilter
+  }
+
+  export type ComunaOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    regionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    region?: RegionOrderByWithRelationInput
+    properties?: PropertyOrderByRelationAggregateInput
+    students?: StudentOrderByRelationAggregateInput
+    landlords?: LandlordOrderByRelationAggregateInput
+    _relevance?: ComunaOrderByRelevanceInput
+  }
+
+  export type ComunaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ComunaWhereInput | ComunaWhereInput[]
+    OR?: ComunaWhereInput[]
+    NOT?: ComunaWhereInput | ComunaWhereInput[]
+    name?: StringFilter<"Comuna"> | string
+    regionId?: IntFilter<"Comuna"> | number
+    createdAt?: DateTimeFilter<"Comuna"> | Date | string
+    updatedAt?: DateTimeFilter<"Comuna"> | Date | string
+    region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
+    properties?: PropertyListRelationFilter
+    students?: StudentListRelationFilter
+    landlords?: LandlordListRelationFilter
+  }, "id">
+
+  export type ComunaOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    regionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ComunaCountOrderByAggregateInput
+    _avg?: ComunaAvgOrderByAggregateInput
+    _max?: ComunaMaxOrderByAggregateInput
+    _min?: ComunaMinOrderByAggregateInput
+    _sum?: ComunaSumOrderByAggregateInput
+  }
+
+  export type ComunaScalarWhereWithAggregatesInput = {
+    AND?: ComunaScalarWhereWithAggregatesInput | ComunaScalarWhereWithAggregatesInput[]
+    OR?: ComunaScalarWhereWithAggregatesInput[]
+    NOT?: ComunaScalarWhereWithAggregatesInput | ComunaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Comuna"> | number
+    name?: StringWithAggregatesFilter<"Comuna"> | string
+    regionId?: IntWithAggregatesFilter<"Comuna"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Comuna"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Comuna"> | Date | string
+  }
+
   export type StudentCreateInput = {
     studentRut: string
     studentEmail: string
@@ -8351,6 +11114,8 @@ export namespace Prisma {
     role: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    comuna: ComunaCreateNestedOneWithoutStudentsInput
+    region: RegionCreateNestedOneWithoutStudentsInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -8362,6 +11127,8 @@ export namespace Prisma {
     studentCollege: string
     studentCertificateUrl: string
     role: string
+    comunaId: number
+    regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8376,6 +11143,8 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comuna?: ComunaUpdateOneRequiredWithoutStudentsNestedInput
+    region?: RegionUpdateOneRequiredWithoutStudentsNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -8387,6 +11156,8 @@ export namespace Prisma {
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8400,6 +11171,8 @@ export namespace Prisma {
     studentCollege: string
     studentCertificateUrl: string
     role: string
+    comunaId: number
+    regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8425,6 +11198,8 @@ export namespace Prisma {
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8439,6 +11214,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     properties?: PropertyCreateNestedManyWithoutLandlordInput
+    comuna: ComunaCreateNestedOneWithoutLandlordsInput
+    region: RegionCreateNestedOneWithoutLandlordsInput
   }
 
   export type LandlordUncheckedCreateInput = {
@@ -8449,6 +11226,8 @@ export namespace Prisma {
     password: string
     landlordCarnetUrl: string
     role?: string
+    comunaId: number
+    regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     properties?: PropertyUncheckedCreateNestedManyWithoutLandlordInput
@@ -8464,6 +11243,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertyUpdateManyWithoutLandlordNestedInput
+    comuna?: ComunaUpdateOneRequiredWithoutLandlordsNestedInput
+    region?: RegionUpdateOneRequiredWithoutLandlordsNestedInput
   }
 
   export type LandlordUncheckedUpdateInput = {
@@ -8474,6 +11255,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertyUncheckedUpdateManyWithoutLandlordNestedInput
@@ -8487,6 +11270,8 @@ export namespace Prisma {
     password: string
     landlordCarnetUrl: string
     role?: string
+    comunaId: number
+    regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8510,6 +11295,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8518,8 +11305,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -8535,6 +11320,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
+    comuna: ComunaCreateNestedOneWithoutPropertiesInput
+    region: RegionCreateNestedOneWithoutPropertiesInput
     propertyImages?: PropertyImageCreateNestedManyWithoutPropertyInput
     propertyAmenities?: PropertyAmenityCreateNestedManyWithoutPropertyInput
   }
@@ -8545,8 +11332,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
+    comunaId: number
+    regionId: number
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -8569,8 +11356,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -8586,6 +11371,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
+    comuna?: ComunaUpdateOneRequiredWithoutPropertiesNestedInput
+    region?: RegionUpdateOneRequiredWithoutPropertiesNestedInput
     propertyImages?: PropertyImageUpdateManyWithoutPropertyNestedInput
     propertyAmenities?: PropertyAmenityUpdateManyWithoutPropertyNestedInput
   }
@@ -8596,8 +11383,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -8622,8 +11409,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
+    comunaId: number
+    regionId: number
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -8644,8 +11431,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -8668,8 +11453,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -8874,6 +11659,146 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RegionCreateInput = {
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaCreateNestedManyWithoutRegionInput
+    properties?: PropertyCreateNestedManyWithoutRegionInput
+    students?: StudentCreateNestedManyWithoutRegionInput
+    landlords?: LandlordCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionUncheckedCreateInput = {
+    id?: number
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaUncheckedCreateNestedManyWithoutRegionInput
+    properties?: PropertyUncheckedCreateNestedManyWithoutRegionInput
+    students?: StudentUncheckedCreateNestedManyWithoutRegionInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionUpdateInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUpdateManyWithoutRegionNestedInput
+    properties?: PropertyUpdateManyWithoutRegionNestedInput
+    students?: StudentUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUpdateManyWithoutRegionNestedInput
+  }
+
+  export type RegionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUncheckedUpdateManyWithoutRegionNestedInput
+    properties?: PropertyUncheckedUpdateManyWithoutRegionNestedInput
+    students?: StudentUncheckedUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutRegionNestedInput
+  }
+
+  export type RegionCreateManyInput = {
+    id?: number
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RegionUpdateManyMutationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RegionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComunaCreateInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    region: RegionCreateNestedOneWithoutComunasInput
+    properties?: PropertyCreateNestedManyWithoutComunaInput
+    students?: StudentCreateNestedManyWithoutComunaInput
+    landlords?: LandlordCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaUncheckedCreateInput = {
+    id?: number
+    name: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutComunaInput
+    students?: StudentUncheckedCreateNestedManyWithoutComunaInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    region?: RegionUpdateOneRequiredWithoutComunasNestedInput
+    properties?: PropertyUpdateManyWithoutComunaNestedInput
+    students?: StudentUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUpdateManyWithoutComunaNestedInput
+  }
+
+  export type ComunaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutComunaNestedInput
+    students?: StudentUncheckedUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutComunaNestedInput
+  }
+
+  export type ComunaCreateManyInput = {
+    id?: number
+    name: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ComunaUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComunaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -8911,6 +11836,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type ComunaScalarRelationFilter = {
+    is?: ComunaWhereInput
+    isNot?: ComunaWhereInput
+  }
+
+  export type RegionScalarRelationFilter = {
+    is?: RegionWhereInput
+    isNot?: RegionWhereInput
+  }
+
   export type StudentOrderByRelevanceInput = {
     fields: StudentOrderByRelevanceFieldEnum | StudentOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -8926,12 +11861,16 @@ export namespace Prisma {
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type StudentAvgOrderByAggregateInput = {
     id?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
   }
 
   export type StudentMaxOrderByAggregateInput = {
@@ -8943,6 +11882,8 @@ export namespace Prisma {
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8956,12 +11897,16 @@ export namespace Prisma {
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type StudentSumOrderByAggregateInput = {
     id?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9036,12 +11981,16 @@ export namespace Prisma {
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type LandlordAvgOrderByAggregateInput = {
     id?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
   }
 
   export type LandlordMaxOrderByAggregateInput = {
@@ -9052,6 +12001,8 @@ export namespace Prisma {
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9064,12 +12015,16 @@ export namespace Prisma {
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
     role?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type LandlordSumOrderByAggregateInput = {
     id?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -9174,8 +12129,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     address?: SortOrder
-    comuna?: SortOrder
-    region?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     zipCode?: SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
@@ -9195,6 +12150,8 @@ export namespace Prisma {
   export type PropertyAvgOrderByAggregateInput = {
     id?: SortOrder
     landlordId?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     bedrooms?: SortOrder
     bathrooms?: SortOrder
     squareMeters?: SortOrder
@@ -9209,8 +12166,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     address?: SortOrder
-    comuna?: SortOrder
-    region?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     zipCode?: SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
@@ -9233,8 +12190,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     address?: SortOrder
-    comuna?: SortOrder
-    region?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     zipCode?: SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
@@ -9254,6 +12211,8 @@ export namespace Prisma {
   export type PropertySumOrderByAggregateInput = {
     id?: SortOrder
     landlordId?: SortOrder
+    comunaId?: SortOrder
+    regionId?: SortOrder
     bedrooms?: SortOrder
     bathrooms?: SortOrder
     squareMeters?: SortOrder
@@ -9489,12 +12448,151 @@ export namespace Prisma {
     amenityId?: SortOrder
   }
 
+  export type ComunaListRelationFilter = {
+    every?: ComunaWhereInput
+    some?: ComunaWhereInput
+    none?: ComunaWhereInput
+  }
+
+  export type StudentListRelationFilter = {
+    every?: StudentWhereInput
+    some?: StudentWhereInput
+    none?: StudentWhereInput
+  }
+
+  export type LandlordListRelationFilter = {
+    every?: LandlordWhereInput
+    some?: LandlordWhereInput
+    none?: LandlordWhereInput
+  }
+
+  export type ComunaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StudentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LandlordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RegionOrderByRelevanceInput = {
+    fields: RegionOrderByRelevanceFieldEnum | RegionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type RegionCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    romanNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RegionAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type RegionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    romanNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RegionMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    romanNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RegionSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ComunaOrderByRelevanceInput = {
+    fields: ComunaOrderByRelevanceFieldEnum | ComunaOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ComunaCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    regionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ComunaAvgOrderByAggregateInput = {
+    id?: SortOrder
+    regionId?: SortOrder
+  }
+
+  export type ComunaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    regionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ComunaMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    regionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ComunaSumOrderByAggregateInput = {
+    id?: SortOrder
+    regionId?: SortOrder
+  }
+
+  export type ComunaCreateNestedOneWithoutStudentsInput = {
+    create?: XOR<ComunaCreateWithoutStudentsInput, ComunaUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: ComunaCreateOrConnectWithoutStudentsInput
+    connect?: ComunaWhereUniqueInput
+  }
+
+  export type RegionCreateNestedOneWithoutStudentsInput = {
+    create?: XOR<RegionCreateWithoutStudentsInput, RegionUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutStudentsInput
+    connect?: RegionWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type ComunaUpdateOneRequiredWithoutStudentsNestedInput = {
+    create?: XOR<ComunaCreateWithoutStudentsInput, ComunaUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: ComunaCreateOrConnectWithoutStudentsInput
+    upsert?: ComunaUpsertWithoutStudentsInput
+    connect?: ComunaWhereUniqueInput
+    update?: XOR<XOR<ComunaUpdateToOneWithWhereWithoutStudentsInput, ComunaUpdateWithoutStudentsInput>, ComunaUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type RegionUpdateOneRequiredWithoutStudentsNestedInput = {
+    create?: XOR<RegionCreateWithoutStudentsInput, RegionUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutStudentsInput
+    upsert?: RegionUpsertWithoutStudentsInput
+    connect?: RegionWhereUniqueInput
+    update?: XOR<XOR<RegionUpdateToOneWithWhereWithoutStudentsInput, RegionUpdateWithoutStudentsInput>, RegionUncheckedUpdateWithoutStudentsInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -9510,6 +12608,18 @@ export namespace Prisma {
     connectOrCreate?: PropertyCreateOrConnectWithoutLandlordInput | PropertyCreateOrConnectWithoutLandlordInput[]
     createMany?: PropertyCreateManyLandlordInputEnvelope
     connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+  }
+
+  export type ComunaCreateNestedOneWithoutLandlordsInput = {
+    create?: XOR<ComunaCreateWithoutLandlordsInput, ComunaUncheckedCreateWithoutLandlordsInput>
+    connectOrCreate?: ComunaCreateOrConnectWithoutLandlordsInput
+    connect?: ComunaWhereUniqueInput
+  }
+
+  export type RegionCreateNestedOneWithoutLandlordsInput = {
+    create?: XOR<RegionCreateWithoutLandlordsInput, RegionUncheckedCreateWithoutLandlordsInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutLandlordsInput
+    connect?: RegionWhereUniqueInput
   }
 
   export type PropertyUncheckedCreateNestedManyWithoutLandlordInput = {
@@ -9533,6 +12643,22 @@ export namespace Prisma {
     deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
   }
 
+  export type ComunaUpdateOneRequiredWithoutLandlordsNestedInput = {
+    create?: XOR<ComunaCreateWithoutLandlordsInput, ComunaUncheckedCreateWithoutLandlordsInput>
+    connectOrCreate?: ComunaCreateOrConnectWithoutLandlordsInput
+    upsert?: ComunaUpsertWithoutLandlordsInput
+    connect?: ComunaWhereUniqueInput
+    update?: XOR<XOR<ComunaUpdateToOneWithWhereWithoutLandlordsInput, ComunaUpdateWithoutLandlordsInput>, ComunaUncheckedUpdateWithoutLandlordsInput>
+  }
+
+  export type RegionUpdateOneRequiredWithoutLandlordsNestedInput = {
+    create?: XOR<RegionCreateWithoutLandlordsInput, RegionUncheckedCreateWithoutLandlordsInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutLandlordsInput
+    upsert?: RegionUpsertWithoutLandlordsInput
+    connect?: RegionWhereUniqueInput
+    update?: XOR<XOR<RegionUpdateToOneWithWhereWithoutLandlordsInput, RegionUpdateWithoutLandlordsInput>, RegionUncheckedUpdateWithoutLandlordsInput>
+  }
+
   export type PropertyUncheckedUpdateManyWithoutLandlordNestedInput = {
     create?: XOR<PropertyCreateWithoutLandlordInput, PropertyUncheckedCreateWithoutLandlordInput> | PropertyCreateWithoutLandlordInput[] | PropertyUncheckedCreateWithoutLandlordInput[]
     connectOrCreate?: PropertyCreateOrConnectWithoutLandlordInput | PropertyCreateOrConnectWithoutLandlordInput[]
@@ -9551,6 +12677,18 @@ export namespace Prisma {
     create?: XOR<LandlordCreateWithoutPropertiesInput, LandlordUncheckedCreateWithoutPropertiesInput>
     connectOrCreate?: LandlordCreateOrConnectWithoutPropertiesInput
     connect?: LandlordWhereUniqueInput
+  }
+
+  export type ComunaCreateNestedOneWithoutPropertiesInput = {
+    create?: XOR<ComunaCreateWithoutPropertiesInput, ComunaUncheckedCreateWithoutPropertiesInput>
+    connectOrCreate?: ComunaCreateOrConnectWithoutPropertiesInput
+    connect?: ComunaWhereUniqueInput
+  }
+
+  export type RegionCreateNestedOneWithoutPropertiesInput = {
+    create?: XOR<RegionCreateWithoutPropertiesInput, RegionUncheckedCreateWithoutPropertiesInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutPropertiesInput
+    connect?: RegionWhereUniqueInput
   }
 
   export type PropertyImageCreateNestedManyWithoutPropertyInput = {
@@ -9623,6 +12761,22 @@ export namespace Prisma {
     upsert?: LandlordUpsertWithoutPropertiesInput
     connect?: LandlordWhereUniqueInput
     update?: XOR<XOR<LandlordUpdateToOneWithWhereWithoutPropertiesInput, LandlordUpdateWithoutPropertiesInput>, LandlordUncheckedUpdateWithoutPropertiesInput>
+  }
+
+  export type ComunaUpdateOneRequiredWithoutPropertiesNestedInput = {
+    create?: XOR<ComunaCreateWithoutPropertiesInput, ComunaUncheckedCreateWithoutPropertiesInput>
+    connectOrCreate?: ComunaCreateOrConnectWithoutPropertiesInput
+    upsert?: ComunaUpsertWithoutPropertiesInput
+    connect?: ComunaWhereUniqueInput
+    update?: XOR<XOR<ComunaUpdateToOneWithWhereWithoutPropertiesInput, ComunaUpdateWithoutPropertiesInput>, ComunaUncheckedUpdateWithoutPropertiesInput>
+  }
+
+  export type RegionUpdateOneRequiredWithoutPropertiesNestedInput = {
+    create?: XOR<RegionCreateWithoutPropertiesInput, RegionUncheckedCreateWithoutPropertiesInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutPropertiesInput
+    upsert?: RegionUpsertWithoutPropertiesInput
+    connect?: RegionWhereUniqueInput
+    update?: XOR<XOR<RegionUpdateToOneWithWhereWithoutPropertiesInput, RegionUpdateWithoutPropertiesInput>, RegionUncheckedUpdateWithoutPropertiesInput>
   }
 
   export type PropertyImageUpdateManyWithoutPropertyNestedInput = {
@@ -9763,6 +12917,314 @@ export namespace Prisma {
     upsert?: AmenityUpsertWithoutPropertyAmenitiesInput
     connect?: AmenityWhereUniqueInput
     update?: XOR<XOR<AmenityUpdateToOneWithWhereWithoutPropertyAmenitiesInput, AmenityUpdateWithoutPropertyAmenitiesInput>, AmenityUncheckedUpdateWithoutPropertyAmenitiesInput>
+  }
+
+  export type ComunaCreateNestedManyWithoutRegionInput = {
+    create?: XOR<ComunaCreateWithoutRegionInput, ComunaUncheckedCreateWithoutRegionInput> | ComunaCreateWithoutRegionInput[] | ComunaUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: ComunaCreateOrConnectWithoutRegionInput | ComunaCreateOrConnectWithoutRegionInput[]
+    createMany?: ComunaCreateManyRegionInputEnvelope
+    connect?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+  }
+
+  export type PropertyCreateNestedManyWithoutRegionInput = {
+    create?: XOR<PropertyCreateWithoutRegionInput, PropertyUncheckedCreateWithoutRegionInput> | PropertyCreateWithoutRegionInput[] | PropertyUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutRegionInput | PropertyCreateOrConnectWithoutRegionInput[]
+    createMany?: PropertyCreateManyRegionInputEnvelope
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+  }
+
+  export type StudentCreateNestedManyWithoutRegionInput = {
+    create?: XOR<StudentCreateWithoutRegionInput, StudentUncheckedCreateWithoutRegionInput> | StudentCreateWithoutRegionInput[] | StudentUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutRegionInput | StudentCreateOrConnectWithoutRegionInput[]
+    createMany?: StudentCreateManyRegionInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type LandlordCreateNestedManyWithoutRegionInput = {
+    create?: XOR<LandlordCreateWithoutRegionInput, LandlordUncheckedCreateWithoutRegionInput> | LandlordCreateWithoutRegionInput[] | LandlordUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutRegionInput | LandlordCreateOrConnectWithoutRegionInput[]
+    createMany?: LandlordCreateManyRegionInputEnvelope
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+  }
+
+  export type ComunaUncheckedCreateNestedManyWithoutRegionInput = {
+    create?: XOR<ComunaCreateWithoutRegionInput, ComunaUncheckedCreateWithoutRegionInput> | ComunaCreateWithoutRegionInput[] | ComunaUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: ComunaCreateOrConnectWithoutRegionInput | ComunaCreateOrConnectWithoutRegionInput[]
+    createMany?: ComunaCreateManyRegionInputEnvelope
+    connect?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+  }
+
+  export type PropertyUncheckedCreateNestedManyWithoutRegionInput = {
+    create?: XOR<PropertyCreateWithoutRegionInput, PropertyUncheckedCreateWithoutRegionInput> | PropertyCreateWithoutRegionInput[] | PropertyUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutRegionInput | PropertyCreateOrConnectWithoutRegionInput[]
+    createMany?: PropertyCreateManyRegionInputEnvelope
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+  }
+
+  export type StudentUncheckedCreateNestedManyWithoutRegionInput = {
+    create?: XOR<StudentCreateWithoutRegionInput, StudentUncheckedCreateWithoutRegionInput> | StudentCreateWithoutRegionInput[] | StudentUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutRegionInput | StudentCreateOrConnectWithoutRegionInput[]
+    createMany?: StudentCreateManyRegionInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type LandlordUncheckedCreateNestedManyWithoutRegionInput = {
+    create?: XOR<LandlordCreateWithoutRegionInput, LandlordUncheckedCreateWithoutRegionInput> | LandlordCreateWithoutRegionInput[] | LandlordUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutRegionInput | LandlordCreateOrConnectWithoutRegionInput[]
+    createMany?: LandlordCreateManyRegionInputEnvelope
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+  }
+
+  export type ComunaUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<ComunaCreateWithoutRegionInput, ComunaUncheckedCreateWithoutRegionInput> | ComunaCreateWithoutRegionInput[] | ComunaUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: ComunaCreateOrConnectWithoutRegionInput | ComunaCreateOrConnectWithoutRegionInput[]
+    upsert?: ComunaUpsertWithWhereUniqueWithoutRegionInput | ComunaUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: ComunaCreateManyRegionInputEnvelope
+    set?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    disconnect?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    delete?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    connect?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    update?: ComunaUpdateWithWhereUniqueWithoutRegionInput | ComunaUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: ComunaUpdateManyWithWhereWithoutRegionInput | ComunaUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: ComunaScalarWhereInput | ComunaScalarWhereInput[]
+  }
+
+  export type PropertyUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<PropertyCreateWithoutRegionInput, PropertyUncheckedCreateWithoutRegionInput> | PropertyCreateWithoutRegionInput[] | PropertyUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutRegionInput | PropertyCreateOrConnectWithoutRegionInput[]
+    upsert?: PropertyUpsertWithWhereUniqueWithoutRegionInput | PropertyUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: PropertyCreateManyRegionInputEnvelope
+    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    update?: PropertyUpdateWithWhereUniqueWithoutRegionInput | PropertyUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: PropertyUpdateManyWithWhereWithoutRegionInput | PropertyUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
+  }
+
+  export type StudentUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<StudentCreateWithoutRegionInput, StudentUncheckedCreateWithoutRegionInput> | StudentCreateWithoutRegionInput[] | StudentUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutRegionInput | StudentCreateOrConnectWithoutRegionInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutRegionInput | StudentUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: StudentCreateManyRegionInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutRegionInput | StudentUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutRegionInput | StudentUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type LandlordUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<LandlordCreateWithoutRegionInput, LandlordUncheckedCreateWithoutRegionInput> | LandlordCreateWithoutRegionInput[] | LandlordUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutRegionInput | LandlordCreateOrConnectWithoutRegionInput[]
+    upsert?: LandlordUpsertWithWhereUniqueWithoutRegionInput | LandlordUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: LandlordCreateManyRegionInputEnvelope
+    set?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    disconnect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    delete?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    update?: LandlordUpdateWithWhereUniqueWithoutRegionInput | LandlordUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: LandlordUpdateManyWithWhereWithoutRegionInput | LandlordUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: LandlordScalarWhereInput | LandlordScalarWhereInput[]
+  }
+
+  export type ComunaUncheckedUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<ComunaCreateWithoutRegionInput, ComunaUncheckedCreateWithoutRegionInput> | ComunaCreateWithoutRegionInput[] | ComunaUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: ComunaCreateOrConnectWithoutRegionInput | ComunaCreateOrConnectWithoutRegionInput[]
+    upsert?: ComunaUpsertWithWhereUniqueWithoutRegionInput | ComunaUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: ComunaCreateManyRegionInputEnvelope
+    set?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    disconnect?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    delete?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    connect?: ComunaWhereUniqueInput | ComunaWhereUniqueInput[]
+    update?: ComunaUpdateWithWhereUniqueWithoutRegionInput | ComunaUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: ComunaUpdateManyWithWhereWithoutRegionInput | ComunaUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: ComunaScalarWhereInput | ComunaScalarWhereInput[]
+  }
+
+  export type PropertyUncheckedUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<PropertyCreateWithoutRegionInput, PropertyUncheckedCreateWithoutRegionInput> | PropertyCreateWithoutRegionInput[] | PropertyUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutRegionInput | PropertyCreateOrConnectWithoutRegionInput[]
+    upsert?: PropertyUpsertWithWhereUniqueWithoutRegionInput | PropertyUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: PropertyCreateManyRegionInputEnvelope
+    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    update?: PropertyUpdateWithWhereUniqueWithoutRegionInput | PropertyUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: PropertyUpdateManyWithWhereWithoutRegionInput | PropertyUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
+  }
+
+  export type StudentUncheckedUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<StudentCreateWithoutRegionInput, StudentUncheckedCreateWithoutRegionInput> | StudentCreateWithoutRegionInput[] | StudentUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutRegionInput | StudentCreateOrConnectWithoutRegionInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutRegionInput | StudentUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: StudentCreateManyRegionInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutRegionInput | StudentUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutRegionInput | StudentUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type LandlordUncheckedUpdateManyWithoutRegionNestedInput = {
+    create?: XOR<LandlordCreateWithoutRegionInput, LandlordUncheckedCreateWithoutRegionInput> | LandlordCreateWithoutRegionInput[] | LandlordUncheckedCreateWithoutRegionInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutRegionInput | LandlordCreateOrConnectWithoutRegionInput[]
+    upsert?: LandlordUpsertWithWhereUniqueWithoutRegionInput | LandlordUpsertWithWhereUniqueWithoutRegionInput[]
+    createMany?: LandlordCreateManyRegionInputEnvelope
+    set?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    disconnect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    delete?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    update?: LandlordUpdateWithWhereUniqueWithoutRegionInput | LandlordUpdateWithWhereUniqueWithoutRegionInput[]
+    updateMany?: LandlordUpdateManyWithWhereWithoutRegionInput | LandlordUpdateManyWithWhereWithoutRegionInput[]
+    deleteMany?: LandlordScalarWhereInput | LandlordScalarWhereInput[]
+  }
+
+  export type RegionCreateNestedOneWithoutComunasInput = {
+    create?: XOR<RegionCreateWithoutComunasInput, RegionUncheckedCreateWithoutComunasInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutComunasInput
+    connect?: RegionWhereUniqueInput
+  }
+
+  export type PropertyCreateNestedManyWithoutComunaInput = {
+    create?: XOR<PropertyCreateWithoutComunaInput, PropertyUncheckedCreateWithoutComunaInput> | PropertyCreateWithoutComunaInput[] | PropertyUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutComunaInput | PropertyCreateOrConnectWithoutComunaInput[]
+    createMany?: PropertyCreateManyComunaInputEnvelope
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+  }
+
+  export type StudentCreateNestedManyWithoutComunaInput = {
+    create?: XOR<StudentCreateWithoutComunaInput, StudentUncheckedCreateWithoutComunaInput> | StudentCreateWithoutComunaInput[] | StudentUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutComunaInput | StudentCreateOrConnectWithoutComunaInput[]
+    createMany?: StudentCreateManyComunaInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type LandlordCreateNestedManyWithoutComunaInput = {
+    create?: XOR<LandlordCreateWithoutComunaInput, LandlordUncheckedCreateWithoutComunaInput> | LandlordCreateWithoutComunaInput[] | LandlordUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutComunaInput | LandlordCreateOrConnectWithoutComunaInput[]
+    createMany?: LandlordCreateManyComunaInputEnvelope
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+  }
+
+  export type PropertyUncheckedCreateNestedManyWithoutComunaInput = {
+    create?: XOR<PropertyCreateWithoutComunaInput, PropertyUncheckedCreateWithoutComunaInput> | PropertyCreateWithoutComunaInput[] | PropertyUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutComunaInput | PropertyCreateOrConnectWithoutComunaInput[]
+    createMany?: PropertyCreateManyComunaInputEnvelope
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+  }
+
+  export type StudentUncheckedCreateNestedManyWithoutComunaInput = {
+    create?: XOR<StudentCreateWithoutComunaInput, StudentUncheckedCreateWithoutComunaInput> | StudentCreateWithoutComunaInput[] | StudentUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutComunaInput | StudentCreateOrConnectWithoutComunaInput[]
+    createMany?: StudentCreateManyComunaInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type LandlordUncheckedCreateNestedManyWithoutComunaInput = {
+    create?: XOR<LandlordCreateWithoutComunaInput, LandlordUncheckedCreateWithoutComunaInput> | LandlordCreateWithoutComunaInput[] | LandlordUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutComunaInput | LandlordCreateOrConnectWithoutComunaInput[]
+    createMany?: LandlordCreateManyComunaInputEnvelope
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+  }
+
+  export type RegionUpdateOneRequiredWithoutComunasNestedInput = {
+    create?: XOR<RegionCreateWithoutComunasInput, RegionUncheckedCreateWithoutComunasInput>
+    connectOrCreate?: RegionCreateOrConnectWithoutComunasInput
+    upsert?: RegionUpsertWithoutComunasInput
+    connect?: RegionWhereUniqueInput
+    update?: XOR<XOR<RegionUpdateToOneWithWhereWithoutComunasInput, RegionUpdateWithoutComunasInput>, RegionUncheckedUpdateWithoutComunasInput>
+  }
+
+  export type PropertyUpdateManyWithoutComunaNestedInput = {
+    create?: XOR<PropertyCreateWithoutComunaInput, PropertyUncheckedCreateWithoutComunaInput> | PropertyCreateWithoutComunaInput[] | PropertyUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutComunaInput | PropertyCreateOrConnectWithoutComunaInput[]
+    upsert?: PropertyUpsertWithWhereUniqueWithoutComunaInput | PropertyUpsertWithWhereUniqueWithoutComunaInput[]
+    createMany?: PropertyCreateManyComunaInputEnvelope
+    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    update?: PropertyUpdateWithWhereUniqueWithoutComunaInput | PropertyUpdateWithWhereUniqueWithoutComunaInput[]
+    updateMany?: PropertyUpdateManyWithWhereWithoutComunaInput | PropertyUpdateManyWithWhereWithoutComunaInput[]
+    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
+  }
+
+  export type StudentUpdateManyWithoutComunaNestedInput = {
+    create?: XOR<StudentCreateWithoutComunaInput, StudentUncheckedCreateWithoutComunaInput> | StudentCreateWithoutComunaInput[] | StudentUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutComunaInput | StudentCreateOrConnectWithoutComunaInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutComunaInput | StudentUpsertWithWhereUniqueWithoutComunaInput[]
+    createMany?: StudentCreateManyComunaInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutComunaInput | StudentUpdateWithWhereUniqueWithoutComunaInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutComunaInput | StudentUpdateManyWithWhereWithoutComunaInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type LandlordUpdateManyWithoutComunaNestedInput = {
+    create?: XOR<LandlordCreateWithoutComunaInput, LandlordUncheckedCreateWithoutComunaInput> | LandlordCreateWithoutComunaInput[] | LandlordUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutComunaInput | LandlordCreateOrConnectWithoutComunaInput[]
+    upsert?: LandlordUpsertWithWhereUniqueWithoutComunaInput | LandlordUpsertWithWhereUniqueWithoutComunaInput[]
+    createMany?: LandlordCreateManyComunaInputEnvelope
+    set?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    disconnect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    delete?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    update?: LandlordUpdateWithWhereUniqueWithoutComunaInput | LandlordUpdateWithWhereUniqueWithoutComunaInput[]
+    updateMany?: LandlordUpdateManyWithWhereWithoutComunaInput | LandlordUpdateManyWithWhereWithoutComunaInput[]
+    deleteMany?: LandlordScalarWhereInput | LandlordScalarWhereInput[]
+  }
+
+  export type PropertyUncheckedUpdateManyWithoutComunaNestedInput = {
+    create?: XOR<PropertyCreateWithoutComunaInput, PropertyUncheckedCreateWithoutComunaInput> | PropertyCreateWithoutComunaInput[] | PropertyUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: PropertyCreateOrConnectWithoutComunaInput | PropertyCreateOrConnectWithoutComunaInput[]
+    upsert?: PropertyUpsertWithWhereUniqueWithoutComunaInput | PropertyUpsertWithWhereUniqueWithoutComunaInput[]
+    createMany?: PropertyCreateManyComunaInputEnvelope
+    set?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    disconnect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    delete?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+    update?: PropertyUpdateWithWhereUniqueWithoutComunaInput | PropertyUpdateWithWhereUniqueWithoutComunaInput[]
+    updateMany?: PropertyUpdateManyWithWhereWithoutComunaInput | PropertyUpdateManyWithWhereWithoutComunaInput[]
+    deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
+  }
+
+  export type StudentUncheckedUpdateManyWithoutComunaNestedInput = {
+    create?: XOR<StudentCreateWithoutComunaInput, StudentUncheckedCreateWithoutComunaInput> | StudentCreateWithoutComunaInput[] | StudentUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutComunaInput | StudentCreateOrConnectWithoutComunaInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutComunaInput | StudentUpsertWithWhereUniqueWithoutComunaInput[]
+    createMany?: StudentCreateManyComunaInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutComunaInput | StudentUpdateWithWhereUniqueWithoutComunaInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutComunaInput | StudentUpdateManyWithWhereWithoutComunaInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type LandlordUncheckedUpdateManyWithoutComunaNestedInput = {
+    create?: XOR<LandlordCreateWithoutComunaInput, LandlordUncheckedCreateWithoutComunaInput> | LandlordCreateWithoutComunaInput[] | LandlordUncheckedCreateWithoutComunaInput[]
+    connectOrCreate?: LandlordCreateOrConnectWithoutComunaInput | LandlordCreateOrConnectWithoutComunaInput[]
+    upsert?: LandlordUpsertWithWhereUniqueWithoutComunaInput | LandlordUpsertWithWhereUniqueWithoutComunaInput[]
+    createMany?: LandlordCreateManyComunaInputEnvelope
+    set?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    disconnect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    delete?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    connect?: LandlordWhereUniqueInput | LandlordWhereUniqueInput[]
+    update?: LandlordUpdateWithWhereUniqueWithoutComunaInput | LandlordUpdateWithWhereUniqueWithoutComunaInput[]
+    updateMany?: LandlordUpdateManyWithWhereWithoutComunaInput | LandlordUpdateManyWithWhereWithoutComunaInput[]
+    deleteMany?: LandlordScalarWhereInput | LandlordScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -10016,12 +13478,126 @@ export namespace Prisma {
     _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
+  export type ComunaCreateWithoutStudentsInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    region: RegionCreateNestedOneWithoutComunasInput
+    properties?: PropertyCreateNestedManyWithoutComunaInput
+    landlords?: LandlordCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaUncheckedCreateWithoutStudentsInput = {
+    id?: number
+    name: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutComunaInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaCreateOrConnectWithoutStudentsInput = {
+    where: ComunaWhereUniqueInput
+    create: XOR<ComunaCreateWithoutStudentsInput, ComunaUncheckedCreateWithoutStudentsInput>
+  }
+
+  export type RegionCreateWithoutStudentsInput = {
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaCreateNestedManyWithoutRegionInput
+    properties?: PropertyCreateNestedManyWithoutRegionInput
+    landlords?: LandlordCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionUncheckedCreateWithoutStudentsInput = {
+    id?: number
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaUncheckedCreateNestedManyWithoutRegionInput
+    properties?: PropertyUncheckedCreateNestedManyWithoutRegionInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionCreateOrConnectWithoutStudentsInput = {
+    where: RegionWhereUniqueInput
+    create: XOR<RegionCreateWithoutStudentsInput, RegionUncheckedCreateWithoutStudentsInput>
+  }
+
+  export type ComunaUpsertWithoutStudentsInput = {
+    update: XOR<ComunaUpdateWithoutStudentsInput, ComunaUncheckedUpdateWithoutStudentsInput>
+    create: XOR<ComunaCreateWithoutStudentsInput, ComunaUncheckedCreateWithoutStudentsInput>
+    where?: ComunaWhereInput
+  }
+
+  export type ComunaUpdateToOneWithWhereWithoutStudentsInput = {
+    where?: ComunaWhereInput
+    data: XOR<ComunaUpdateWithoutStudentsInput, ComunaUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type ComunaUpdateWithoutStudentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    region?: RegionUpdateOneRequiredWithoutComunasNestedInput
+    properties?: PropertyUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUpdateManyWithoutComunaNestedInput
+  }
+
+  export type ComunaUncheckedUpdateWithoutStudentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutComunaNestedInput
+  }
+
+  export type RegionUpsertWithoutStudentsInput = {
+    update: XOR<RegionUpdateWithoutStudentsInput, RegionUncheckedUpdateWithoutStudentsInput>
+    create: XOR<RegionCreateWithoutStudentsInput, RegionUncheckedCreateWithoutStudentsInput>
+    where?: RegionWhereInput
+  }
+
+  export type RegionUpdateToOneWithWhereWithoutStudentsInput = {
+    where?: RegionWhereInput
+    data: XOR<RegionUpdateWithoutStudentsInput, RegionUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type RegionUpdateWithoutStudentsInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUpdateManyWithoutRegionNestedInput
+    properties?: PropertyUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUpdateManyWithoutRegionNestedInput
+  }
+
+  export type RegionUncheckedUpdateWithoutStudentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUncheckedUpdateManyWithoutRegionNestedInput
+    properties?: PropertyUncheckedUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutRegionNestedInput
+  }
+
   export type PropertyCreateWithoutLandlordInput = {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -10036,6 +13612,8 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    comuna: ComunaCreateNestedOneWithoutPropertiesInput
+    region: RegionCreateNestedOneWithoutPropertiesInput
     propertyImages?: PropertyImageCreateNestedManyWithoutPropertyInput
     propertyAmenities?: PropertyAmenityCreateNestedManyWithoutPropertyInput
   }
@@ -10045,8 +13623,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
+    comunaId: number
+    regionId: number
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -10075,6 +13653,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ComunaCreateWithoutLandlordsInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    region: RegionCreateNestedOneWithoutComunasInput
+    properties?: PropertyCreateNestedManyWithoutComunaInput
+    students?: StudentCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaUncheckedCreateWithoutLandlordsInput = {
+    id?: number
+    name: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutComunaInput
+    students?: StudentUncheckedCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaCreateOrConnectWithoutLandlordsInput = {
+    where: ComunaWhereUniqueInput
+    create: XOR<ComunaCreateWithoutLandlordsInput, ComunaUncheckedCreateWithoutLandlordsInput>
+  }
+
+  export type RegionCreateWithoutLandlordsInput = {
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaCreateNestedManyWithoutRegionInput
+    properties?: PropertyCreateNestedManyWithoutRegionInput
+    students?: StudentCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionUncheckedCreateWithoutLandlordsInput = {
+    id?: number
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaUncheckedCreateNestedManyWithoutRegionInput
+    properties?: PropertyUncheckedCreateNestedManyWithoutRegionInput
+    students?: StudentUncheckedCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionCreateOrConnectWithoutLandlordsInput = {
+    where: RegionWhereUniqueInput
+    create: XOR<RegionCreateWithoutLandlordsInput, RegionUncheckedCreateWithoutLandlordsInput>
+  }
+
   export type PropertyUpsertWithWhereUniqueWithoutLandlordInput = {
     where: PropertyWhereUniqueInput
     update: XOR<PropertyUpdateWithoutLandlordInput, PropertyUncheckedUpdateWithoutLandlordInput>
@@ -10100,8 +13730,8 @@ export namespace Prisma {
     title?: StringFilter<"Property"> | string
     description?: StringNullableFilter<"Property"> | string | null
     address?: StringFilter<"Property"> | string
-    comuna?: StringFilter<"Property"> | string
-    region?: StringFilter<"Property"> | string
+    comunaId?: IntFilter<"Property"> | number
+    regionId?: IntFilter<"Property"> | number
     zipCode?: StringNullableFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntFilter<"Property"> | number
@@ -10118,6 +13748,70 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Property"> | Date | string
   }
 
+  export type ComunaUpsertWithoutLandlordsInput = {
+    update: XOR<ComunaUpdateWithoutLandlordsInput, ComunaUncheckedUpdateWithoutLandlordsInput>
+    create: XOR<ComunaCreateWithoutLandlordsInput, ComunaUncheckedCreateWithoutLandlordsInput>
+    where?: ComunaWhereInput
+  }
+
+  export type ComunaUpdateToOneWithWhereWithoutLandlordsInput = {
+    where?: ComunaWhereInput
+    data: XOR<ComunaUpdateWithoutLandlordsInput, ComunaUncheckedUpdateWithoutLandlordsInput>
+  }
+
+  export type ComunaUpdateWithoutLandlordsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    region?: RegionUpdateOneRequiredWithoutComunasNestedInput
+    properties?: PropertyUpdateManyWithoutComunaNestedInput
+    students?: StudentUpdateManyWithoutComunaNestedInput
+  }
+
+  export type ComunaUncheckedUpdateWithoutLandlordsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutComunaNestedInput
+    students?: StudentUncheckedUpdateManyWithoutComunaNestedInput
+  }
+
+  export type RegionUpsertWithoutLandlordsInput = {
+    update: XOR<RegionUpdateWithoutLandlordsInput, RegionUncheckedUpdateWithoutLandlordsInput>
+    create: XOR<RegionCreateWithoutLandlordsInput, RegionUncheckedCreateWithoutLandlordsInput>
+    where?: RegionWhereInput
+  }
+
+  export type RegionUpdateToOneWithWhereWithoutLandlordsInput = {
+    where?: RegionWhereInput
+    data: XOR<RegionUpdateWithoutLandlordsInput, RegionUncheckedUpdateWithoutLandlordsInput>
+  }
+
+  export type RegionUpdateWithoutLandlordsInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUpdateManyWithoutRegionNestedInput
+    properties?: PropertyUpdateManyWithoutRegionNestedInput
+    students?: StudentUpdateManyWithoutRegionNestedInput
+  }
+
+  export type RegionUncheckedUpdateWithoutLandlordsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUncheckedUpdateManyWithoutRegionNestedInput
+    properties?: PropertyUncheckedUpdateManyWithoutRegionNestedInput
+    students?: StudentUncheckedUpdateManyWithoutRegionNestedInput
+  }
+
   export type LandlordCreateWithoutPropertiesInput = {
     landlordRut: string
     landlordEmail: string
@@ -10127,6 +13821,8 @@ export namespace Prisma {
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    comuna: ComunaCreateNestedOneWithoutLandlordsInput
+    region: RegionCreateNestedOneWithoutLandlordsInput
   }
 
   export type LandlordUncheckedCreateWithoutPropertiesInput = {
@@ -10137,6 +13833,8 @@ export namespace Prisma {
     password: string
     landlordCarnetUrl: string
     role?: string
+    comunaId: number
+    regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10144,6 +13842,58 @@ export namespace Prisma {
   export type LandlordCreateOrConnectWithoutPropertiesInput = {
     where: LandlordWhereUniqueInput
     create: XOR<LandlordCreateWithoutPropertiesInput, LandlordUncheckedCreateWithoutPropertiesInput>
+  }
+
+  export type ComunaCreateWithoutPropertiesInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    region: RegionCreateNestedOneWithoutComunasInput
+    students?: StudentCreateNestedManyWithoutComunaInput
+    landlords?: LandlordCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaUncheckedCreateWithoutPropertiesInput = {
+    id?: number
+    name: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    students?: StudentUncheckedCreateNestedManyWithoutComunaInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaCreateOrConnectWithoutPropertiesInput = {
+    where: ComunaWhereUniqueInput
+    create: XOR<ComunaCreateWithoutPropertiesInput, ComunaUncheckedCreateWithoutPropertiesInput>
+  }
+
+  export type RegionCreateWithoutPropertiesInput = {
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaCreateNestedManyWithoutRegionInput
+    students?: StudentCreateNestedManyWithoutRegionInput
+    landlords?: LandlordCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionUncheckedCreateWithoutPropertiesInput = {
+    id?: number
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comunas?: ComunaUncheckedCreateNestedManyWithoutRegionInput
+    students?: StudentUncheckedCreateNestedManyWithoutRegionInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionCreateOrConnectWithoutPropertiesInput = {
+    where: RegionWhereUniqueInput
+    create: XOR<RegionCreateWithoutPropertiesInput, RegionUncheckedCreateWithoutPropertiesInput>
   }
 
   export type PropertyImageCreateWithoutPropertyInput = {
@@ -10216,6 +13966,8 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comuna?: ComunaUpdateOneRequiredWithoutLandlordsNestedInput
+    region?: RegionUpdateOneRequiredWithoutLandlordsNestedInput
   }
 
   export type LandlordUncheckedUpdateWithoutPropertiesInput = {
@@ -10226,8 +13978,74 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComunaUpsertWithoutPropertiesInput = {
+    update: XOR<ComunaUpdateWithoutPropertiesInput, ComunaUncheckedUpdateWithoutPropertiesInput>
+    create: XOR<ComunaCreateWithoutPropertiesInput, ComunaUncheckedCreateWithoutPropertiesInput>
+    where?: ComunaWhereInput
+  }
+
+  export type ComunaUpdateToOneWithWhereWithoutPropertiesInput = {
+    where?: ComunaWhereInput
+    data: XOR<ComunaUpdateWithoutPropertiesInput, ComunaUncheckedUpdateWithoutPropertiesInput>
+  }
+
+  export type ComunaUpdateWithoutPropertiesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    region?: RegionUpdateOneRequiredWithoutComunasNestedInput
+    students?: StudentUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUpdateManyWithoutComunaNestedInput
+  }
+
+  export type ComunaUncheckedUpdateWithoutPropertiesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    students?: StudentUncheckedUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutComunaNestedInput
+  }
+
+  export type RegionUpsertWithoutPropertiesInput = {
+    update: XOR<RegionUpdateWithoutPropertiesInput, RegionUncheckedUpdateWithoutPropertiesInput>
+    create: XOR<RegionCreateWithoutPropertiesInput, RegionUncheckedCreateWithoutPropertiesInput>
+    where?: RegionWhereInput
+  }
+
+  export type RegionUpdateToOneWithWhereWithoutPropertiesInput = {
+    where?: RegionWhereInput
+    data: XOR<RegionUpdateWithoutPropertiesInput, RegionUncheckedUpdateWithoutPropertiesInput>
+  }
+
+  export type RegionUpdateWithoutPropertiesInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUpdateManyWithoutRegionNestedInput
+    students?: StudentUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUpdateManyWithoutRegionNestedInput
+  }
+
+  export type RegionUncheckedUpdateWithoutPropertiesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comunas?: ComunaUncheckedUpdateManyWithoutRegionNestedInput
+    students?: StudentUncheckedUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutRegionNestedInput
   }
 
   export type PropertyImageUpsertWithWhereUniqueWithoutPropertyInput = {
@@ -10290,8 +14108,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -10307,6 +14123,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
+    comuna: ComunaCreateNestedOneWithoutPropertiesInput
+    region: RegionCreateNestedOneWithoutPropertiesInput
     propertyAmenities?: PropertyAmenityCreateNestedManyWithoutPropertyInput
   }
 
@@ -10316,8 +14134,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
+    comunaId: number
+    regionId: number
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -10355,8 +14173,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -10372,6 +14188,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
+    comuna?: ComunaUpdateOneRequiredWithoutPropertiesNestedInput
+    region?: RegionUpdateOneRequiredWithoutPropertiesNestedInput
     propertyAmenities?: PropertyAmenityUpdateManyWithoutPropertyNestedInput
   }
 
@@ -10381,8 +14199,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -10441,8 +14259,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -10458,6 +14274,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
+    comuna: ComunaCreateNestedOneWithoutPropertiesInput
+    region: RegionCreateNestedOneWithoutPropertiesInput
     propertyImages?: PropertyImageCreateNestedManyWithoutPropertyInput
   }
 
@@ -10467,8 +14285,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
+    comunaId: number
+    regionId: number
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -10530,8 +14348,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -10547,6 +14363,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
+    comuna?: ComunaUpdateOneRequiredWithoutPropertiesNestedInput
+    region?: RegionUpdateOneRequiredWithoutPropertiesNestedInput
     propertyImages?: PropertyImageUpdateManyWithoutPropertyNestedInput
   }
 
@@ -10556,8 +14374,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -10605,13 +14423,528 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ComunaCreateWithoutRegionInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyCreateNestedManyWithoutComunaInput
+    students?: StudentCreateNestedManyWithoutComunaInput
+    landlords?: LandlordCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaUncheckedCreateWithoutRegionInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutComunaInput
+    students?: StudentUncheckedCreateNestedManyWithoutComunaInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutComunaInput
+  }
+
+  export type ComunaCreateOrConnectWithoutRegionInput = {
+    where: ComunaWhereUniqueInput
+    create: XOR<ComunaCreateWithoutRegionInput, ComunaUncheckedCreateWithoutRegionInput>
+  }
+
+  export type ComunaCreateManyRegionInputEnvelope = {
+    data: ComunaCreateManyRegionInput | ComunaCreateManyRegionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PropertyCreateWithoutRegionInput = {
+    title: string
+    description?: string | null
+    address: string
+    zipCode?: string | null
+    propertyType: $Enums.PropertyType
+    bedrooms: number
+    bathrooms: number
+    squareMeters?: number | null
+    monthlyRent: Decimal | DecimalJsLike | number | string
+    isAvailable?: boolean
+    utilityBillUrl: string
+    utilityBillValidated?: boolean
+    rules?: string | null
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    landlord: LandlordCreateNestedOneWithoutPropertiesInput
+    comuna: ComunaCreateNestedOneWithoutPropertiesInput
+    propertyImages?: PropertyImageCreateNestedManyWithoutPropertyInput
+    propertyAmenities?: PropertyAmenityCreateNestedManyWithoutPropertyInput
+  }
+
+  export type PropertyUncheckedCreateWithoutRegionInput = {
+    id?: number
+    landlordId: number
+    title: string
+    description?: string | null
+    address: string
+    comunaId: number
+    zipCode?: string | null
+    propertyType: $Enums.PropertyType
+    bedrooms: number
+    bathrooms: number
+    squareMeters?: number | null
+    monthlyRent: Decimal | DecimalJsLike | number | string
+    isAvailable?: boolean
+    utilityBillUrl: string
+    utilityBillValidated?: boolean
+    rules?: string | null
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    propertyImages?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
+    propertyAmenities?: PropertyAmenityUncheckedCreateNestedManyWithoutPropertyInput
+  }
+
+  export type PropertyCreateOrConnectWithoutRegionInput = {
+    where: PropertyWhereUniqueInput
+    create: XOR<PropertyCreateWithoutRegionInput, PropertyUncheckedCreateWithoutRegionInput>
+  }
+
+  export type PropertyCreateManyRegionInputEnvelope = {
+    data: PropertyCreateManyRegionInput | PropertyCreateManyRegionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StudentCreateWithoutRegionInput = {
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comuna: ComunaCreateNestedOneWithoutStudentsInput
+  }
+
+  export type StudentUncheckedCreateWithoutRegionInput = {
+    id?: number
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    comunaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StudentCreateOrConnectWithoutRegionInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutRegionInput, StudentUncheckedCreateWithoutRegionInput>
+  }
+
+  export type StudentCreateManyRegionInputEnvelope = {
+    data: StudentCreateManyRegionInput | StudentCreateManyRegionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LandlordCreateWithoutRegionInput = {
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyCreateNestedManyWithoutLandlordInput
+    comuna: ComunaCreateNestedOneWithoutLandlordsInput
+  }
+
+  export type LandlordUncheckedCreateWithoutRegionInput = {
+    id?: number
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    comunaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutLandlordInput
+  }
+
+  export type LandlordCreateOrConnectWithoutRegionInput = {
+    where: LandlordWhereUniqueInput
+    create: XOR<LandlordCreateWithoutRegionInput, LandlordUncheckedCreateWithoutRegionInput>
+  }
+
+  export type LandlordCreateManyRegionInputEnvelope = {
+    data: LandlordCreateManyRegionInput | LandlordCreateManyRegionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComunaUpsertWithWhereUniqueWithoutRegionInput = {
+    where: ComunaWhereUniqueInput
+    update: XOR<ComunaUpdateWithoutRegionInput, ComunaUncheckedUpdateWithoutRegionInput>
+    create: XOR<ComunaCreateWithoutRegionInput, ComunaUncheckedCreateWithoutRegionInput>
+  }
+
+  export type ComunaUpdateWithWhereUniqueWithoutRegionInput = {
+    where: ComunaWhereUniqueInput
+    data: XOR<ComunaUpdateWithoutRegionInput, ComunaUncheckedUpdateWithoutRegionInput>
+  }
+
+  export type ComunaUpdateManyWithWhereWithoutRegionInput = {
+    where: ComunaScalarWhereInput
+    data: XOR<ComunaUpdateManyMutationInput, ComunaUncheckedUpdateManyWithoutRegionInput>
+  }
+
+  export type ComunaScalarWhereInput = {
+    AND?: ComunaScalarWhereInput | ComunaScalarWhereInput[]
+    OR?: ComunaScalarWhereInput[]
+    NOT?: ComunaScalarWhereInput | ComunaScalarWhereInput[]
+    id?: IntFilter<"Comuna"> | number
+    name?: StringFilter<"Comuna"> | string
+    regionId?: IntFilter<"Comuna"> | number
+    createdAt?: DateTimeFilter<"Comuna"> | Date | string
+    updatedAt?: DateTimeFilter<"Comuna"> | Date | string
+  }
+
+  export type PropertyUpsertWithWhereUniqueWithoutRegionInput = {
+    where: PropertyWhereUniqueInput
+    update: XOR<PropertyUpdateWithoutRegionInput, PropertyUncheckedUpdateWithoutRegionInput>
+    create: XOR<PropertyCreateWithoutRegionInput, PropertyUncheckedCreateWithoutRegionInput>
+  }
+
+  export type PropertyUpdateWithWhereUniqueWithoutRegionInput = {
+    where: PropertyWhereUniqueInput
+    data: XOR<PropertyUpdateWithoutRegionInput, PropertyUncheckedUpdateWithoutRegionInput>
+  }
+
+  export type PropertyUpdateManyWithWhereWithoutRegionInput = {
+    where: PropertyScalarWhereInput
+    data: XOR<PropertyUpdateManyMutationInput, PropertyUncheckedUpdateManyWithoutRegionInput>
+  }
+
+  export type StudentUpsertWithWhereUniqueWithoutRegionInput = {
+    where: StudentWhereUniqueInput
+    update: XOR<StudentUpdateWithoutRegionInput, StudentUncheckedUpdateWithoutRegionInput>
+    create: XOR<StudentCreateWithoutRegionInput, StudentUncheckedCreateWithoutRegionInput>
+  }
+
+  export type StudentUpdateWithWhereUniqueWithoutRegionInput = {
+    where: StudentWhereUniqueInput
+    data: XOR<StudentUpdateWithoutRegionInput, StudentUncheckedUpdateWithoutRegionInput>
+  }
+
+  export type StudentUpdateManyWithWhereWithoutRegionInput = {
+    where: StudentScalarWhereInput
+    data: XOR<StudentUpdateManyMutationInput, StudentUncheckedUpdateManyWithoutRegionInput>
+  }
+
+  export type StudentScalarWhereInput = {
+    AND?: StudentScalarWhereInput | StudentScalarWhereInput[]
+    OR?: StudentScalarWhereInput[]
+    NOT?: StudentScalarWhereInput | StudentScalarWhereInput[]
+    id?: IntFilter<"Student"> | number
+    studentRut?: StringFilter<"Student"> | string
+    studentEmail?: StringFilter<"Student"> | string
+    studentName?: StringFilter<"Student"> | string
+    password?: StringFilter<"Student"> | string
+    studentCollege?: StringFilter<"Student"> | string
+    studentCertificateUrl?: StringFilter<"Student"> | string
+    role?: StringFilter<"Student"> | string
+    comunaId?: IntFilter<"Student"> | number
+    regionId?: IntFilter<"Student"> | number
+    createdAt?: DateTimeFilter<"Student"> | Date | string
+    updatedAt?: DateTimeFilter<"Student"> | Date | string
+  }
+
+  export type LandlordUpsertWithWhereUniqueWithoutRegionInput = {
+    where: LandlordWhereUniqueInput
+    update: XOR<LandlordUpdateWithoutRegionInput, LandlordUncheckedUpdateWithoutRegionInput>
+    create: XOR<LandlordCreateWithoutRegionInput, LandlordUncheckedCreateWithoutRegionInput>
+  }
+
+  export type LandlordUpdateWithWhereUniqueWithoutRegionInput = {
+    where: LandlordWhereUniqueInput
+    data: XOR<LandlordUpdateWithoutRegionInput, LandlordUncheckedUpdateWithoutRegionInput>
+  }
+
+  export type LandlordUpdateManyWithWhereWithoutRegionInput = {
+    where: LandlordScalarWhereInput
+    data: XOR<LandlordUpdateManyMutationInput, LandlordUncheckedUpdateManyWithoutRegionInput>
+  }
+
+  export type LandlordScalarWhereInput = {
+    AND?: LandlordScalarWhereInput | LandlordScalarWhereInput[]
+    OR?: LandlordScalarWhereInput[]
+    NOT?: LandlordScalarWhereInput | LandlordScalarWhereInput[]
+    id?: IntFilter<"Landlord"> | number
+    landlordRut?: StringFilter<"Landlord"> | string
+    landlordEmail?: StringFilter<"Landlord"> | string
+    landlordName?: StringFilter<"Landlord"> | string
+    password?: StringFilter<"Landlord"> | string
+    landlordCarnetUrl?: StringFilter<"Landlord"> | string
+    role?: StringFilter<"Landlord"> | string
+    comunaId?: IntFilter<"Landlord"> | number
+    regionId?: IntFilter<"Landlord"> | number
+    createdAt?: DateTimeFilter<"Landlord"> | Date | string
+    updatedAt?: DateTimeFilter<"Landlord"> | Date | string
+  }
+
+  export type RegionCreateWithoutComunasInput = {
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyCreateNestedManyWithoutRegionInput
+    students?: StudentCreateNestedManyWithoutRegionInput
+    landlords?: LandlordCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionUncheckedCreateWithoutComunasInput = {
+    id?: number
+    code: string
+    name: string
+    romanNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutRegionInput
+    students?: StudentUncheckedCreateNestedManyWithoutRegionInput
+    landlords?: LandlordUncheckedCreateNestedManyWithoutRegionInput
+  }
+
+  export type RegionCreateOrConnectWithoutComunasInput = {
+    where: RegionWhereUniqueInput
+    create: XOR<RegionCreateWithoutComunasInput, RegionUncheckedCreateWithoutComunasInput>
+  }
+
+  export type PropertyCreateWithoutComunaInput = {
+    title: string
+    description?: string | null
+    address: string
+    zipCode?: string | null
+    propertyType: $Enums.PropertyType
+    bedrooms: number
+    bathrooms: number
+    squareMeters?: number | null
+    monthlyRent: Decimal | DecimalJsLike | number | string
+    isAvailable?: boolean
+    utilityBillUrl: string
+    utilityBillValidated?: boolean
+    rules?: string | null
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    landlord: LandlordCreateNestedOneWithoutPropertiesInput
+    region: RegionCreateNestedOneWithoutPropertiesInput
+    propertyImages?: PropertyImageCreateNestedManyWithoutPropertyInput
+    propertyAmenities?: PropertyAmenityCreateNestedManyWithoutPropertyInput
+  }
+
+  export type PropertyUncheckedCreateWithoutComunaInput = {
+    id?: number
+    landlordId: number
+    title: string
+    description?: string | null
+    address: string
+    regionId: number
+    zipCode?: string | null
+    propertyType: $Enums.PropertyType
+    bedrooms: number
+    bathrooms: number
+    squareMeters?: number | null
+    monthlyRent: Decimal | DecimalJsLike | number | string
+    isAvailable?: boolean
+    utilityBillUrl: string
+    utilityBillValidated?: boolean
+    rules?: string | null
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    propertyImages?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
+    propertyAmenities?: PropertyAmenityUncheckedCreateNestedManyWithoutPropertyInput
+  }
+
+  export type PropertyCreateOrConnectWithoutComunaInput = {
+    where: PropertyWhereUniqueInput
+    create: XOR<PropertyCreateWithoutComunaInput, PropertyUncheckedCreateWithoutComunaInput>
+  }
+
+  export type PropertyCreateManyComunaInputEnvelope = {
+    data: PropertyCreateManyComunaInput | PropertyCreateManyComunaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StudentCreateWithoutComunaInput = {
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    region: RegionCreateNestedOneWithoutStudentsInput
+  }
+
+  export type StudentUncheckedCreateWithoutComunaInput = {
+    id?: number
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StudentCreateOrConnectWithoutComunaInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutComunaInput, StudentUncheckedCreateWithoutComunaInput>
+  }
+
+  export type StudentCreateManyComunaInputEnvelope = {
+    data: StudentCreateManyComunaInput | StudentCreateManyComunaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LandlordCreateWithoutComunaInput = {
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyCreateNestedManyWithoutLandlordInput
+    region: RegionCreateNestedOneWithoutLandlordsInput
+  }
+
+  export type LandlordUncheckedCreateWithoutComunaInput = {
+    id?: number
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutLandlordInput
+  }
+
+  export type LandlordCreateOrConnectWithoutComunaInput = {
+    where: LandlordWhereUniqueInput
+    create: XOR<LandlordCreateWithoutComunaInput, LandlordUncheckedCreateWithoutComunaInput>
+  }
+
+  export type LandlordCreateManyComunaInputEnvelope = {
+    data: LandlordCreateManyComunaInput | LandlordCreateManyComunaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RegionUpsertWithoutComunasInput = {
+    update: XOR<RegionUpdateWithoutComunasInput, RegionUncheckedUpdateWithoutComunasInput>
+    create: XOR<RegionCreateWithoutComunasInput, RegionUncheckedCreateWithoutComunasInput>
+    where?: RegionWhereInput
+  }
+
+  export type RegionUpdateToOneWithWhereWithoutComunasInput = {
+    where?: RegionWhereInput
+    data: XOR<RegionUpdateWithoutComunasInput, RegionUncheckedUpdateWithoutComunasInput>
+  }
+
+  export type RegionUpdateWithoutComunasInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUpdateManyWithoutRegionNestedInput
+    students?: StudentUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUpdateManyWithoutRegionNestedInput
+  }
+
+  export type RegionUncheckedUpdateWithoutComunasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    romanNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutRegionNestedInput
+    students?: StudentUncheckedUpdateManyWithoutRegionNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutRegionNestedInput
+  }
+
+  export type PropertyUpsertWithWhereUniqueWithoutComunaInput = {
+    where: PropertyWhereUniqueInput
+    update: XOR<PropertyUpdateWithoutComunaInput, PropertyUncheckedUpdateWithoutComunaInput>
+    create: XOR<PropertyCreateWithoutComunaInput, PropertyUncheckedCreateWithoutComunaInput>
+  }
+
+  export type PropertyUpdateWithWhereUniqueWithoutComunaInput = {
+    where: PropertyWhereUniqueInput
+    data: XOR<PropertyUpdateWithoutComunaInput, PropertyUncheckedUpdateWithoutComunaInput>
+  }
+
+  export type PropertyUpdateManyWithWhereWithoutComunaInput = {
+    where: PropertyScalarWhereInput
+    data: XOR<PropertyUpdateManyMutationInput, PropertyUncheckedUpdateManyWithoutComunaInput>
+  }
+
+  export type StudentUpsertWithWhereUniqueWithoutComunaInput = {
+    where: StudentWhereUniqueInput
+    update: XOR<StudentUpdateWithoutComunaInput, StudentUncheckedUpdateWithoutComunaInput>
+    create: XOR<StudentCreateWithoutComunaInput, StudentUncheckedCreateWithoutComunaInput>
+  }
+
+  export type StudentUpdateWithWhereUniqueWithoutComunaInput = {
+    where: StudentWhereUniqueInput
+    data: XOR<StudentUpdateWithoutComunaInput, StudentUncheckedUpdateWithoutComunaInput>
+  }
+
+  export type StudentUpdateManyWithWhereWithoutComunaInput = {
+    where: StudentScalarWhereInput
+    data: XOR<StudentUpdateManyMutationInput, StudentUncheckedUpdateManyWithoutComunaInput>
+  }
+
+  export type LandlordUpsertWithWhereUniqueWithoutComunaInput = {
+    where: LandlordWhereUniqueInput
+    update: XOR<LandlordUpdateWithoutComunaInput, LandlordUncheckedUpdateWithoutComunaInput>
+    create: XOR<LandlordCreateWithoutComunaInput, LandlordUncheckedCreateWithoutComunaInput>
+  }
+
+  export type LandlordUpdateWithWhereUniqueWithoutComunaInput = {
+    where: LandlordWhereUniqueInput
+    data: XOR<LandlordUpdateWithoutComunaInput, LandlordUncheckedUpdateWithoutComunaInput>
+  }
+
+  export type LandlordUpdateManyWithWhereWithoutComunaInput = {
+    where: LandlordScalarWhereInput
+    data: XOR<LandlordUpdateManyMutationInput, LandlordUncheckedUpdateManyWithoutComunaInput>
+  }
+
   export type PropertyCreateManyLandlordInput = {
     id?: number
     title: string
     description?: string | null
     address: string
-    comuna: string
-    region: string
+    comunaId: number
+    regionId: number
     zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
@@ -10632,8 +14965,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -10648,6 +14979,8 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comuna?: ComunaUpdateOneRequiredWithoutPropertiesNestedInput
+    region?: RegionUpdateOneRequiredWithoutPropertiesNestedInput
     propertyImages?: PropertyImageUpdateManyWithoutPropertyNestedInput
     propertyAmenities?: PropertyAmenityUpdateManyWithoutPropertyNestedInput
   }
@@ -10657,8 +14990,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -10682,8 +15015,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    comuna?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
@@ -10783,6 +15116,445 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     propertyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComunaCreateManyRegionInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PropertyCreateManyRegionInput = {
+    id?: number
+    landlordId: number
+    title: string
+    description?: string | null
+    address: string
+    comunaId: number
+    zipCode?: string | null
+    propertyType: $Enums.PropertyType
+    bedrooms: number
+    bathrooms: number
+    squareMeters?: number | null
+    monthlyRent: Decimal | DecimalJsLike | number | string
+    isAvailable?: boolean
+    utilityBillUrl: string
+    utilityBillValidated?: boolean
+    rules?: string | null
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StudentCreateManyRegionInput = {
+    id?: number
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    comunaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LandlordCreateManyRegionInput = {
+    id?: number
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    comunaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ComunaUpdateWithoutRegionInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUpdateManyWithoutComunaNestedInput
+    students?: StudentUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUpdateManyWithoutComunaNestedInput
+  }
+
+  export type ComunaUncheckedUpdateWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutComunaNestedInput
+    students?: StudentUncheckedUpdateManyWithoutComunaNestedInput
+    landlords?: LandlordUncheckedUpdateManyWithoutComunaNestedInput
+  }
+
+  export type ComunaUncheckedUpdateManyWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PropertyUpdateWithoutRegionInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
+    bedrooms?: IntFieldUpdateOperationsInput | number
+    bathrooms?: IntFieldUpdateOperationsInput | number
+    squareMeters?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyRent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    utilityBillUrl?: StringFieldUpdateOperationsInput | string
+    utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
+    comuna?: ComunaUpdateOneRequiredWithoutPropertiesNestedInput
+    propertyImages?: PropertyImageUpdateManyWithoutPropertyNestedInput
+    propertyAmenities?: PropertyAmenityUpdateManyWithoutPropertyNestedInput
+  }
+
+  export type PropertyUncheckedUpdateWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
+    bedrooms?: IntFieldUpdateOperationsInput | number
+    bathrooms?: IntFieldUpdateOperationsInput | number
+    squareMeters?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyRent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    utilityBillUrl?: StringFieldUpdateOperationsInput | string
+    utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    propertyImages?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
+    propertyAmenities?: PropertyAmenityUncheckedUpdateManyWithoutPropertyNestedInput
+  }
+
+  export type PropertyUncheckedUpdateManyWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
+    bedrooms?: IntFieldUpdateOperationsInput | number
+    bathrooms?: IntFieldUpdateOperationsInput | number
+    squareMeters?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyRent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    utilityBillUrl?: StringFieldUpdateOperationsInput | string
+    utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUpdateWithoutRegionInput = {
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comuna?: ComunaUpdateOneRequiredWithoutStudentsNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUncheckedUpdateManyWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LandlordUpdateWithoutRegionInput = {
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUpdateManyWithoutLandlordNestedInput
+    comuna?: ComunaUpdateOneRequiredWithoutLandlordsNestedInput
+  }
+
+  export type LandlordUncheckedUpdateWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutLandlordNestedInput
+  }
+
+  export type LandlordUncheckedUpdateManyWithoutRegionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PropertyCreateManyComunaInput = {
+    id?: number
+    landlordId: number
+    title: string
+    description?: string | null
+    address: string
+    regionId: number
+    zipCode?: string | null
+    propertyType: $Enums.PropertyType
+    bedrooms: number
+    bathrooms: number
+    squareMeters?: number | null
+    monthlyRent: Decimal | DecimalJsLike | number | string
+    isAvailable?: boolean
+    utilityBillUrl: string
+    utilityBillValidated?: boolean
+    rules?: string | null
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StudentCreateManyComunaInput = {
+    id?: number
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LandlordCreateManyComunaInput = {
+    id?: number
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PropertyUpdateWithoutComunaInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
+    bedrooms?: IntFieldUpdateOperationsInput | number
+    bathrooms?: IntFieldUpdateOperationsInput | number
+    squareMeters?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyRent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    utilityBillUrl?: StringFieldUpdateOperationsInput | string
+    utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
+    region?: RegionUpdateOneRequiredWithoutPropertiesNestedInput
+    propertyImages?: PropertyImageUpdateManyWithoutPropertyNestedInput
+    propertyAmenities?: PropertyAmenityUpdateManyWithoutPropertyNestedInput
+  }
+
+  export type PropertyUncheckedUpdateWithoutComunaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
+    bedrooms?: IntFieldUpdateOperationsInput | number
+    bathrooms?: IntFieldUpdateOperationsInput | number
+    squareMeters?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyRent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    utilityBillUrl?: StringFieldUpdateOperationsInput | string
+    utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    propertyImages?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
+    propertyAmenities?: PropertyAmenityUncheckedUpdateManyWithoutPropertyNestedInput
+  }
+
+  export type PropertyUncheckedUpdateManyWithoutComunaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
+    bedrooms?: IntFieldUpdateOperationsInput | number
+    bathrooms?: IntFieldUpdateOperationsInput | number
+    squareMeters?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyRent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    utilityBillUrl?: StringFieldUpdateOperationsInput | string
+    utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
+    rules?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUpdateWithoutComunaInput = {
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    region?: RegionUpdateOneRequiredWithoutStudentsNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutComunaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUncheckedUpdateManyWithoutComunaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LandlordUpdateWithoutComunaInput = {
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUpdateManyWithoutLandlordNestedInput
+    region?: RegionUpdateOneRequiredWithoutLandlordsNestedInput
+  }
+
+  export type LandlordUncheckedUpdateWithoutComunaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutLandlordNestedInput
+  }
+
+  export type LandlordUncheckedUpdateManyWithoutComunaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

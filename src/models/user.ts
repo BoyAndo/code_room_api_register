@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../generated/prisma";
 
 const prisma = new PrismaClient();
 
@@ -11,6 +11,8 @@ export class UserModel {
     password: string;
     studentCollege: string;
     studentCertificateUrl: string;
+    regionId: number;
+    comunaId: number;
   }) {
     return await prisma.student.create({
       data: {

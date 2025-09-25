@@ -27,6 +27,16 @@ export const landlordSchema = z.object({
     .string()
     .min(8, "La contraseña debe tener al menos 8 caracteres")
     .max(128, "La contraseña no puede exceder 128 caracteres"),
+
+  // Campos obligatorios de ubicación
+  regionId: z
+    .string()
+    .min(1, "La región es requerida")
+    .transform((val) => parseInt(val)),
+  comunaId: z
+    .string()
+    .min(1, "La comuna es requerida")
+    .transform((val) => parseInt(val)),
 });
 
 export type LandlordRegisterInput = z.infer<typeof landlordSchema>;

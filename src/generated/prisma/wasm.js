@@ -129,6 +129,8 @@ exports.Prisma.StudentScalarFieldEnum = {
   studentCollege: 'studentCollege',
   studentCertificateUrl: 'studentCertificateUrl',
   role: 'role',
+  comunaId: 'comunaId',
+  regionId: 'regionId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -141,6 +143,8 @@ exports.Prisma.LandlordScalarFieldEnum = {
   password: 'password',
   landlordCarnetUrl: 'landlordCarnetUrl',
   role: 'role',
+  comunaId: 'comunaId',
+  regionId: 'regionId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -151,8 +155,8 @@ exports.Prisma.PropertyScalarFieldEnum = {
   title: 'title',
   description: 'description',
   address: 'address',
-  comuna: 'comuna',
-  region: 'region',
+  comunaId: 'comunaId',
+  regionId: 'regionId',
   zipCode: 'zipCode',
   propertyType: 'propertyType',
   bedrooms: 'bedrooms',
@@ -197,6 +201,23 @@ exports.Prisma.PropertyAmenityScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.RegionScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  romanNumber: 'romanNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ComunaScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  regionId: 'regionId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -230,8 +251,6 @@ exports.Prisma.PropertyOrderByRelevanceFieldEnum = {
   title: 'title',
   description: 'description',
   address: 'address',
-  comuna: 'comuna',
-  region: 'region',
   zipCode: 'zipCode',
   utilityBillUrl: 'utilityBillUrl',
   rules: 'rules'
@@ -248,6 +267,16 @@ exports.Prisma.AmenityOrderByRelevanceFieldEnum = {
   icon: 'icon',
   category: 'category'
 };
+
+exports.Prisma.RegionOrderByRelevanceFieldEnum = {
+  code: 'code',
+  name: 'name',
+  romanNumber: 'romanNumber'
+};
+
+exports.Prisma.ComunaOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
 exports.PropertyType = exports.$Enums.PropertyType = {
   APARTMENT: 'APARTMENT',
   HOUSE: 'HOUSE',
@@ -260,7 +289,9 @@ exports.Prisma.ModelName = {
   Property: 'Property',
   PropertyImage: 'PropertyImage',
   Amenity: 'Amenity',
-  PropertyAmenity: 'PropertyAmenity'
+  PropertyAmenity: 'PropertyAmenity',
+  Region: 'Region',
+  Comuna: 'Comuna'
 };
 
 /**

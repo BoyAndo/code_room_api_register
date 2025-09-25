@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma";
 import jwt from "jsonwebtoken";
 import {
   StudentRegisterInput,
@@ -53,6 +53,9 @@ export const createUser = async (
       studentCollege: user.studentCollege,
       studentCertificateUrl: pdfUrl,
       role: "student",
+      // Campos obligatorios de ubicación
+      regionId: user.regionId,
+      comunaId: user.comunaId,
     },
   });
   return newUser;

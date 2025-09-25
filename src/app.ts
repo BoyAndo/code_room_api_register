@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth/authRoutes";
 import userRoutes from "./routes/user/userRoutes";
+import locationRoutes from "./routes/location/locationRoutes";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(cookieParser()); // ← Importante: Agregar cookie-parser
 // ✅ Rutas
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
+app.use("/locations", locationRoutes);
 
 console.log("Starting server...");
 

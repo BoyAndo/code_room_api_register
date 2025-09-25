@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../generated/prisma";
 
 const prisma = new PrismaClient();
 
@@ -10,6 +10,8 @@ export class LandlordModel {
     landlordName: string;
     password: string;
     landlordCarnetUrl: string;
+    regionId: number;
+    comunaId: number;
   }) {
     return await prisma.landlord.create({
       data: {

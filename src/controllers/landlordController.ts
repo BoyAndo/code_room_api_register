@@ -7,7 +7,7 @@ import {
 } from "../services/landlordServices/landlord.auth.service";
 import { extractLandlordInfo } from "../services/landlordServices/extractLandlordInfo";
 import { uploadImageToBucket } from "../services/shared/s3Service";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../generated/prisma";
 
 const prisma = new PrismaClient();
 
