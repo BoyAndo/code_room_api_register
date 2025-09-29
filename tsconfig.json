@@ -3,7 +3,6 @@
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    "ignoreDeprecations": "6.0" /* Ignore deprecation warnings for TypeScript 6.0 */,
 
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
