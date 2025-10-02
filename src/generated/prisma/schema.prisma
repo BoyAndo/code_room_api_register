@@ -36,6 +36,9 @@ model Student {
   comuna Comuna @relation(fields: [comunaId], references: [id], onDelete: Restrict, map: "Student_comuna_fkey")
   region Region @relation(fields: [regionId], references: [id], onDelete: Restrict, map: "Student_region_fkey")
 
+  // Relación con refresh tokens
+  refreshTokens RefreshToken[]
+
   @@index([comunaId])
   @@index([regionId])
 }
@@ -59,6 +62,9 @@ model Landlord {
   // Relaciones de ubicación
   comuna Comuna @relation(fields: [comunaId], references: [id], onDelete: Restrict, map: "Landlord_comuna_fkey")
   region Region @relation(fields: [regionId], references: [id], onDelete: Restrict, map: "Landlord_region_fkey")
+
+  // Relación con refresh tokens
+  refreshTokens RefreshToken[]
 
   @@index([comunaId])
   @@index([regionId])
@@ -188,4 +194,29 @@ model Comuna {
 
   @@index([regionId])
   @@index([name, regionId])
+}
+
+// ============================================
+// MODELO DE REFRESH TOKENS
+// ============================================
+
+model RefreshToken {
+  id         Int      @id @default(autoincrement())
+  token      String   @unique @db.VarChar(500) // El refresh token JWT
+  studentId  Int? // ID del estudiante (nullable)
+  landlordId Int? // ID del landlord (nullable)
+  userType   String   @db.VarChar(20) // "student" o "landlord"
+  isRevoked  Boolean  @default(false) // Para invalidar tokens
+  expiresAt  DateTime // Fecha de expiración
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relaciones polimórficas
+  student  Student?  @relation(fields: [studentId], references: [id], onDelete: Cascade, map: "RefreshToken_student_fkey")
+  landlord Landlord? @relation(fields: [landlordId], references: [id], onDelete: Cascade, map: "RefreshToken_landlord_fkey")
+
+  @@index([token])
+  @@index([studentId])
+  @@index([landlordId])
+  @@index([expiresAt])
 }

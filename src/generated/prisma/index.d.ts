@@ -3993,8 +3993,6 @@ export namespace Prisma {
     bathrooms: number | null
     squareMeters: number | null
     monthlyRent: Decimal | null
-    latitude: Decimal | null
-    longitude: Decimal | null
   }
 
   export type PropertySumAggregateOutputType = {
@@ -4006,8 +4004,6 @@ export namespace Prisma {
     bathrooms: number | null
     squareMeters: number | null
     monthlyRent: Decimal | null
-    latitude: Decimal | null
-    longitude: Decimal | null
   }
 
   export type PropertyMinAggregateOutputType = {
@@ -4018,7 +4014,6 @@ export namespace Prisma {
     address: string | null
     comunaId: number | null
     regionId: number | null
-    zipCode: string | null
     propertyType: $Enums.PropertyType | null
     bedrooms: number | null
     bathrooms: number | null
@@ -4027,9 +4022,6 @@ export namespace Prisma {
     isAvailable: boolean | null
     utilityBillUrl: string | null
     utilityBillValidated: boolean | null
-    rules: string | null
-    latitude: Decimal | null
-    longitude: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4042,7 +4034,6 @@ export namespace Prisma {
     address: string | null
     comunaId: number | null
     regionId: number | null
-    zipCode: string | null
     propertyType: $Enums.PropertyType | null
     bedrooms: number | null
     bathrooms: number | null
@@ -4051,9 +4042,6 @@ export namespace Prisma {
     isAvailable: boolean | null
     utilityBillUrl: string | null
     utilityBillValidated: boolean | null
-    rules: string | null
-    latitude: Decimal | null
-    longitude: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4066,7 +4054,6 @@ export namespace Prisma {
     address: number
     comunaId: number
     regionId: number
-    zipCode: number
     propertyType: number
     bedrooms: number
     bathrooms: number
@@ -4075,9 +4062,6 @@ export namespace Prisma {
     isAvailable: number
     utilityBillUrl: number
     utilityBillValidated: number
-    rules: number
-    latitude: number
-    longitude: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -4093,8 +4077,6 @@ export namespace Prisma {
     bathrooms?: true
     squareMeters?: true
     monthlyRent?: true
-    latitude?: true
-    longitude?: true
   }
 
   export type PropertySumAggregateInputType = {
@@ -4106,8 +4088,6 @@ export namespace Prisma {
     bathrooms?: true
     squareMeters?: true
     monthlyRent?: true
-    latitude?: true
-    longitude?: true
   }
 
   export type PropertyMinAggregateInputType = {
@@ -4118,7 +4098,6 @@ export namespace Prisma {
     address?: true
     comunaId?: true
     regionId?: true
-    zipCode?: true
     propertyType?: true
     bedrooms?: true
     bathrooms?: true
@@ -4127,9 +4106,6 @@ export namespace Prisma {
     isAvailable?: true
     utilityBillUrl?: true
     utilityBillValidated?: true
-    rules?: true
-    latitude?: true
-    longitude?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4142,7 +4118,6 @@ export namespace Prisma {
     address?: true
     comunaId?: true
     regionId?: true
-    zipCode?: true
     propertyType?: true
     bedrooms?: true
     bathrooms?: true
@@ -4151,9 +4126,6 @@ export namespace Prisma {
     isAvailable?: true
     utilityBillUrl?: true
     utilityBillValidated?: true
-    rules?: true
-    latitude?: true
-    longitude?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4166,7 +4138,6 @@ export namespace Prisma {
     address?: true
     comunaId?: true
     regionId?: true
-    zipCode?: true
     propertyType?: true
     bedrooms?: true
     bathrooms?: true
@@ -4175,9 +4146,6 @@ export namespace Prisma {
     isAvailable?: true
     utilityBillUrl?: true
     utilityBillValidated?: true
-    rules?: true
-    latitude?: true
-    longitude?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4277,7 +4245,6 @@ export namespace Prisma {
     address: string
     comunaId: number
     regionId: number
-    zipCode: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -4286,9 +4253,6 @@ export namespace Prisma {
     isAvailable: boolean
     utilityBillUrl: string
     utilityBillValidated: boolean
-    rules: string | null
-    latitude: Decimal | null
-    longitude: Decimal | null
     createdAt: Date
     updatedAt: Date
     _count: PropertyCountAggregateOutputType | null
@@ -4320,7 +4284,6 @@ export namespace Prisma {
     address?: boolean
     comunaId?: boolean
     regionId?: boolean
-    zipCode?: boolean
     propertyType?: boolean
     bedrooms?: boolean
     bathrooms?: boolean
@@ -4329,9 +4292,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl?: boolean
     utilityBillValidated?: boolean
-    rules?: boolean
-    latitude?: boolean
-    longitude?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     landlord?: boolean | LandlordDefaultArgs<ExtArgs>
@@ -4352,7 +4312,6 @@ export namespace Prisma {
     address?: boolean
     comunaId?: boolean
     regionId?: boolean
-    zipCode?: boolean
     propertyType?: boolean
     bedrooms?: boolean
     bathrooms?: boolean
@@ -4361,14 +4320,11 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl?: boolean
     utilityBillValidated?: boolean
-    rules?: boolean
-    latitude?: boolean
-    longitude?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordId" | "title" | "description" | "address" | "comunaId" | "regionId" | "zipCode" | "propertyType" | "bedrooms" | "bathrooms" | "squareMeters" | "monthlyRent" | "isAvailable" | "utilityBillUrl" | "utilityBillValidated" | "rules" | "latitude" | "longitude" | "createdAt" | "updatedAt", ExtArgs["result"]["property"]>
+  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordId" | "title" | "description" | "address" | "comunaId" | "regionId" | "propertyType" | "bedrooms" | "bathrooms" | "squareMeters" | "monthlyRent" | "isAvailable" | "utilityBillUrl" | "utilityBillValidated" | "createdAt" | "updatedAt", ExtArgs["result"]["property"]>
   export type PropertyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     landlord?: boolean | LandlordDefaultArgs<ExtArgs>
     comuna?: boolean | ComunaDefaultArgs<ExtArgs>
@@ -4395,7 +4351,6 @@ export namespace Prisma {
       address: string
       comunaId: number
       regionId: number
-      zipCode: string | null
       propertyType: $Enums.PropertyType
       bedrooms: number
       bathrooms: number
@@ -4404,9 +4359,6 @@ export namespace Prisma {
       isAvailable: boolean
       utilityBillUrl: string
       utilityBillValidated: boolean
-      rules: string | null
-      latitude: Prisma.Decimal | null
-      longitude: Prisma.Decimal | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["property"]>
@@ -4790,7 +4742,6 @@ export namespace Prisma {
     readonly address: FieldRef<"Property", 'String'>
     readonly comunaId: FieldRef<"Property", 'Int'>
     readonly regionId: FieldRef<"Property", 'Int'>
-    readonly zipCode: FieldRef<"Property", 'String'>
     readonly propertyType: FieldRef<"Property", 'PropertyType'>
     readonly bedrooms: FieldRef<"Property", 'Int'>
     readonly bathrooms: FieldRef<"Property", 'Int'>
@@ -4799,9 +4750,6 @@ export namespace Prisma {
     readonly isAvailable: FieldRef<"Property", 'Boolean'>
     readonly utilityBillUrl: FieldRef<"Property", 'String'>
     readonly utilityBillValidated: FieldRef<"Property", 'Boolean'>
-    readonly rules: FieldRef<"Property", 'String'>
-    readonly latitude: FieldRef<"Property", 'Decimal'>
-    readonly longitude: FieldRef<"Property", 'Decimal'>
     readonly createdAt: FieldRef<"Property", 'DateTime'>
     readonly updatedAt: FieldRef<"Property", 'DateTime'>
   }
@@ -11443,7 +11391,6 @@ export namespace Prisma {
     address: 'address',
     comunaId: 'comunaId',
     regionId: 'regionId',
-    zipCode: 'zipCode',
     propertyType: 'propertyType',
     bedrooms: 'bedrooms',
     bathrooms: 'bathrooms',
@@ -11452,9 +11399,6 @@ export namespace Prisma {
     isAvailable: 'isAvailable',
     utilityBillUrl: 'utilityBillUrl',
     utilityBillValidated: 'utilityBillValidated',
-    rules: 'rules',
-    latitude: 'latitude',
-    longitude: 'longitude',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -11582,9 +11526,7 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     address: 'address',
-    zipCode: 'zipCode',
-    utilityBillUrl: 'utilityBillUrl',
-    rules: 'rules'
+    utilityBillUrl: 'utilityBillUrl'
   };
 
   export type PropertyOrderByRelevanceFieldEnum = (typeof PropertyOrderByRelevanceFieldEnum)[keyof typeof PropertyOrderByRelevanceFieldEnum]
@@ -11896,7 +11838,6 @@ export namespace Prisma {
     address?: StringFilter<"Property"> | string
     comunaId?: IntFilter<"Property"> | number
     regionId?: IntFilter<"Property"> | number
-    zipCode?: StringNullableFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntFilter<"Property"> | number
     bathrooms?: IntFilter<"Property"> | number
@@ -11905,9 +11846,6 @@ export namespace Prisma {
     isAvailable?: BoolFilter<"Property"> | boolean
     utilityBillUrl?: StringFilter<"Property"> | string
     utilityBillValidated?: BoolFilter<"Property"> | boolean
-    rules?: StringNullableFilter<"Property"> | string | null
-    latitude?: DecimalNullableFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
-    longitude?: DecimalNullableFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFilter<"Property"> | Date | string
     updatedAt?: DateTimeFilter<"Property"> | Date | string
     landlord?: XOR<LandlordScalarRelationFilter, LandlordWhereInput>
@@ -11925,7 +11863,6 @@ export namespace Prisma {
     address?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
-    zipCode?: SortOrderInput | SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
     bathrooms?: SortOrder
@@ -11934,9 +11871,6 @@ export namespace Prisma {
     isAvailable?: SortOrder
     utilityBillUrl?: SortOrder
     utilityBillValidated?: SortOrder
-    rules?: SortOrderInput | SortOrder
-    latitude?: SortOrderInput | SortOrder
-    longitude?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     landlord?: LandlordOrderByWithRelationInput
@@ -11958,7 +11892,6 @@ export namespace Prisma {
     address?: StringFilter<"Property"> | string
     comunaId?: IntFilter<"Property"> | number
     regionId?: IntFilter<"Property"> | number
-    zipCode?: StringNullableFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntFilter<"Property"> | number
     bathrooms?: IntFilter<"Property"> | number
@@ -11967,9 +11900,6 @@ export namespace Prisma {
     isAvailable?: BoolFilter<"Property"> | boolean
     utilityBillUrl?: StringFilter<"Property"> | string
     utilityBillValidated?: BoolFilter<"Property"> | boolean
-    rules?: StringNullableFilter<"Property"> | string | null
-    latitude?: DecimalNullableFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
-    longitude?: DecimalNullableFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFilter<"Property"> | Date | string
     updatedAt?: DateTimeFilter<"Property"> | Date | string
     landlord?: XOR<LandlordScalarRelationFilter, LandlordWhereInput>
@@ -11987,7 +11917,6 @@ export namespace Prisma {
     address?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
-    zipCode?: SortOrderInput | SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
     bathrooms?: SortOrder
@@ -11996,9 +11925,6 @@ export namespace Prisma {
     isAvailable?: SortOrder
     utilityBillUrl?: SortOrder
     utilityBillValidated?: SortOrder
-    rules?: SortOrderInput | SortOrder
-    latitude?: SortOrderInput | SortOrder
-    longitude?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PropertyCountOrderByAggregateInput
@@ -12019,7 +11945,6 @@ export namespace Prisma {
     address?: StringWithAggregatesFilter<"Property"> | string
     comunaId?: IntWithAggregatesFilter<"Property"> | number
     regionId?: IntWithAggregatesFilter<"Property"> | number
-    zipCode?: StringNullableWithAggregatesFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeWithAggregatesFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntWithAggregatesFilter<"Property"> | number
     bathrooms?: IntWithAggregatesFilter<"Property"> | number
@@ -12028,9 +11953,6 @@ export namespace Prisma {
     isAvailable?: BoolWithAggregatesFilter<"Property"> | boolean
     utilityBillUrl?: StringWithAggregatesFilter<"Property"> | string
     utilityBillValidated?: BoolWithAggregatesFilter<"Property"> | boolean
-    rules?: StringNullableWithAggregatesFilter<"Property"> | string | null
-    latitude?: DecimalNullableWithAggregatesFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
-    longitude?: DecimalNullableWithAggregatesFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Property"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Property"> | Date | string
   }
@@ -12661,7 +12583,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -12670,9 +12591,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
@@ -12690,7 +12608,6 @@ export namespace Prisma {
     address: string
     comunaId: number
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -12699,9 +12616,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     propertyImages?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
@@ -12712,7 +12626,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -12721,9 +12634,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
@@ -12741,7 +12651,6 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -12750,9 +12659,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     propertyImages?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
@@ -12767,7 +12673,6 @@ export namespace Prisma {
     address: string
     comunaId: number
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -12776,9 +12681,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12787,7 +12689,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -12796,9 +12697,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12811,7 +12709,6 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -12820,9 +12717,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13521,17 +13415,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
   export type LandlordScalarRelationFilter = {
     is?: LandlordWhereInput
     isNot?: LandlordWhereInput
@@ -13576,7 +13459,6 @@ export namespace Prisma {
     address?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
-    zipCode?: SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
     bathrooms?: SortOrder
@@ -13585,9 +13467,6 @@ export namespace Prisma {
     isAvailable?: SortOrder
     utilityBillUrl?: SortOrder
     utilityBillValidated?: SortOrder
-    rules?: SortOrder
-    latitude?: SortOrder
-    longitude?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13601,8 +13480,6 @@ export namespace Prisma {
     bathrooms?: SortOrder
     squareMeters?: SortOrder
     monthlyRent?: SortOrder
-    latitude?: SortOrder
-    longitude?: SortOrder
   }
 
   export type PropertyMaxOrderByAggregateInput = {
@@ -13613,7 +13490,6 @@ export namespace Prisma {
     address?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
-    zipCode?: SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
     bathrooms?: SortOrder
@@ -13622,9 +13498,6 @@ export namespace Prisma {
     isAvailable?: SortOrder
     utilityBillUrl?: SortOrder
     utilityBillValidated?: SortOrder
-    rules?: SortOrder
-    latitude?: SortOrder
-    longitude?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13637,7 +13510,6 @@ export namespace Prisma {
     address?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
-    zipCode?: SortOrder
     propertyType?: SortOrder
     bedrooms?: SortOrder
     bathrooms?: SortOrder
@@ -13646,9 +13518,6 @@ export namespace Prisma {
     isAvailable?: SortOrder
     utilityBillUrl?: SortOrder
     utilityBillValidated?: SortOrder
-    rules?: SortOrder
-    latitude?: SortOrder
-    longitude?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13662,8 +13531,6 @@ export namespace Prisma {
     bathrooms?: SortOrder
     squareMeters?: SortOrder
     monthlyRent?: SortOrder
-    latitude?: SortOrder
-    longitude?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13732,22 +13599,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type PropertyScalarRelationFilter = {
@@ -14365,14 +14216,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type LandlordUpdateOneRequiredWithoutPropertiesNestedInput = {
@@ -15032,17 +14875,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -15120,22 +14952,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -15336,7 +15152,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -15345,9 +15160,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     comuna: ComunaCreateNestedOneWithoutPropertiesInput
@@ -15363,7 +15175,6 @@ export namespace Prisma {
     address: string
     comunaId: number
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -15372,9 +15183,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     propertyImages?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
@@ -15501,7 +15309,6 @@ export namespace Prisma {
     address?: StringFilter<"Property"> | string
     comunaId?: IntFilter<"Property"> | number
     regionId?: IntFilter<"Property"> | number
-    zipCode?: StringNullableFilter<"Property"> | string | null
     propertyType?: EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
     bedrooms?: IntFilter<"Property"> | number
     bathrooms?: IntFilter<"Property"> | number
@@ -15510,9 +15317,6 @@ export namespace Prisma {
     isAvailable?: BoolFilter<"Property"> | boolean
     utilityBillUrl?: StringFilter<"Property"> | string
     utilityBillValidated?: BoolFilter<"Property"> | boolean
-    rules?: StringNullableFilter<"Property"> | string | null
-    latitude?: DecimalNullableFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
-    longitude?: DecimalNullableFilter<"Property"> | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFilter<"Property"> | Date | string
     updatedAt?: DateTimeFilter<"Property"> | Date | string
   }
@@ -15897,7 +15701,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -15906,9 +15709,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
@@ -15925,7 +15725,6 @@ export namespace Prisma {
     address: string
     comunaId: number
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -15934,9 +15733,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     propertyAmenities?: PropertyAmenityUncheckedCreateNestedManyWithoutPropertyInput
@@ -15962,7 +15758,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -15971,9 +15766,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
@@ -15990,7 +15782,6 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -15999,9 +15790,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     propertyAmenities?: PropertyAmenityUncheckedUpdateManyWithoutPropertyNestedInput
@@ -16048,7 +15836,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -16057,9 +15844,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
@@ -16076,7 +15860,6 @@ export namespace Prisma {
     address: string
     comunaId: number
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -16085,9 +15868,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     propertyImages?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
@@ -16137,7 +15917,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -16146,9 +15925,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
@@ -16165,7 +15941,6 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -16174,9 +15949,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     propertyImages?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
@@ -16245,7 +16017,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -16254,9 +16025,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
@@ -16272,7 +16040,6 @@ export namespace Prisma {
     description?: string | null
     address: string
     comunaId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -16281,9 +16048,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     propertyImages?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
@@ -16520,7 +16284,6 @@ export namespace Prisma {
     title: string
     description?: string | null
     address: string
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -16529,9 +16292,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     landlord: LandlordCreateNestedOneWithoutPropertiesInput
@@ -16547,7 +16307,6 @@ export namespace Prisma {
     description?: string | null
     address: string
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -16556,9 +16315,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     propertyImages?: PropertyImageUncheckedCreateNestedManyWithoutPropertyInput
@@ -16933,7 +16689,6 @@ export namespace Prisma {
     address: string
     comunaId: number
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -16942,9 +16697,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16964,7 +16716,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -16973,9 +16724,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comuna?: ComunaUpdateOneRequiredWithoutPropertiesNestedInput
@@ -16991,7 +16739,6 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17000,9 +16747,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     propertyImages?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
@@ -17016,7 +16760,6 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17025,9 +16768,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17163,7 +16903,6 @@ export namespace Prisma {
     description?: string | null
     address: string
     comunaId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -17172,9 +16911,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17236,7 +16972,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17245,9 +16980,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
@@ -17263,7 +16995,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17272,9 +17003,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     propertyImages?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
@@ -17288,7 +17016,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17297,9 +17024,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17396,7 +17120,6 @@ export namespace Prisma {
     description?: string | null
     address: string
     regionId: number
-    zipCode?: string | null
     propertyType: $Enums.PropertyType
     bedrooms: number
     bathrooms: number
@@ -17405,9 +17128,6 @@ export namespace Prisma {
     isAvailable?: boolean
     utilityBillUrl: string
     utilityBillValidated?: boolean
-    rules?: string | null
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17443,7 +17163,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17452,9 +17171,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     landlord?: LandlordUpdateOneRequiredWithoutPropertiesNestedInput
@@ -17470,7 +17186,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17479,9 +17194,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     propertyImages?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
@@ -17495,7 +17207,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     address?: StringFieldUpdateOperationsInput | string
     regionId?: IntFieldUpdateOperationsInput | number
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     propertyType?: EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
     bedrooms?: IntFieldUpdateOperationsInput | number
     bathrooms?: IntFieldUpdateOperationsInput | number
@@ -17504,9 +17215,6 @@ export namespace Prisma {
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     utilityBillUrl?: StringFieldUpdateOperationsInput | string
     utilityBillValidated?: BoolFieldUpdateOperationsInput | boolean
-    rules?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

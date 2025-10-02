@@ -157,7 +157,6 @@ exports.Prisma.PropertyScalarFieldEnum = {
   address: 'address',
   comunaId: 'comunaId',
   regionId: 'regionId',
-  zipCode: 'zipCode',
   propertyType: 'propertyType',
   bedrooms: 'bedrooms',
   bathrooms: 'bathrooms',
@@ -166,9 +165,6 @@ exports.Prisma.PropertyScalarFieldEnum = {
   isAvailable: 'isAvailable',
   utilityBillUrl: 'utilityBillUrl',
   utilityBillValidated: 'utilityBillValidated',
-  rules: 'rules',
-  latitude: 'latitude',
-  longitude: 'longitude',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -263,9 +259,7 @@ exports.Prisma.PropertyOrderByRelevanceFieldEnum = {
   title: 'title',
   description: 'description',
   address: 'address',
-  zipCode: 'zipCode',
-  utilityBillUrl: 'utilityBillUrl',
-  rules: 'rules'
+  utilityBillUrl: 'utilityBillUrl'
 };
 
 exports.Prisma.PropertyImageOrderByRelevanceFieldEnum = {
