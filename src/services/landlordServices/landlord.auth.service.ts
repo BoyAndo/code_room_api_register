@@ -34,7 +34,7 @@ export const findLandlordByEmail = async (email: string) => {
   return await LandlordModel.findByEmail(email);
 };
 
-// Función para generar token JWT para arrendador usando HMAC
+// Función para generar access token JWT para arrendador usando HMAC (15 minutos)
 export const generateLandlordToken = (
   landlord: LandlordRegisterToken
 ): string => {
@@ -56,7 +56,7 @@ export const generateLandlordToken = (
 
   return jwt.sign(payload, JWT_SECRET!, {
     algorithm: "HS256",
-    expiresIn: process.env.JWT_EXPIRES_IN || "24h",
+    expiresIn: "15m", // Access token de corta duración
   } as jwt.SignOptions);
 };
 

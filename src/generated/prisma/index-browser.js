@@ -218,6 +218,18 @@ exports.Prisma.ComunaScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  studentId: 'studentId',
+  landlordId: 'landlordId',
+  userType: 'userType',
+  isRevoked: 'isRevoked',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -277,6 +289,11 @@ exports.Prisma.RegionOrderByRelevanceFieldEnum = {
 exports.Prisma.ComunaOrderByRelevanceFieldEnum = {
   name: 'name'
 };
+
+exports.Prisma.RefreshTokenOrderByRelevanceFieldEnum = {
+  token: 'token',
+  userType: 'userType'
+};
 exports.PropertyType = exports.$Enums.PropertyType = {
   APARTMENT: 'APARTMENT',
   HOUSE: 'HOUSE',
@@ -291,7 +308,8 @@ exports.Prisma.ModelName = {
   Amenity: 'Amenity',
   PropertyAmenity: 'PropertyAmenity',
   Region: 'Region',
-  Comuna: 'Comuna'
+  Comuna: 'Comuna',
+  RefreshToken: 'RefreshToken'
 };
 
 /**

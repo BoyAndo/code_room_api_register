@@ -5,6 +5,7 @@ import { loginController } from "../../controllers/loginController";
 import {
   getMeController,
   logoutController,
+  refreshTokenController,
 } from "../../controllers/authController";
 import { upload } from "../../middlewares/multer";
 import { getLandlords } from "../../controllers/landlordController";
@@ -13,6 +14,7 @@ import { verifyToken } from "../../middlewares/auth.middleware";
 const router = express.Router();
 
 router.post("/login", loginController);
+router.post("/refresh", refreshTokenController); // Nuevo endpoint para refresh token
 router.get("/me", verifyToken, getMeController);
 router.post("/logout", logoutController);
 

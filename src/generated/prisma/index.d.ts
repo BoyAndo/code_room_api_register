@@ -53,6 +53,11 @@ export type Region = $Result.DefaultSelection<Prisma.$RegionPayload>
  * 
  */
 export type Comuna = $Result.DefaultSelection<Prisma.$ComunaPayload>
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = $Result.DefaultSelection<Prisma.$RefreshTokenPayload>
 
 /**
  * Enums
@@ -276,6 +281,16 @@ export class PrismaClient<
     * ```
     */
   get comuna(): Prisma.ComunaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.refreshToken`: Exposes CRUD operations for the **RefreshToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RefreshTokens
+    * const refreshTokens = await prisma.refreshToken.findMany()
+    * ```
+    */
+  get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -723,7 +738,8 @@ export namespace Prisma {
     Amenity: 'Amenity',
     PropertyAmenity: 'PropertyAmenity',
     Region: 'Region',
-    Comuna: 'Comuna'
+    Comuna: 'Comuna',
+    RefreshToken: 'RefreshToken'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -742,7 +758,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "student" | "landlord" | "property" | "propertyImage" | "amenity" | "propertyAmenity" | "region" | "comuna"
+      modelProps: "student" | "landlord" | "property" | "propertyImage" | "amenity" | "propertyAmenity" | "region" | "comuna" | "refreshToken"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1274,6 +1290,72 @@ export namespace Prisma {
           }
         }
       }
+      RefreshToken: {
+        payload: Prisma.$RefreshTokenPayload<ExtArgs>
+        fields: Prisma.RefreshTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RefreshTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RefreshTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.RefreshTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RefreshTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          findMany: {
+            args: Prisma.RefreshTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+          }
+          create: {
+            args: Prisma.RefreshTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          createMany: {
+            args: Prisma.RefreshTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.RefreshTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          update: {
+            args: Prisma.RefreshTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.RefreshTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RefreshTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.RefreshTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.RefreshTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRefreshToken>
+          }
+          groupBy: {
+            args: Prisma.RefreshTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RefreshTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RefreshTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<RefreshTokenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1366,6 +1448,7 @@ export namespace Prisma {
     propertyAmenity?: PropertyAmenityOmit
     region?: RegionOmit
     comuna?: ComunaOmit
+    refreshToken?: RefreshTokenOmit
   }
 
   /* Types for Logging */
@@ -1456,15 +1539,48 @@ export namespace Prisma {
 
 
   /**
+   * Count Type StudentCountOutputType
+   */
+
+  export type StudentCountOutputType = {
+    refreshTokens: number
+  }
+
+  export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    refreshTokens?: boolean | StudentCountOutputTypeCountRefreshTokensArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentCountOutputType
+     */
+    select?: StudentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountRefreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RefreshTokenWhereInput
+  }
+
+
+  /**
    * Count Type LandlordCountOutputType
    */
 
   export type LandlordCountOutputType = {
     properties: number
+    refreshTokens: number
   }
 
   export type LandlordCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     properties?: boolean | LandlordCountOutputTypeCountPropertiesArgs
+    refreshTokens?: boolean | LandlordCountOutputTypeCountRefreshTokensArgs
   }
 
   // Custom InputTypes
@@ -1483,6 +1599,13 @@ export namespace Prisma {
    */
   export type LandlordCountOutputTypeCountPropertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PropertyWhereInput
+  }
+
+  /**
+   * LandlordCountOutputType without action
+   */
+  export type LandlordCountOutputTypeCountRefreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RefreshTokenWhereInput
   }
 
 
@@ -1932,6 +2055,8 @@ export namespace Prisma {
     updatedAt?: boolean
     comuna?: boolean | ComunaDefaultArgs<ExtArgs>
     region?: boolean | RegionDefaultArgs<ExtArgs>
+    refreshTokens?: boolean | Student$refreshTokensArgs<ExtArgs>
+    _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
 
@@ -1955,6 +2080,8 @@ export namespace Prisma {
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comuna?: boolean | ComunaDefaultArgs<ExtArgs>
     region?: boolean | RegionDefaultArgs<ExtArgs>
+    refreshTokens?: boolean | Student$refreshTokensArgs<ExtArgs>
+    _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $StudentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1962,6 +2089,7 @@ export namespace Prisma {
     objects: {
       comuna: Prisma.$ComunaPayload<ExtArgs>
       region: Prisma.$RegionPayload<ExtArgs>
+      refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2318,6 +2446,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     comuna<T extends ComunaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComunaDefaultArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     region<T extends RegionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RegionDefaultArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    refreshTokens<T extends Student$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, Student$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2702,6 +2831,30 @@ export namespace Prisma {
   }
 
   /**
+   * Student.refreshTokens
+   */
+  export type Student$refreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    where?: RefreshTokenWhereInput
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    cursor?: RefreshTokenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
    * Student without action
    */
   export type StudentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2977,6 +3130,7 @@ export namespace Prisma {
     properties?: boolean | Landlord$propertiesArgs<ExtArgs>
     comuna?: boolean | ComunaDefaultArgs<ExtArgs>
     region?: boolean | RegionDefaultArgs<ExtArgs>
+    refreshTokens?: boolean | Landlord$refreshTokensArgs<ExtArgs>
     _count?: boolean | LandlordCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["landlord"]>
 
@@ -3001,6 +3155,7 @@ export namespace Prisma {
     properties?: boolean | Landlord$propertiesArgs<ExtArgs>
     comuna?: boolean | ComunaDefaultArgs<ExtArgs>
     region?: boolean | RegionDefaultArgs<ExtArgs>
+    refreshTokens?: boolean | Landlord$refreshTokensArgs<ExtArgs>
     _count?: boolean | LandlordCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3010,6 +3165,7 @@ export namespace Prisma {
       properties: Prisma.$PropertyPayload<ExtArgs>[]
       comuna: Prisma.$ComunaPayload<ExtArgs>
       region: Prisma.$RegionPayload<ExtArgs>
+      refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3366,6 +3522,7 @@ export namespace Prisma {
     properties<T extends Landlord$propertiesArgs<ExtArgs> = {}>(args?: Subset<T, Landlord$propertiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comuna<T extends ComunaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComunaDefaultArgs<ExtArgs>>): Prisma__ComunaClient<$Result.GetResult<Prisma.$ComunaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     region<T extends RegionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RegionDefaultArgs<ExtArgs>>): Prisma__RegionClient<$Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    refreshTokens<T extends Landlord$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, Landlord$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3770,6 +3927,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PropertyScalarFieldEnum | PropertyScalarFieldEnum[]
+  }
+
+  /**
+   * Landlord.refreshTokens
+   */
+  export type Landlord$refreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    where?: RefreshTokenWhereInput
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    cursor?: RefreshTokenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
   }
 
   /**
@@ -10149,6 +10330,1063 @@ export namespace Prisma {
 
 
   /**
+   * Model RefreshToken
+   */
+
+  export type AggregateRefreshToken = {
+    _count: RefreshTokenCountAggregateOutputType | null
+    _avg: RefreshTokenAvgAggregateOutputType | null
+    _sum: RefreshTokenSumAggregateOutputType | null
+    _min: RefreshTokenMinAggregateOutputType | null
+    _max: RefreshTokenMaxAggregateOutputType | null
+  }
+
+  export type RefreshTokenAvgAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    landlordId: number | null
+  }
+
+  export type RefreshTokenSumAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    landlordId: number | null
+  }
+
+  export type RefreshTokenMinAggregateOutputType = {
+    id: number | null
+    token: string | null
+    studentId: number | null
+    landlordId: number | null
+    userType: string | null
+    isRevoked: boolean | null
+    expiresAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RefreshTokenMaxAggregateOutputType = {
+    id: number | null
+    token: string | null
+    studentId: number | null
+    landlordId: number | null
+    userType: string | null
+    isRevoked: boolean | null
+    expiresAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RefreshTokenCountAggregateOutputType = {
+    id: number
+    token: number
+    studentId: number
+    landlordId: number
+    userType: number
+    isRevoked: number
+    expiresAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RefreshTokenAvgAggregateInputType = {
+    id?: true
+    studentId?: true
+    landlordId?: true
+  }
+
+  export type RefreshTokenSumAggregateInputType = {
+    id?: true
+    studentId?: true
+    landlordId?: true
+  }
+
+  export type RefreshTokenMinAggregateInputType = {
+    id?: true
+    token?: true
+    studentId?: true
+    landlordId?: true
+    userType?: true
+    isRevoked?: true
+    expiresAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RefreshTokenMaxAggregateInputType = {
+    id?: true
+    token?: true
+    studentId?: true
+    landlordId?: true
+    userType?: true
+    isRevoked?: true
+    expiresAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RefreshTokenCountAggregateInputType = {
+    id?: true
+    token?: true
+    studentId?: true
+    landlordId?: true
+    userType?: true
+    isRevoked?: true
+    expiresAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RefreshTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RefreshToken to aggregate.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RefreshTokens
+    **/
+    _count?: true | RefreshTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RefreshTokenAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RefreshTokenSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RefreshTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RefreshTokenMaxAggregateInputType
+  }
+
+  export type GetRefreshTokenAggregateType<T extends RefreshTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateRefreshToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRefreshToken[P]>
+      : GetScalarType<T[P], AggregateRefreshToken[P]>
+  }
+
+
+
+
+  export type RefreshTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RefreshTokenWhereInput
+    orderBy?: RefreshTokenOrderByWithAggregationInput | RefreshTokenOrderByWithAggregationInput[]
+    by: RefreshTokenScalarFieldEnum[] | RefreshTokenScalarFieldEnum
+    having?: RefreshTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RefreshTokenCountAggregateInputType | true
+    _avg?: RefreshTokenAvgAggregateInputType
+    _sum?: RefreshTokenSumAggregateInputType
+    _min?: RefreshTokenMinAggregateInputType
+    _max?: RefreshTokenMaxAggregateInputType
+  }
+
+  export type RefreshTokenGroupByOutputType = {
+    id: number
+    token: string
+    studentId: number | null
+    landlordId: number | null
+    userType: string
+    isRevoked: boolean
+    expiresAt: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: RefreshTokenCountAggregateOutputType | null
+    _avg: RefreshTokenAvgAggregateOutputType | null
+    _sum: RefreshTokenSumAggregateOutputType | null
+    _min: RefreshTokenMinAggregateOutputType | null
+    _max: RefreshTokenMaxAggregateOutputType | null
+  }
+
+  type GetRefreshTokenGroupByPayload<T extends RefreshTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RefreshTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RefreshTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RefreshTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    studentId?: boolean
+    landlordId?: boolean
+    userType?: boolean
+    isRevoked?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    student?: boolean | RefreshToken$studentArgs<ExtArgs>
+    landlord?: boolean | RefreshToken$landlordArgs<ExtArgs>
+  }, ExtArgs["result"]["refreshToken"]>
+
+
+
+  export type RefreshTokenSelectScalar = {
+    id?: boolean
+    token?: boolean
+    studentId?: boolean
+    landlordId?: boolean
+    userType?: boolean
+    isRevoked?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RefreshTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "token" | "studentId" | "landlordId" | "userType" | "isRevoked" | "expiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["refreshToken"]>
+  export type RefreshTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | RefreshToken$studentArgs<ExtArgs>
+    landlord?: boolean | RefreshToken$landlordArgs<ExtArgs>
+  }
+
+  export type $RefreshTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RefreshToken"
+    objects: {
+      student: Prisma.$StudentPayload<ExtArgs> | null
+      landlord: Prisma.$LandlordPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      token: string
+      studentId: number | null
+      landlordId: number | null
+      userType: string
+      isRevoked: boolean
+      expiresAt: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["refreshToken"]>
+    composites: {}
+  }
+
+  type RefreshTokenGetPayload<S extends boolean | null | undefined | RefreshTokenDefaultArgs> = $Result.GetResult<Prisma.$RefreshTokenPayload, S>
+
+  type RefreshTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RefreshTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RefreshTokenCountAggregateInputType | true
+    }
+
+  export interface RefreshTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RefreshToken'], meta: { name: 'RefreshToken' } }
+    /**
+     * Find zero or one RefreshToken that matches the filter.
+     * @param {RefreshTokenFindUniqueArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RefreshTokenFindUniqueArgs>(args: SelectSubset<T, RefreshTokenFindUniqueArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RefreshToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RefreshTokenFindUniqueOrThrowArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RefreshTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, RefreshTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RefreshToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindFirstArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RefreshTokenFindFirstArgs>(args?: SelectSubset<T, RefreshTokenFindFirstArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RefreshToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindFirstOrThrowArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RefreshTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, RefreshTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RefreshTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RefreshTokens
+     * const refreshTokens = await prisma.refreshToken.findMany()
+     * 
+     * // Get first 10 RefreshTokens
+     * const refreshTokens = await prisma.refreshToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const refreshTokenWithIdOnly = await prisma.refreshToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RefreshTokenFindManyArgs>(args?: SelectSubset<T, RefreshTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RefreshToken.
+     * @param {RefreshTokenCreateArgs} args - Arguments to create a RefreshToken.
+     * @example
+     * // Create one RefreshToken
+     * const RefreshToken = await prisma.refreshToken.create({
+     *   data: {
+     *     // ... data to create a RefreshToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends RefreshTokenCreateArgs>(args: SelectSubset<T, RefreshTokenCreateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RefreshTokens.
+     * @param {RefreshTokenCreateManyArgs} args - Arguments to create many RefreshTokens.
+     * @example
+     * // Create many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RefreshTokenCreateManyArgs>(args?: SelectSubset<T, RefreshTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a RefreshToken.
+     * @param {RefreshTokenDeleteArgs} args - Arguments to delete one RefreshToken.
+     * @example
+     * // Delete one RefreshToken
+     * const RefreshToken = await prisma.refreshToken.delete({
+     *   where: {
+     *     // ... filter to delete one RefreshToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RefreshTokenDeleteArgs>(args: SelectSubset<T, RefreshTokenDeleteArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RefreshToken.
+     * @param {RefreshTokenUpdateArgs} args - Arguments to update one RefreshToken.
+     * @example
+     * // Update one RefreshToken
+     * const refreshToken = await prisma.refreshToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RefreshTokenUpdateArgs>(args: SelectSubset<T, RefreshTokenUpdateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RefreshTokens.
+     * @param {RefreshTokenDeleteManyArgs} args - Arguments to filter RefreshTokens to delete.
+     * @example
+     * // Delete a few RefreshTokens
+     * const { count } = await prisma.refreshToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RefreshTokenDeleteManyArgs>(args?: SelectSubset<T, RefreshTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RefreshTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RefreshTokenUpdateManyArgs>(args: SelectSubset<T, RefreshTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one RefreshToken.
+     * @param {RefreshTokenUpsertArgs} args - Arguments to update or create a RefreshToken.
+     * @example
+     * // Update or create a RefreshToken
+     * const refreshToken = await prisma.refreshToken.upsert({
+     *   create: {
+     *     // ... data to create a RefreshToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RefreshToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RefreshTokenUpsertArgs>(args: SelectSubset<T, RefreshTokenUpsertArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RefreshTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenCountArgs} args - Arguments to filter RefreshTokens to count.
+     * @example
+     * // Count the number of RefreshTokens
+     * const count = await prisma.refreshToken.count({
+     *   where: {
+     *     // ... the filter for the RefreshTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends RefreshTokenCountArgs>(
+      args?: Subset<T, RefreshTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RefreshTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RefreshToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RefreshTokenAggregateArgs>(args: Subset<T, RefreshTokenAggregateArgs>): Prisma.PrismaPromise<GetRefreshTokenAggregateType<T>>
+
+    /**
+     * Group by RefreshToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RefreshTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RefreshTokenGroupByArgs['orderBy'] }
+        : { orderBy?: RefreshTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RefreshTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRefreshTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RefreshToken model
+   */
+  readonly fields: RefreshTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RefreshToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RefreshTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    student<T extends RefreshToken$studentArgs<ExtArgs> = {}>(args?: Subset<T, RefreshToken$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    landlord<T extends RefreshToken$landlordArgs<ExtArgs> = {}>(args?: Subset<T, RefreshToken$landlordArgs<ExtArgs>>): Prisma__LandlordClient<$Result.GetResult<Prisma.$LandlordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RefreshToken model
+   */
+  interface RefreshTokenFieldRefs {
+    readonly id: FieldRef<"RefreshToken", 'Int'>
+    readonly token: FieldRef<"RefreshToken", 'String'>
+    readonly studentId: FieldRef<"RefreshToken", 'Int'>
+    readonly landlordId: FieldRef<"RefreshToken", 'Int'>
+    readonly userType: FieldRef<"RefreshToken", 'String'>
+    readonly isRevoked: FieldRef<"RefreshToken", 'Boolean'>
+    readonly expiresAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly createdAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly updatedAt: FieldRef<"RefreshToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RefreshToken findUnique
+   */
+  export type RefreshTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken findUniqueOrThrow
+   */
+  export type RefreshTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken findFirst
+   */
+  export type RefreshTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RefreshTokens.
+     */
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken findFirstOrThrow
+   */
+  export type RefreshTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RefreshTokens.
+     */
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken findMany
+   */
+  export type RefreshTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshTokens to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken create
+   */
+  export type RefreshTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RefreshToken.
+     */
+    data: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+  }
+
+  /**
+   * RefreshToken createMany
+   */
+  export type RefreshTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RefreshTokens.
+     */
+    data: RefreshTokenCreateManyInput | RefreshTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RefreshToken update
+   */
+  export type RefreshTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RefreshToken.
+     */
+    data: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+    /**
+     * Choose, which RefreshToken to update.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken updateMany
+   */
+  export type RefreshTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RefreshTokens.
+     */
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which RefreshTokens to update
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefreshToken upsert
+   */
+  export type RefreshTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RefreshToken to update in case it exists.
+     */
+    where: RefreshTokenWhereUniqueInput
+    /**
+     * In case the RefreshToken found by the `where` argument doesn't exist, create a new RefreshToken with this data.
+     */
+    create: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+    /**
+     * In case the RefreshToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * RefreshToken delete
+   */
+  export type RefreshTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter which RefreshToken to delete.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken deleteMany
+   */
+  export type RefreshTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RefreshTokens to delete
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefreshToken.student
+   */
+  export type RefreshToken$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+  }
+
+  /**
+   * RefreshToken.landlord
+   */
+  export type RefreshToken$landlordArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Landlord
+     */
+    select?: LandlordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Landlord
+     */
+    omit?: LandlordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LandlordInclude<ExtArgs> | null
+    where?: LandlordWhereInput
+  }
+
+  /**
+   * RefreshToken without action
+   */
+  export type RefreshTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10284,6 +11522,21 @@ export namespace Prisma {
   export type ComunaScalarFieldEnum = (typeof ComunaScalarFieldEnum)[keyof typeof ComunaScalarFieldEnum]
 
 
+  export const RefreshTokenScalarFieldEnum: {
+    id: 'id',
+    token: 'token',
+    studentId: 'studentId',
+    landlordId: 'landlordId',
+    userType: 'userType',
+    isRevoked: 'isRevoked',
+    expiresAt: 'expiresAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -10371,6 +11624,14 @@ export namespace Prisma {
   export type ComunaOrderByRelevanceFieldEnum = (typeof ComunaOrderByRelevanceFieldEnum)[keyof typeof ComunaOrderByRelevanceFieldEnum]
 
 
+  export const RefreshTokenOrderByRelevanceFieldEnum: {
+    token: 'token',
+    userType: 'userType'
+  };
+
+  export type RefreshTokenOrderByRelevanceFieldEnum = (typeof RefreshTokenOrderByRelevanceFieldEnum)[keyof typeof RefreshTokenOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -10446,6 +11707,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
     region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
+    refreshTokens?: RefreshTokenListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -10463,6 +11725,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     comuna?: ComunaOrderByWithRelationInput
     region?: RegionOrderByWithRelationInput
+    refreshTokens?: RefreshTokenOrderByRelationAggregateInput
     _relevance?: StudentOrderByRelevanceInput
   }
 
@@ -10484,6 +11747,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
     region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
+    refreshTokens?: RefreshTokenListRelationFilter
   }, "id" | "studentRut" | "studentEmail">
 
   export type StudentOrderByWithAggregationInput = {
@@ -10542,6 +11806,7 @@ export namespace Prisma {
     properties?: PropertyListRelationFilter
     comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
     region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
+    refreshTokens?: RefreshTokenListRelationFilter
   }
 
   export type LandlordOrderByWithRelationInput = {
@@ -10559,6 +11824,7 @@ export namespace Prisma {
     properties?: PropertyOrderByRelationAggregateInput
     comuna?: ComunaOrderByWithRelationInput
     region?: RegionOrderByWithRelationInput
+    refreshTokens?: RefreshTokenOrderByRelationAggregateInput
     _relevance?: LandlordOrderByRelevanceInput
   }
 
@@ -10580,6 +11846,7 @@ export namespace Prisma {
     properties?: PropertyListRelationFilter
     comuna?: XOR<ComunaScalarRelationFilter, ComunaWhereInput>
     region?: XOR<RegionScalarRelationFilter, RegionWhereInput>
+    refreshTokens?: RefreshTokenListRelationFilter
   }, "id" | "landlordRut" | "landlordEmail">
 
   export type LandlordOrderByWithAggregationInput = {
@@ -11104,6 +12371,87 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Comuna"> | Date | string
   }
 
+  export type RefreshTokenWhereInput = {
+    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    OR?: RefreshTokenWhereInput[]
+    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    id?: IntFilter<"RefreshToken"> | number
+    token?: StringFilter<"RefreshToken"> | string
+    studentId?: IntNullableFilter<"RefreshToken"> | number | null
+    landlordId?: IntNullableFilter<"RefreshToken"> | number | null
+    userType?: StringFilter<"RefreshToken"> | string
+    isRevoked?: BoolFilter<"RefreshToken"> | boolean
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    landlord?: XOR<LandlordNullableScalarRelationFilter, LandlordWhereInput> | null
+  }
+
+  export type RefreshTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    studentId?: SortOrderInput | SortOrder
+    landlordId?: SortOrderInput | SortOrder
+    userType?: SortOrder
+    isRevoked?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    student?: StudentOrderByWithRelationInput
+    landlord?: LandlordOrderByWithRelationInput
+    _relevance?: RefreshTokenOrderByRelevanceInput
+  }
+
+  export type RefreshTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    token?: string
+    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    OR?: RefreshTokenWhereInput[]
+    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    studentId?: IntNullableFilter<"RefreshToken"> | number | null
+    landlordId?: IntNullableFilter<"RefreshToken"> | number | null
+    userType?: StringFilter<"RefreshToken"> | string
+    isRevoked?: BoolFilter<"RefreshToken"> | boolean
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    landlord?: XOR<LandlordNullableScalarRelationFilter, LandlordWhereInput> | null
+  }, "id" | "token">
+
+  export type RefreshTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    studentId?: SortOrderInput | SortOrder
+    landlordId?: SortOrderInput | SortOrder
+    userType?: SortOrder
+    isRevoked?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RefreshTokenCountOrderByAggregateInput
+    _avg?: RefreshTokenAvgOrderByAggregateInput
+    _max?: RefreshTokenMaxOrderByAggregateInput
+    _min?: RefreshTokenMinOrderByAggregateInput
+    _sum?: RefreshTokenSumOrderByAggregateInput
+  }
+
+  export type RefreshTokenScalarWhereWithAggregatesInput = {
+    AND?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
+    OR?: RefreshTokenScalarWhereWithAggregatesInput[]
+    NOT?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"RefreshToken"> | number
+    token?: StringWithAggregatesFilter<"RefreshToken"> | string
+    studentId?: IntNullableWithAggregatesFilter<"RefreshToken"> | number | null
+    landlordId?: IntNullableWithAggregatesFilter<"RefreshToken"> | number | null
+    userType?: StringWithAggregatesFilter<"RefreshToken"> | string
+    isRevoked?: BoolWithAggregatesFilter<"RefreshToken"> | boolean
+    expiresAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+  }
+
   export type StudentCreateInput = {
     studentRut: string
     studentEmail: string
@@ -11116,6 +12464,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     comuna: ComunaCreateNestedOneWithoutStudentsInput
     region: RegionCreateNestedOneWithoutStudentsInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -11131,6 +12480,7 @@ export namespace Prisma {
     regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUpdateInput = {
@@ -11145,6 +12495,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comuna?: ComunaUpdateOneRequiredWithoutStudentsNestedInput
     region?: RegionUpdateOneRequiredWithoutStudentsNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -11160,6 +12511,7 @@ export namespace Prisma {
     regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateManyInput = {
@@ -11216,6 +12568,7 @@ export namespace Prisma {
     properties?: PropertyCreateNestedManyWithoutLandlordInput
     comuna: ComunaCreateNestedOneWithoutLandlordsInput
     region: RegionCreateNestedOneWithoutLandlordsInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordUncheckedCreateInput = {
@@ -11231,6 +12584,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     properties?: PropertyUncheckedCreateNestedManyWithoutLandlordInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordUpdateInput = {
@@ -11245,6 +12599,7 @@ export namespace Prisma {
     properties?: PropertyUpdateManyWithoutLandlordNestedInput
     comuna?: ComunaUpdateOneRequiredWithoutLandlordsNestedInput
     region?: RegionUpdateOneRequiredWithoutLandlordsNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutLandlordNestedInput
   }
 
   export type LandlordUncheckedUpdateInput = {
@@ -11260,6 +12615,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertyUncheckedUpdateManyWithoutLandlordNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutLandlordNestedInput
   }
 
   export type LandlordCreateManyInput = {
@@ -11799,6 +13155,85 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RefreshTokenCreateInput = {
+    token: string
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    student?: StudentCreateNestedOneWithoutRefreshTokensInput
+    landlord?: LandlordCreateNestedOneWithoutRefreshTokensInput
+  }
+
+  export type RefreshTokenUncheckedCreateInput = {
+    id?: number
+    token: string
+    studentId?: number | null
+    landlordId?: number | null
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenUpdateInput = {
+    token?: StringFieldUpdateOperationsInput | string
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    student?: StudentUpdateOneWithoutRefreshTokensNestedInput
+    landlord?: LandlordUpdateOneWithoutRefreshTokensNestedInput
+  }
+
+  export type RefreshTokenUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    token?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    landlordId?: NullableIntFieldUpdateOperationsInput | number | null
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenCreateManyInput = {
+    id?: number
+    token: string
+    studentId?: number | null
+    landlordId?: number | null
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenUpdateManyMutationInput = {
+    token?: StringFieldUpdateOperationsInput | string
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    token?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    landlordId?: NullableIntFieldUpdateOperationsInput | number | null
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -11844,6 +13279,16 @@ export namespace Prisma {
   export type RegionScalarRelationFilter = {
     is?: RegionWhereInput
     isNot?: RegionWhereInput
+  }
+
+  export type RefreshTokenListRelationFilter = {
+    every?: RefreshTokenWhereInput
+    some?: RefreshTokenWhereInput
+    none?: RefreshTokenWhereInput
+  }
+
+  export type RefreshTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type StudentOrderByRelevanceInput = {
@@ -12559,6 +14004,97 @@ export namespace Prisma {
     regionId?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type StudentNullableScalarRelationFilter = {
+    is?: StudentWhereInput | null
+    isNot?: StudentWhereInput | null
+  }
+
+  export type LandlordNullableScalarRelationFilter = {
+    is?: LandlordWhereInput | null
+    isNot?: LandlordWhereInput | null
+  }
+
+  export type RefreshTokenOrderByRelevanceInput = {
+    fields: RefreshTokenOrderByRelevanceFieldEnum | RefreshTokenOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type RefreshTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    studentId?: SortOrder
+    landlordId?: SortOrder
+    userType?: SortOrder
+    isRevoked?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RefreshTokenAvgOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    landlordId?: SortOrder
+  }
+
+  export type RefreshTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    studentId?: SortOrder
+    landlordId?: SortOrder
+    userType?: SortOrder
+    isRevoked?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RefreshTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    studentId?: SortOrder
+    landlordId?: SortOrder
+    userType?: SortOrder
+    isRevoked?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RefreshTokenSumOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    landlordId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type ComunaCreateNestedOneWithoutStudentsInput = {
     create?: XOR<ComunaCreateWithoutStudentsInput, ComunaUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: ComunaCreateOrConnectWithoutStudentsInput
@@ -12569,6 +14105,20 @@ export namespace Prisma {
     create?: XOR<RegionCreateWithoutStudentsInput, RegionUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: RegionCreateOrConnectWithoutStudentsInput
     connect?: RegionWhereUniqueInput
+  }
+
+  export type RefreshTokenCreateNestedManyWithoutStudentInput = {
+    create?: XOR<RefreshTokenCreateWithoutStudentInput, RefreshTokenUncheckedCreateWithoutStudentInput> | RefreshTokenCreateWithoutStudentInput[] | RefreshTokenUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutStudentInput | RefreshTokenCreateOrConnectWithoutStudentInput[]
+    createMany?: RefreshTokenCreateManyStudentInputEnvelope
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  }
+
+  export type RefreshTokenUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<RefreshTokenCreateWithoutStudentInput, RefreshTokenUncheckedCreateWithoutStudentInput> | RefreshTokenCreateWithoutStudentInput[] | RefreshTokenUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutStudentInput | RefreshTokenCreateOrConnectWithoutStudentInput[]
+    createMany?: RefreshTokenCreateManyStudentInputEnvelope
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -12595,12 +14145,40 @@ export namespace Prisma {
     update?: XOR<XOR<RegionUpdateToOneWithWhereWithoutStudentsInput, RegionUpdateWithoutStudentsInput>, RegionUncheckedUpdateWithoutStudentsInput>
   }
 
+  export type RefreshTokenUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<RefreshTokenCreateWithoutStudentInput, RefreshTokenUncheckedCreateWithoutStudentInput> | RefreshTokenCreateWithoutStudentInput[] | RefreshTokenUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutStudentInput | RefreshTokenCreateOrConnectWithoutStudentInput[]
+    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutStudentInput | RefreshTokenUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: RefreshTokenCreateManyStudentInputEnvelope
+    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    update?: RefreshTokenUpdateWithWhereUniqueWithoutStudentInput | RefreshTokenUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: RefreshTokenUpdateManyWithWhereWithoutStudentInput | RefreshTokenUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type RefreshTokenUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<RefreshTokenCreateWithoutStudentInput, RefreshTokenUncheckedCreateWithoutStudentInput> | RefreshTokenCreateWithoutStudentInput[] | RefreshTokenUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutStudentInput | RefreshTokenCreateOrConnectWithoutStudentInput[]
+    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutStudentInput | RefreshTokenUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: RefreshTokenCreateManyStudentInputEnvelope
+    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    update?: RefreshTokenUpdateWithWhereUniqueWithoutStudentInput | RefreshTokenUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: RefreshTokenUpdateManyWithWhereWithoutStudentInput | RefreshTokenUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
   export type PropertyCreateNestedManyWithoutLandlordInput = {
@@ -12622,11 +14200,25 @@ export namespace Prisma {
     connect?: RegionWhereUniqueInput
   }
 
+  export type RefreshTokenCreateNestedManyWithoutLandlordInput = {
+    create?: XOR<RefreshTokenCreateWithoutLandlordInput, RefreshTokenUncheckedCreateWithoutLandlordInput> | RefreshTokenCreateWithoutLandlordInput[] | RefreshTokenUncheckedCreateWithoutLandlordInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutLandlordInput | RefreshTokenCreateOrConnectWithoutLandlordInput[]
+    createMany?: RefreshTokenCreateManyLandlordInputEnvelope
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  }
+
   export type PropertyUncheckedCreateNestedManyWithoutLandlordInput = {
     create?: XOR<PropertyCreateWithoutLandlordInput, PropertyUncheckedCreateWithoutLandlordInput> | PropertyCreateWithoutLandlordInput[] | PropertyUncheckedCreateWithoutLandlordInput[]
     connectOrCreate?: PropertyCreateOrConnectWithoutLandlordInput | PropertyCreateOrConnectWithoutLandlordInput[]
     createMany?: PropertyCreateManyLandlordInputEnvelope
     connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
+  }
+
+  export type RefreshTokenUncheckedCreateNestedManyWithoutLandlordInput = {
+    create?: XOR<RefreshTokenCreateWithoutLandlordInput, RefreshTokenUncheckedCreateWithoutLandlordInput> | RefreshTokenCreateWithoutLandlordInput[] | RefreshTokenUncheckedCreateWithoutLandlordInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutLandlordInput | RefreshTokenCreateOrConnectWithoutLandlordInput[]
+    createMany?: RefreshTokenCreateManyLandlordInputEnvelope
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
   }
 
   export type PropertyUpdateManyWithoutLandlordNestedInput = {
@@ -12659,6 +14251,20 @@ export namespace Prisma {
     update?: XOR<XOR<RegionUpdateToOneWithWhereWithoutLandlordsInput, RegionUpdateWithoutLandlordsInput>, RegionUncheckedUpdateWithoutLandlordsInput>
   }
 
+  export type RefreshTokenUpdateManyWithoutLandlordNestedInput = {
+    create?: XOR<RefreshTokenCreateWithoutLandlordInput, RefreshTokenUncheckedCreateWithoutLandlordInput> | RefreshTokenCreateWithoutLandlordInput[] | RefreshTokenUncheckedCreateWithoutLandlordInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutLandlordInput | RefreshTokenCreateOrConnectWithoutLandlordInput[]
+    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutLandlordInput | RefreshTokenUpsertWithWhereUniqueWithoutLandlordInput[]
+    createMany?: RefreshTokenCreateManyLandlordInputEnvelope
+    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    update?: RefreshTokenUpdateWithWhereUniqueWithoutLandlordInput | RefreshTokenUpdateWithWhereUniqueWithoutLandlordInput[]
+    updateMany?: RefreshTokenUpdateManyWithWhereWithoutLandlordInput | RefreshTokenUpdateManyWithWhereWithoutLandlordInput[]
+    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
   export type PropertyUncheckedUpdateManyWithoutLandlordNestedInput = {
     create?: XOR<PropertyCreateWithoutLandlordInput, PropertyUncheckedCreateWithoutLandlordInput> | PropertyCreateWithoutLandlordInput[] | PropertyUncheckedCreateWithoutLandlordInput[]
     connectOrCreate?: PropertyCreateOrConnectWithoutLandlordInput | PropertyCreateOrConnectWithoutLandlordInput[]
@@ -12671,6 +14277,20 @@ export namespace Prisma {
     update?: PropertyUpdateWithWhereUniqueWithoutLandlordInput | PropertyUpdateWithWhereUniqueWithoutLandlordInput[]
     updateMany?: PropertyUpdateManyWithWhereWithoutLandlordInput | PropertyUpdateManyWithWhereWithoutLandlordInput[]
     deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
+  }
+
+  export type RefreshTokenUncheckedUpdateManyWithoutLandlordNestedInput = {
+    create?: XOR<RefreshTokenCreateWithoutLandlordInput, RefreshTokenUncheckedCreateWithoutLandlordInput> | RefreshTokenCreateWithoutLandlordInput[] | RefreshTokenUncheckedCreateWithoutLandlordInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutLandlordInput | RefreshTokenCreateOrConnectWithoutLandlordInput[]
+    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutLandlordInput | RefreshTokenUpsertWithWhereUniqueWithoutLandlordInput[]
+    createMany?: RefreshTokenCreateManyLandlordInputEnvelope
+    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    update?: RefreshTokenUpdateWithWhereUniqueWithoutLandlordInput | RefreshTokenUpdateWithWhereUniqueWithoutLandlordInput[]
+    updateMany?: RefreshTokenUpdateManyWithWhereWithoutLandlordInput | RefreshTokenUpdateManyWithWhereWithoutLandlordInput[]
+    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
   export type LandlordCreateNestedOneWithoutPropertiesInput = {
@@ -13227,6 +14847,46 @@ export namespace Prisma {
     deleteMany?: LandlordScalarWhereInput | LandlordScalarWhereInput[]
   }
 
+  export type StudentCreateNestedOneWithoutRefreshTokensInput = {
+    create?: XOR<StudentCreateWithoutRefreshTokensInput, StudentUncheckedCreateWithoutRefreshTokensInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutRefreshTokensInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type LandlordCreateNestedOneWithoutRefreshTokensInput = {
+    create?: XOR<LandlordCreateWithoutRefreshTokensInput, LandlordUncheckedCreateWithoutRefreshTokensInput>
+    connectOrCreate?: LandlordCreateOrConnectWithoutRefreshTokensInput
+    connect?: LandlordWhereUniqueInput
+  }
+
+  export type StudentUpdateOneWithoutRefreshTokensNestedInput = {
+    create?: XOR<StudentCreateWithoutRefreshTokensInput, StudentUncheckedCreateWithoutRefreshTokensInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutRefreshTokensInput
+    upsert?: StudentUpsertWithoutRefreshTokensInput
+    disconnect?: StudentWhereInput | boolean
+    delete?: StudentWhereInput | boolean
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutRefreshTokensInput, StudentUpdateWithoutRefreshTokensInput>, StudentUncheckedUpdateWithoutRefreshTokensInput>
+  }
+
+  export type LandlordUpdateOneWithoutRefreshTokensNestedInput = {
+    create?: XOR<LandlordCreateWithoutRefreshTokensInput, LandlordUncheckedCreateWithoutRefreshTokensInput>
+    connectOrCreate?: LandlordCreateOrConnectWithoutRefreshTokensInput
+    upsert?: LandlordUpsertWithoutRefreshTokensInput
+    disconnect?: LandlordWhereInput | boolean
+    delete?: LandlordWhereInput | boolean
+    connect?: LandlordWhereUniqueInput
+    update?: XOR<XOR<LandlordUpdateToOneWithWhereWithoutRefreshTokensInput, LandlordUpdateWithoutRefreshTokensInput>, LandlordUncheckedUpdateWithoutRefreshTokensInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -13478,6 +15138,22 @@ export namespace Prisma {
     _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type ComunaCreateWithoutStudentsInput = {
     name: string
     createdAt?: Date | string
@@ -13528,6 +15204,37 @@ export namespace Prisma {
   export type RegionCreateOrConnectWithoutStudentsInput = {
     where: RegionWhereUniqueInput
     create: XOR<RegionCreateWithoutStudentsInput, RegionUncheckedCreateWithoutStudentsInput>
+  }
+
+  export type RefreshTokenCreateWithoutStudentInput = {
+    token: string
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    landlord?: LandlordCreateNestedOneWithoutRefreshTokensInput
+  }
+
+  export type RefreshTokenUncheckedCreateWithoutStudentInput = {
+    id?: number
+    token: string
+    landlordId?: number | null
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenCreateOrConnectWithoutStudentInput = {
+    where: RefreshTokenWhereUniqueInput
+    create: XOR<RefreshTokenCreateWithoutStudentInput, RefreshTokenUncheckedCreateWithoutStudentInput>
+  }
+
+  export type RefreshTokenCreateManyStudentInputEnvelope = {
+    data: RefreshTokenCreateManyStudentInput | RefreshTokenCreateManyStudentInput[]
+    skipDuplicates?: boolean
   }
 
   export type ComunaUpsertWithoutStudentsInput = {
@@ -13592,6 +15299,37 @@ export namespace Prisma {
     comunas?: ComunaUncheckedUpdateManyWithoutRegionNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutRegionNestedInput
     landlords?: LandlordUncheckedUpdateManyWithoutRegionNestedInput
+  }
+
+  export type RefreshTokenUpsertWithWhereUniqueWithoutStudentInput = {
+    where: RefreshTokenWhereUniqueInput
+    update: XOR<RefreshTokenUpdateWithoutStudentInput, RefreshTokenUncheckedUpdateWithoutStudentInput>
+    create: XOR<RefreshTokenCreateWithoutStudentInput, RefreshTokenUncheckedCreateWithoutStudentInput>
+  }
+
+  export type RefreshTokenUpdateWithWhereUniqueWithoutStudentInput = {
+    where: RefreshTokenWhereUniqueInput
+    data: XOR<RefreshTokenUpdateWithoutStudentInput, RefreshTokenUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type RefreshTokenUpdateManyWithWhereWithoutStudentInput = {
+    where: RefreshTokenScalarWhereInput
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type RefreshTokenScalarWhereInput = {
+    AND?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+    OR?: RefreshTokenScalarWhereInput[]
+    NOT?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+    id?: IntFilter<"RefreshToken"> | number
+    token?: StringFilter<"RefreshToken"> | string
+    studentId?: IntNullableFilter<"RefreshToken"> | number | null
+    landlordId?: IntNullableFilter<"RefreshToken"> | number | null
+    userType?: StringFilter<"RefreshToken"> | string
+    isRevoked?: BoolFilter<"RefreshToken"> | boolean
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
   }
 
   export type PropertyCreateWithoutLandlordInput = {
@@ -13705,6 +15443,37 @@ export namespace Prisma {
     create: XOR<RegionCreateWithoutLandlordsInput, RegionUncheckedCreateWithoutLandlordsInput>
   }
 
+  export type RefreshTokenCreateWithoutLandlordInput = {
+    token: string
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    student?: StudentCreateNestedOneWithoutRefreshTokensInput
+  }
+
+  export type RefreshTokenUncheckedCreateWithoutLandlordInput = {
+    id?: number
+    token: string
+    studentId?: number | null
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenCreateOrConnectWithoutLandlordInput = {
+    where: RefreshTokenWhereUniqueInput
+    create: XOR<RefreshTokenCreateWithoutLandlordInput, RefreshTokenUncheckedCreateWithoutLandlordInput>
+  }
+
+  export type RefreshTokenCreateManyLandlordInputEnvelope = {
+    data: RefreshTokenCreateManyLandlordInput | RefreshTokenCreateManyLandlordInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PropertyUpsertWithWhereUniqueWithoutLandlordInput = {
     where: PropertyWhereUniqueInput
     update: XOR<PropertyUpdateWithoutLandlordInput, PropertyUncheckedUpdateWithoutLandlordInput>
@@ -13812,6 +15581,22 @@ export namespace Prisma {
     students?: StudentUncheckedUpdateManyWithoutRegionNestedInput
   }
 
+  export type RefreshTokenUpsertWithWhereUniqueWithoutLandlordInput = {
+    where: RefreshTokenWhereUniqueInput
+    update: XOR<RefreshTokenUpdateWithoutLandlordInput, RefreshTokenUncheckedUpdateWithoutLandlordInput>
+    create: XOR<RefreshTokenCreateWithoutLandlordInput, RefreshTokenUncheckedCreateWithoutLandlordInput>
+  }
+
+  export type RefreshTokenUpdateWithWhereUniqueWithoutLandlordInput = {
+    where: RefreshTokenWhereUniqueInput
+    data: XOR<RefreshTokenUpdateWithoutLandlordInput, RefreshTokenUncheckedUpdateWithoutLandlordInput>
+  }
+
+  export type RefreshTokenUpdateManyWithWhereWithoutLandlordInput = {
+    where: RefreshTokenScalarWhereInput
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyWithoutLandlordInput>
+  }
+
   export type LandlordCreateWithoutPropertiesInput = {
     landlordRut: string
     landlordEmail: string
@@ -13823,6 +15608,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     comuna: ComunaCreateNestedOneWithoutLandlordsInput
     region: RegionCreateNestedOneWithoutLandlordsInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordUncheckedCreateWithoutPropertiesInput = {
@@ -13837,6 +15623,7 @@ export namespace Prisma {
     regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordCreateOrConnectWithoutPropertiesInput = {
@@ -13968,6 +15755,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comuna?: ComunaUpdateOneRequiredWithoutLandlordsNestedInput
     region?: RegionUpdateOneRequiredWithoutLandlordsNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutLandlordNestedInput
   }
 
   export type LandlordUncheckedUpdateWithoutPropertiesInput = {
@@ -13982,6 +15770,7 @@ export namespace Prisma {
     regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutLandlordNestedInput
   }
 
   export type ComunaUpsertWithoutPropertiesInput = {
@@ -14522,6 +16311,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comuna: ComunaCreateNestedOneWithoutStudentsInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutRegionInput = {
@@ -14536,6 +16326,7 @@ export namespace Prisma {
     comunaId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutRegionInput = {
@@ -14559,6 +16350,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     properties?: PropertyCreateNestedManyWithoutLandlordInput
     comuna: ComunaCreateNestedOneWithoutLandlordsInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordUncheckedCreateWithoutRegionInput = {
@@ -14573,6 +16365,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     properties?: PropertyUncheckedCreateNestedManyWithoutLandlordInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordCreateOrConnectWithoutRegionInput = {
@@ -14793,6 +16586,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     region: RegionCreateNestedOneWithoutStudentsInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutComunaInput = {
@@ -14807,6 +16601,7 @@ export namespace Prisma {
     regionId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutComunaInput = {
@@ -14830,6 +16625,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     properties?: PropertyCreateNestedManyWithoutLandlordInput
     region: RegionCreateNestedOneWithoutLandlordsInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordUncheckedCreateWithoutComunaInput = {
@@ -14844,6 +16640,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     properties?: PropertyUncheckedCreateNestedManyWithoutLandlordInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutLandlordInput
   }
 
   export type LandlordCreateOrConnectWithoutComunaInput = {
@@ -14938,6 +16735,197 @@ export namespace Prisma {
     data: XOR<LandlordUpdateManyMutationInput, LandlordUncheckedUpdateManyWithoutComunaInput>
   }
 
+  export type StudentCreateWithoutRefreshTokensInput = {
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comuna: ComunaCreateNestedOneWithoutStudentsInput
+    region: RegionCreateNestedOneWithoutStudentsInput
+  }
+
+  export type StudentUncheckedCreateWithoutRefreshTokensInput = {
+    id?: number
+    studentRut: string
+    studentEmail: string
+    studentName: string
+    password: string
+    studentCollege: string
+    studentCertificateUrl: string
+    role: string
+    comunaId: number
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StudentCreateOrConnectWithoutRefreshTokensInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutRefreshTokensInput, StudentUncheckedCreateWithoutRefreshTokensInput>
+  }
+
+  export type LandlordCreateWithoutRefreshTokensInput = {
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyCreateNestedManyWithoutLandlordInput
+    comuna: ComunaCreateNestedOneWithoutLandlordsInput
+    region: RegionCreateNestedOneWithoutLandlordsInput
+  }
+
+  export type LandlordUncheckedCreateWithoutRefreshTokensInput = {
+    id?: number
+    landlordRut: string
+    landlordEmail: string
+    landlordName: string
+    password: string
+    landlordCarnetUrl: string
+    role?: string
+    comunaId: number
+    regionId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    properties?: PropertyUncheckedCreateNestedManyWithoutLandlordInput
+  }
+
+  export type LandlordCreateOrConnectWithoutRefreshTokensInput = {
+    where: LandlordWhereUniqueInput
+    create: XOR<LandlordCreateWithoutRefreshTokensInput, LandlordUncheckedCreateWithoutRefreshTokensInput>
+  }
+
+  export type StudentUpsertWithoutRefreshTokensInput = {
+    update: XOR<StudentUpdateWithoutRefreshTokensInput, StudentUncheckedUpdateWithoutRefreshTokensInput>
+    create: XOR<StudentCreateWithoutRefreshTokensInput, StudentUncheckedCreateWithoutRefreshTokensInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutRefreshTokensInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutRefreshTokensInput, StudentUncheckedUpdateWithoutRefreshTokensInput>
+  }
+
+  export type StudentUpdateWithoutRefreshTokensInput = {
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comuna?: ComunaUpdateOneRequiredWithoutStudentsNestedInput
+    region?: RegionUpdateOneRequiredWithoutStudentsNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutRefreshTokensInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentRut?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    studentCollege?: StringFieldUpdateOperationsInput | string
+    studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LandlordUpsertWithoutRefreshTokensInput = {
+    update: XOR<LandlordUpdateWithoutRefreshTokensInput, LandlordUncheckedUpdateWithoutRefreshTokensInput>
+    create: XOR<LandlordCreateWithoutRefreshTokensInput, LandlordUncheckedCreateWithoutRefreshTokensInput>
+    where?: LandlordWhereInput
+  }
+
+  export type LandlordUpdateToOneWithWhereWithoutRefreshTokensInput = {
+    where?: LandlordWhereInput
+    data: XOR<LandlordUpdateWithoutRefreshTokensInput, LandlordUncheckedUpdateWithoutRefreshTokensInput>
+  }
+
+  export type LandlordUpdateWithoutRefreshTokensInput = {
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUpdateManyWithoutLandlordNestedInput
+    comuna?: ComunaUpdateOneRequiredWithoutLandlordsNestedInput
+    region?: RegionUpdateOneRequiredWithoutLandlordsNestedInput
+  }
+
+  export type LandlordUncheckedUpdateWithoutRefreshTokensInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    landlordRut?: StringFieldUpdateOperationsInput | string
+    landlordEmail?: StringFieldUpdateOperationsInput | string
+    landlordName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    comunaId?: IntFieldUpdateOperationsInput | number
+    regionId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    properties?: PropertyUncheckedUpdateManyWithoutLandlordNestedInput
+  }
+
+  export type RefreshTokenCreateManyStudentInput = {
+    id?: number
+    token: string
+    landlordId?: number | null
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenUpdateWithoutStudentInput = {
+    token?: StringFieldUpdateOperationsInput | string
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    landlord?: LandlordUpdateOneWithoutRefreshTokensNestedInput
+  }
+
+  export type RefreshTokenUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    token?: StringFieldUpdateOperationsInput | string
+    landlordId?: NullableIntFieldUpdateOperationsInput | number | null
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    token?: StringFieldUpdateOperationsInput | string
+    landlordId?: NullableIntFieldUpdateOperationsInput | number | null
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PropertyCreateManyLandlordInput = {
     id?: number
     title: string
@@ -14957,6 +16945,17 @@ export namespace Prisma {
     rules?: string | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenCreateManyLandlordInput = {
+    id?: number
+    token: string
+    studentId?: number | null
+    userType: string
+    isRevoked?: boolean
+    expiresAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15029,6 +17028,38 @@ export namespace Prisma {
     rules?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUpdateWithoutLandlordInput = {
+    token?: StringFieldUpdateOperationsInput | string
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    student?: StudentUpdateOneWithoutRefreshTokensNestedInput
+  }
+
+  export type RefreshTokenUncheckedUpdateWithoutLandlordInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    token?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUncheckedUpdateManyWithoutLandlordInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    token?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    userType?: StringFieldUpdateOperationsInput | string
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15284,6 +17315,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comuna?: ComunaUpdateOneRequiredWithoutStudentsNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutRegionInput = {
@@ -15298,6 +17330,7 @@ export namespace Prisma {
     comunaId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutRegionInput = {
@@ -15325,6 +17358,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertyUpdateManyWithoutLandlordNestedInput
     comuna?: ComunaUpdateOneRequiredWithoutLandlordsNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutLandlordNestedInput
   }
 
   export type LandlordUncheckedUpdateWithoutRegionInput = {
@@ -15339,6 +17373,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertyUncheckedUpdateManyWithoutLandlordNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutLandlordNestedInput
   }
 
   export type LandlordUncheckedUpdateManyWithoutRegionInput = {
@@ -15487,6 +17522,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     region?: RegionUpdateOneRequiredWithoutStudentsNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutComunaInput = {
@@ -15501,6 +17537,7 @@ export namespace Prisma {
     regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutComunaInput = {
@@ -15528,6 +17565,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertyUpdateManyWithoutLandlordNestedInput
     region?: RegionUpdateOneRequiredWithoutLandlordsNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutLandlordNestedInput
   }
 
   export type LandlordUncheckedUpdateWithoutComunaInput = {
@@ -15542,6 +17580,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertyUncheckedUpdateManyWithoutLandlordNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutLandlordNestedInput
   }
 
   export type LandlordUncheckedUpdateManyWithoutComunaInput = {

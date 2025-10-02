@@ -2,11 +2,12 @@ import { Request, Response } from "express";
 import {
   findUserByEmail as findStudentByEmail,
   generateClientToken,
-} from "../services/studentServices/student.auth.service";
+} from "../services/studentServices/student.auth.service.js";
 import {
   findLandlordByEmail,
   generateLandlordToken,
-} from "../services/landlordServices/landlord.auth.service";
+} from "../services/landlordServices/landlord.auth.service.js";
+import { generateRefreshToken } from "../services/shared/refresh-token.service.js";
 import { compare } from "bcrypt";
 import {
   AuthenticatedUser,
@@ -16,7 +17,7 @@ import {
   LoginResponse,
   isStudentUser,
   isLandlordUser,
-} from "../types/auth.types";
+} from "../types/auth.types.js";
 
 export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -63,8 +64,9 @@ export const loginController = async (req: Request, res: Response) => {
       return;
     }
 
-    // Generar token según el tipo de usuario usando type guards
-    let token: string;
+    // Generar access token y refresh token según el tipo de usuario usando type guards
+    let accessToken: string;
+    let refreshToken: string;
 
     if (isStudentUser(user)) {
       const clientTokenPayload = {
@@ -76,7 +78,8 @@ export const loginController = async (req: Request, res: Response) => {
         studentCertificateUrl: user.studentCertificateUrl,
         role: user.role,
       };
-      token = generateClientToken(clientTokenPayload);
+      accessToken = generateClientToken(clientTokenPayload);
+      refreshToken = await generateRefreshToken(user.id, "student");
     } else if (isLandlordUser(user)) {
       const landlordTokenPayload = {
         id: user.id,
@@ -86,7 +89,8 @@ export const loginController = async (req: Request, res: Response) => {
         landlordCarnetUrl: user.landlordCarnetUrl,
         role: user.role,
       };
-      token = generateLandlordToken(landlordTokenPayload);
+      accessToken = generateLandlordToken(landlordTokenPayload);
+      refreshToken = await generateRefreshToken(user.id, "landlord");
     } else {
       res
         .status(500)
@@ -94,16 +98,24 @@ export const loginController = async (req: Request, res: Response) => {
       return;
     }
 
-    // Configurar cookie que contendrá el token con httpOnly
-    res.cookie("authToken", token, {
-      httpOnly: true, // No accesible con XSS
+    // Configurar cookies httpOnly para ambos tokens
+    res.cookie("authToken", accessToken, {
+      httpOnly: true, // No accesible desde JavaScript (protección XSS)
+      secure: process.env.NODE_ENV === "production", // Solo HTTPS en producción
       sameSite: "lax", // Balance entre seguridad y UX
+      maxAge: 15 * 60 * 1000, // 15 minutos (mismo que el token)
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true, // No accesible desde JavaScript (protección XSS)
+      secure: process.env.NODE_ENV === "production", // Solo HTTPS en producción
+      sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
     });
 
     const response: LoginResponse = {
       success: true,
-      token,
+      token: accessToken, // Por compatibilidad, pero la cookie es lo que se usará
     };
 
     res.status(200).json(response);

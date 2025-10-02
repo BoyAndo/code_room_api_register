@@ -71,7 +71,7 @@ export const findUserByEmail = async (email: string) => {
   return user;
 };
 
-//Generar un token para el usuario al loguearse usando HMAC
+//Generar un access token para el usuario al loguearse usando HMAC (15 minutos)
 export const generateClientToken = (user: StudentRegisterToken): string => {
   const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -92,6 +92,6 @@ export const generateClientToken = (user: StudentRegisterToken): string => {
 
   return jwt.sign(payload, JWT_SECRET!, {
     algorithm: "HS256",
-    expiresIn: process.env.JWT_EXPIRES_IN || "120h",
+    expiresIn: "15m", // Access token de corta duración
   } as jwt.SignOptions);
 };
