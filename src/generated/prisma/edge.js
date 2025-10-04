@@ -288,7 +288,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\ivand\\OneDrive\\Escritorio\\code_room\\code_room_api_register\\src\\generated\\prisma",
+      "value": "/home/ando/Desktop/code_room/code_room_api_register/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -297,12 +297,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\ivand\\OneDrive\\Escritorio\\code_room\\code_room_api_register\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/ando/Desktop/code_room/code_room_api_register/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -316,6 +316,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

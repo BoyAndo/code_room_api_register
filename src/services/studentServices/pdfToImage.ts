@@ -1,8 +1,10 @@
-import pdfPoppler from "pdf-poppler";
 import path from "path";
 import fs from "fs/promises";
 import { v4 as uuidv4 } from "uuid";
 import os from "os";
+import { execFile as execFileCb } from "child_process";
+import { promisify } from "util";
+const execFile = promisify(execFileCb);
 
 export async function convertPdfToImage(buffer: Buffer): Promise<string> {
   // Usar directorio temporal del sistema
@@ -16,22 +18,17 @@ export async function convertPdfToImage(buffer: Buffer): Promise<string> {
   await fs.writeFile(pdfPath, buffer);
 
   try {
-    // Configuración para pdf-poppler con MÁXIMA CALIDAD
-    const options = {
+    // Configuración para conversión con MÁXIMA CALIDAD
+    const options: any = {
       format: "png",
       out_dir: uniqueDir,
       out_prefix: "page",
       page: 1, // Solo la primera página
-
-      // CONFIGURACIÓN DE ALTA RESOLUCIÓN
-      density: 600, // DPI muy alto (300 -> 600)
-      size: 4000, // Tamaño muy grande (2000 -> 4000)
-      quality: 100, // Calidad máxima
-
-      // Opciones adicionales para mejor calidad
-      antialias: true, // Anti-aliasing habilitado
-      single_file: true, // Un solo archivo
-      print_mode: "png", // Modo de impresión PNG
+      density: 600, // DPI
+      size: 4000,
+      quality: 100,
+      antialias: true,
+      single_file: true,
     };
 
     console.log("🖼️  Convirtiendo PDF con configuración de máxima calidad:", {
@@ -40,20 +37,81 @@ export async function convertPdfToImage(buffer: Buffer): Promise<string> {
       quality: options.quality,
     });
 
-    // Convertir PDF a imagen
-    const result = await pdfPoppler.convert(pdfPath, options);
+    // Si estamos en Linux, evitar importar pdf-poppler (que falla en linux)
+    if (process.platform === "linux") {
+      // Usar pdftocairo (parte de poppler) instalado en el sistema
+      const args: string[] = [];
+      // formato
+      if (options.format === "png") args.push("-png");
+      else if (options.format === "jpg" || options.format === "jpeg")
+        args.push("-jpeg");
 
-    // El archivo generado tendrá el nombre 'page-1.png'
-    const imagePath = path.join(uniqueDir, "page-1.png");
+      if (options.single_file) args.push("-singlefile");
+      if (options.density) args.push("-r", String(options.density));
 
-    // Verificar que el archivo existe
-    const exists = await fs
-      .access(imagePath)
-      .then(() => true)
-      .catch(() => false);
-    if (!exists) {
-      throw new Error("Failed to convert PDF to image: image file not created");
+      // convertir solo la página solicitada
+      if (options.page) {
+        args.push("-f", String(options.page));
+        args.push("-l", String(options.page));
+      }
+
+      const outPrefix = path.join(options.out_dir, options.out_prefix);
+
+      try {
+        // Ejecutar pdftocairo <args> <input.pdf> <outPrefix>
+        await execFile("pdftocairo", [...args, pdfPath, outPrefix], {
+          encoding: "utf8",
+          maxBuffer: 10 * 1024 * 1024,
+        } as any);
+      } catch (e: any) {
+        // Si no existe el binario o falla, informar guía clara
+        if (e.code === "ENOENT") {
+          console.error(
+            "pdftocairo no encontrado en el sistema. Instale 'poppler' (ej: sudo pacman -S poppler) y vuelva a intentarlo."
+          );
+          throw new Error(
+            "pdftocairo not found: please install poppler on your system"
+          );
+        }
+        console.error("Error ejecutando pdftocairo:", e);
+        throw e;
+      }
+
+      // Buscar el archivo generado (pdftocairo puede producir 'page.png' o 'page-1.png')
+      const entries = await fs.readdir(uniqueDir);
+      const match = entries.find(
+        (f) =>
+          f.startsWith(options.out_prefix) &&
+          (f.endsWith(".png") || f.endsWith(".jpg") || f.endsWith(".jpeg"))
+      );
+      if (!match)
+        throw new Error(
+          "Failed to convert PDF to image: image file not created"
+        );
+
+      return path.join(uniqueDir, match);
     }
+
+    // En macOS/Windows cargamos dinámicamente la dependencia "pdf-poppler"
+    const pdfPoppler = (await import("pdf-poppler")) as any;
+    await pdfPoppler.convert(pdfPath, options);
+
+    // pdf-poppler suele generar 'page-1.png' cuando single_file es true
+    const possibleNames = ["page-1.png", "page.png", "page.png"];
+    let imagePath: string | null = null;
+    for (const n of possibleNames) {
+      const p = path.join(uniqueDir, n);
+      const exists = await fs
+        .access(p)
+        .then(() => true)
+        .catch(() => false);
+      if (exists) {
+        imagePath = p;
+        break;
+      }
+    }
+    if (!imagePath)
+      throw new Error("Failed to convert PDF to image: image file not created");
 
     return imagePath;
   } catch (error) {

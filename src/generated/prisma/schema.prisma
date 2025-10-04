@@ -89,7 +89,6 @@ model Property {
   address              String
   comunaId             Int // Foreign key a Comuna
   regionId             Int // Foreign key a Region
-  zipCode              String?
   propertyType         PropertyType
   bedrooms             Int
   bathrooms            Int
@@ -98,9 +97,6 @@ model Property {
   isAvailable          Boolean      @default(true)
   utilityBillUrl       String
   utilityBillValidated Boolean      @default(false)
-  rules                String?      @db.Text
-  latitude             Decimal?     @db.Decimal(10, 8)
-  longitude            Decimal?     @db.Decimal(11, 8)
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
 
