@@ -128,6 +128,7 @@ exports.Prisma.StudentScalarFieldEnum = {
   password: 'password',
   studentCollege: 'studentCollege',
   studentCertificateUrl: 'studentCertificateUrl',
+  profilePhotoUrl: 'profilePhotoUrl',
   role: 'role',
   comunaId: 'comunaId',
   regionId: 'regionId',
@@ -142,6 +143,7 @@ exports.Prisma.LandlordScalarFieldEnum = {
   landlordName: 'landlordName',
   password: 'password',
   landlordCarnetUrl: 'landlordCarnetUrl',
+  profilePhotoUrl: 'profilePhotoUrl',
   role: 'role',
   comunaId: 'comunaId',
   regionId: 'regionId',
@@ -231,6 +233,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.StudentOrderByRelevanceFieldEnum = {
   studentRut: 'studentRut',
   studentEmail: 'studentEmail',
@@ -238,6 +245,7 @@ exports.Prisma.StudentOrderByRelevanceFieldEnum = {
   password: 'password',
   studentCollege: 'studentCollege',
   studentCertificateUrl: 'studentCertificateUrl',
+  profilePhotoUrl: 'profilePhotoUrl',
   role: 'role'
 };
 
@@ -247,12 +255,8 @@ exports.Prisma.LandlordOrderByRelevanceFieldEnum = {
   landlordName: 'landlordName',
   password: 'password',
   landlordCarnetUrl: 'landlordCarnetUrl',
+  profilePhotoUrl: 'profilePhotoUrl',
   role: 'role'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 exports.Prisma.PropertyOrderByRelevanceFieldEnum = {

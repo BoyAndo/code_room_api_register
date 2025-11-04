@@ -1823,6 +1823,7 @@ export namespace Prisma {
     password: string | null
     studentCollege: string | null
     studentCertificateUrl: string | null
+    profilePhotoUrl: string | null
     role: string | null
     comunaId: number | null
     regionId: number | null
@@ -1838,6 +1839,7 @@ export namespace Prisma {
     password: string | null
     studentCollege: string | null
     studentCertificateUrl: string | null
+    profilePhotoUrl: string | null
     role: string | null
     comunaId: number | null
     regionId: number | null
@@ -1853,6 +1855,7 @@ export namespace Prisma {
     password: number
     studentCollege: number
     studentCertificateUrl: number
+    profilePhotoUrl: number
     role: number
     comunaId: number
     regionId: number
@@ -1882,6 +1885,7 @@ export namespace Prisma {
     password?: true
     studentCollege?: true
     studentCertificateUrl?: true
+    profilePhotoUrl?: true
     role?: true
     comunaId?: true
     regionId?: true
@@ -1897,6 +1901,7 @@ export namespace Prisma {
     password?: true
     studentCollege?: true
     studentCertificateUrl?: true
+    profilePhotoUrl?: true
     role?: true
     comunaId?: true
     regionId?: true
@@ -1912,6 +1917,7 @@ export namespace Prisma {
     password?: true
     studentCollege?: true
     studentCertificateUrl?: true
+    profilePhotoUrl?: true
     role?: true
     comunaId?: true
     regionId?: true
@@ -2014,6 +2020,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl: string | null
     role: string
     comunaId: number
     regionId: number
@@ -2048,6 +2055,7 @@ export namespace Prisma {
     password?: boolean
     studentCollege?: boolean
     studentCertificateUrl?: boolean
+    profilePhotoUrl?: boolean
     role?: boolean
     comunaId?: boolean
     regionId?: boolean
@@ -2069,6 +2077,7 @@ export namespace Prisma {
     password?: boolean
     studentCollege?: boolean
     studentCertificateUrl?: boolean
+    profilePhotoUrl?: boolean
     role?: boolean
     comunaId?: boolean
     regionId?: boolean
@@ -2076,7 +2085,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentRut" | "studentEmail" | "studentName" | "password" | "studentCollege" | "studentCertificateUrl" | "role" | "comunaId" | "regionId" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentRut" | "studentEmail" | "studentName" | "password" | "studentCollege" | "studentCertificateUrl" | "profilePhotoUrl" | "role" | "comunaId" | "regionId" | "createdAt" | "updatedAt", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comuna?: boolean | ComunaDefaultArgs<ExtArgs>
     region?: boolean | RegionDefaultArgs<ExtArgs>
@@ -2099,6 +2108,7 @@ export namespace Prisma {
       password: string
       studentCollege: string
       studentCertificateUrl: string
+      profilePhotoUrl: string | null
       role: string
       comunaId: number
       regionId: number
@@ -2483,6 +2493,7 @@ export namespace Prisma {
     readonly password: FieldRef<"Student", 'String'>
     readonly studentCollege: FieldRef<"Student", 'String'>
     readonly studentCertificateUrl: FieldRef<"Student", 'String'>
+    readonly profilePhotoUrl: FieldRef<"Student", 'String'>
     readonly role: FieldRef<"Student", 'String'>
     readonly comunaId: FieldRef<"Student", 'Int'>
     readonly regionId: FieldRef<"Student", 'Int'>
@@ -2904,6 +2915,7 @@ export namespace Prisma {
     landlordName: string | null
     password: string | null
     landlordCarnetUrl: string | null
+    profilePhotoUrl: string | null
     role: string | null
     comunaId: number | null
     regionId: number | null
@@ -2918,6 +2930,7 @@ export namespace Prisma {
     landlordName: string | null
     password: string | null
     landlordCarnetUrl: string | null
+    profilePhotoUrl: string | null
     role: string | null
     comunaId: number | null
     regionId: number | null
@@ -2932,6 +2945,7 @@ export namespace Prisma {
     landlordName: number
     password: number
     landlordCarnetUrl: number
+    profilePhotoUrl: number
     role: number
     comunaId: number
     regionId: number
@@ -2960,6 +2974,7 @@ export namespace Prisma {
     landlordName?: true
     password?: true
     landlordCarnetUrl?: true
+    profilePhotoUrl?: true
     role?: true
     comunaId?: true
     regionId?: true
@@ -2974,6 +2989,7 @@ export namespace Prisma {
     landlordName?: true
     password?: true
     landlordCarnetUrl?: true
+    profilePhotoUrl?: true
     role?: true
     comunaId?: true
     regionId?: true
@@ -2988,6 +3004,7 @@ export namespace Prisma {
     landlordName?: true
     password?: true
     landlordCarnetUrl?: true
+    profilePhotoUrl?: true
     role?: true
     comunaId?: true
     regionId?: true
@@ -3089,6 +3106,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl: string | null
     role: string
     comunaId: number
     regionId: number
@@ -3122,6 +3140,7 @@ export namespace Prisma {
     landlordName?: boolean
     password?: boolean
     landlordCarnetUrl?: boolean
+    profilePhotoUrl?: boolean
     role?: boolean
     comunaId?: boolean
     regionId?: boolean
@@ -3143,6 +3162,7 @@ export namespace Prisma {
     landlordName?: boolean
     password?: boolean
     landlordCarnetUrl?: boolean
+    profilePhotoUrl?: boolean
     role?: boolean
     comunaId?: boolean
     regionId?: boolean
@@ -3150,7 +3170,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type LandlordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordRut" | "landlordEmail" | "landlordName" | "password" | "landlordCarnetUrl" | "role" | "comunaId" | "regionId" | "createdAt" | "updatedAt", ExtArgs["result"]["landlord"]>
+  export type LandlordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landlordRut" | "landlordEmail" | "landlordName" | "password" | "landlordCarnetUrl" | "profilePhotoUrl" | "role" | "comunaId" | "regionId" | "createdAt" | "updatedAt", ExtArgs["result"]["landlord"]>
   export type LandlordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     properties?: boolean | Landlord$propertiesArgs<ExtArgs>
     comuna?: boolean | ComunaDefaultArgs<ExtArgs>
@@ -3174,6 +3194,7 @@ export namespace Prisma {
       landlordName: string
       password: string
       landlordCarnetUrl: string
+      profilePhotoUrl: string | null
       role: string
       comunaId: number
       regionId: number
@@ -3558,6 +3579,7 @@ export namespace Prisma {
     readonly landlordName: FieldRef<"Landlord", 'String'>
     readonly password: FieldRef<"Landlord", 'String'>
     readonly landlordCarnetUrl: FieldRef<"Landlord", 'String'>
+    readonly profilePhotoUrl: FieldRef<"Landlord", 'String'>
     readonly role: FieldRef<"Landlord", 'String'>
     readonly comunaId: FieldRef<"Landlord", 'Int'>
     readonly regionId: FieldRef<"Landlord", 'Int'>
@@ -11356,6 +11378,7 @@ export namespace Prisma {
     password: 'password',
     studentCollege: 'studentCollege',
     studentCertificateUrl: 'studentCertificateUrl',
+    profilePhotoUrl: 'profilePhotoUrl',
     role: 'role',
     comunaId: 'comunaId',
     regionId: 'regionId',
@@ -11373,6 +11396,7 @@ export namespace Prisma {
     landlordName: 'landlordName',
     password: 'password',
     landlordCarnetUrl: 'landlordCarnetUrl',
+    profilePhotoUrl: 'profilePhotoUrl',
     role: 'role',
     comunaId: 'comunaId',
     regionId: 'regionId',
@@ -11489,6 +11513,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   export const StudentOrderByRelevanceFieldEnum: {
     studentRut: 'studentRut',
     studentEmail: 'studentEmail',
@@ -11496,6 +11528,7 @@ export namespace Prisma {
     password: 'password',
     studentCollege: 'studentCollege',
     studentCertificateUrl: 'studentCertificateUrl',
+    profilePhotoUrl: 'profilePhotoUrl',
     role: 'role'
   };
 
@@ -11508,18 +11541,11 @@ export namespace Prisma {
     landlordName: 'landlordName',
     password: 'password',
     landlordCarnetUrl: 'landlordCarnetUrl',
+    profilePhotoUrl: 'profilePhotoUrl',
     role: 'role'
   };
 
   export type LandlordOrderByRelevanceFieldEnum = (typeof LandlordOrderByRelevanceFieldEnum)[keyof typeof LandlordOrderByRelevanceFieldEnum]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const PropertyOrderByRelevanceFieldEnum: {
@@ -11642,6 +11668,7 @@ export namespace Prisma {
     password?: StringFilter<"Student"> | string
     studentCollege?: StringFilter<"Student"> | string
     studentCertificateUrl?: StringFilter<"Student"> | string
+    profilePhotoUrl?: StringNullableFilter<"Student"> | string | null
     role?: StringFilter<"Student"> | string
     comunaId?: IntFilter<"Student"> | number
     regionId?: IntFilter<"Student"> | number
@@ -11660,6 +11687,7 @@ export namespace Prisma {
     password?: SortOrder
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
+    profilePhotoUrl?: SortOrderInput | SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -11682,6 +11710,7 @@ export namespace Prisma {
     password?: StringFilter<"Student"> | string
     studentCollege?: StringFilter<"Student"> | string
     studentCertificateUrl?: StringFilter<"Student"> | string
+    profilePhotoUrl?: StringNullableFilter<"Student"> | string | null
     role?: StringFilter<"Student"> | string
     comunaId?: IntFilter<"Student"> | number
     regionId?: IntFilter<"Student"> | number
@@ -11700,6 +11729,7 @@ export namespace Prisma {
     password?: SortOrder
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
+    profilePhotoUrl?: SortOrderInput | SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -11723,6 +11753,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"Student"> | string
     studentCollege?: StringWithAggregatesFilter<"Student"> | string
     studentCertificateUrl?: StringWithAggregatesFilter<"Student"> | string
+    profilePhotoUrl?: StringNullableWithAggregatesFilter<"Student"> | string | null
     role?: StringWithAggregatesFilter<"Student"> | string
     comunaId?: IntWithAggregatesFilter<"Student"> | number
     regionId?: IntWithAggregatesFilter<"Student"> | number
@@ -11740,6 +11771,7 @@ export namespace Prisma {
     landlordName?: StringFilter<"Landlord"> | string
     password?: StringFilter<"Landlord"> | string
     landlordCarnetUrl?: StringFilter<"Landlord"> | string
+    profilePhotoUrl?: StringNullableFilter<"Landlord"> | string | null
     role?: StringFilter<"Landlord"> | string
     comunaId?: IntFilter<"Landlord"> | number
     regionId?: IntFilter<"Landlord"> | number
@@ -11758,6 +11790,7 @@ export namespace Prisma {
     landlordName?: SortOrder
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
+    profilePhotoUrl?: SortOrderInput | SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -11780,6 +11813,7 @@ export namespace Prisma {
     landlordName?: StringFilter<"Landlord"> | string
     password?: StringFilter<"Landlord"> | string
     landlordCarnetUrl?: StringFilter<"Landlord"> | string
+    profilePhotoUrl?: StringNullableFilter<"Landlord"> | string | null
     role?: StringFilter<"Landlord"> | string
     comunaId?: IntFilter<"Landlord"> | number
     regionId?: IntFilter<"Landlord"> | number
@@ -11798,6 +11832,7 @@ export namespace Prisma {
     landlordName?: SortOrder
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
+    profilePhotoUrl?: SortOrderInput | SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -11820,6 +11855,7 @@ export namespace Prisma {
     landlordName?: StringWithAggregatesFilter<"Landlord"> | string
     password?: StringWithAggregatesFilter<"Landlord"> | string
     landlordCarnetUrl?: StringWithAggregatesFilter<"Landlord"> | string
+    profilePhotoUrl?: StringNullableWithAggregatesFilter<"Landlord"> | string | null
     role?: StringWithAggregatesFilter<"Landlord"> | string
     comunaId?: IntWithAggregatesFilter<"Landlord"> | number
     regionId?: IntWithAggregatesFilter<"Landlord"> | number
@@ -12381,6 +12417,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12397,6 +12434,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     comunaId: number
     regionId: number
@@ -12412,6 +12450,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12428,6 +12467,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
@@ -12444,6 +12484,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     comunaId: number
     regionId: number
@@ -12458,6 +12499,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12471,6 +12513,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
@@ -12484,6 +12527,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12500,6 +12544,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     comunaId: number
     regionId: number
@@ -12515,6 +12560,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12531,6 +12577,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
@@ -12547,6 +12594,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     comunaId: number
     regionId: number
@@ -12560,6 +12608,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12572,6 +12621,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
@@ -13154,6 +13204,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -13181,6 +13246,11 @@ export namespace Prisma {
     none?: RefreshTokenWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type RefreshTokenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -13199,6 +13269,7 @@ export namespace Prisma {
     password?: SortOrder
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
+    profilePhotoUrl?: SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -13220,6 +13291,7 @@ export namespace Prisma {
     password?: SortOrder
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
+    profilePhotoUrl?: SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -13235,6 +13307,7 @@ export namespace Prisma {
     password?: SortOrder
     studentCollege?: SortOrder
     studentCertificateUrl?: SortOrder
+    profilePhotoUrl?: SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -13282,6 +13355,24 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -13319,6 +13410,7 @@ export namespace Prisma {
     landlordName?: SortOrder
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
+    profilePhotoUrl?: SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -13339,6 +13431,7 @@ export namespace Prisma {
     landlordName?: SortOrder
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
+    profilePhotoUrl?: SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -13353,6 +13446,7 @@ export namespace Prisma {
     landlordName?: SortOrder
     password?: SortOrder
     landlordCarnetUrl?: SortOrder
+    profilePhotoUrl?: SortOrder
     role?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
@@ -13364,21 +13458,6 @@ export namespace Prisma {
     id?: SortOrder
     comunaId?: SortOrder
     regionId?: SortOrder
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type EnumPropertyTypeFilter<$PrismaModel = never> = {
@@ -13430,11 +13509,6 @@ export namespace Prisma {
     every?: PropertyAmenityWhereInput
     some?: PropertyAmenityWhereInput
     none?: PropertyAmenityWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type PropertyImageOrderByRelationAggregateInput = {
@@ -13531,24 +13605,6 @@ export namespace Prisma {
     bathrooms?: SortOrder
     squareMeters?: SortOrder
     monthlyRent?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type EnumPropertyTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -13976,6 +14032,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -14188,10 +14248,6 @@ export namespace Prisma {
     connectOrCreate?: PropertyAmenityCreateOrConnectWithoutPropertyInput | PropertyAmenityCreateOrConnectWithoutPropertyInput[]
     createMany?: PropertyAmenityCreateManyPropertyInputEnvelope
     connect?: PropertyAmenityWhereUniqueInput | PropertyAmenityWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type EnumPropertyTypeFieldUpdateOperationsInput = {
@@ -14756,6 +14812,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -14812,6 +14883,35 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -14824,21 +14924,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedEnumPropertyTypeFilter<$PrismaModel = never> = {
@@ -14873,35 +14958,6 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumPropertyTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -15407,6 +15463,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15422,6 +15479,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     comunaId: number
     regionId: number
@@ -15554,6 +15612,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15569,6 +15628,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
@@ -16071,6 +16131,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16086,6 +16147,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     comunaId: number
     createdAt?: Date | string
@@ -16109,6 +16171,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16124,6 +16187,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     comunaId: number
     createdAt?: Date | string
@@ -16212,6 +16276,7 @@ export namespace Prisma {
     password?: StringFilter<"Student"> | string
     studentCollege?: StringFilter<"Student"> | string
     studentCertificateUrl?: StringFilter<"Student"> | string
+    profilePhotoUrl?: StringNullableFilter<"Student"> | string | null
     role?: StringFilter<"Student"> | string
     comunaId?: IntFilter<"Student"> | number
     regionId?: IntFilter<"Student"> | number
@@ -16245,6 +16310,7 @@ export namespace Prisma {
     landlordName?: StringFilter<"Landlord"> | string
     password?: StringFilter<"Landlord"> | string
     landlordCarnetUrl?: StringFilter<"Landlord"> | string
+    profilePhotoUrl?: StringNullableFilter<"Landlord"> | string | null
     role?: StringFilter<"Landlord"> | string
     comunaId?: IntFilter<"Landlord"> | number
     regionId?: IntFilter<"Landlord"> | number
@@ -16338,6 +16404,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16353,6 +16420,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     regionId: number
     createdAt?: Date | string
@@ -16376,6 +16444,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16391,6 +16460,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     regionId: number
     createdAt?: Date | string
@@ -16498,6 +16568,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16513,6 +16584,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     comunaId: number
     regionId: number
@@ -16531,6 +16603,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16546,6 +16619,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     comunaId: number
     regionId: number
@@ -16577,6 +16651,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16592,6 +16667,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
@@ -16616,6 +16692,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16631,6 +16708,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     regionId?: IntFieldUpdateOperationsInput | number
@@ -16923,6 +17001,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     comunaId: number
     createdAt?: Date | string
@@ -16936,6 +17015,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     comunaId: number
     createdAt?: Date | string
@@ -17035,6 +17115,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17050,6 +17131,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17065,6 +17147,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17077,6 +17160,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17092,6 +17176,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17107,6 +17192,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     comunaId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17140,6 +17226,7 @@ export namespace Prisma {
     password: string
     studentCollege: string
     studentCertificateUrl: string
+    profilePhotoUrl?: string | null
     role: string
     regionId: number
     createdAt?: Date | string
@@ -17153,6 +17240,7 @@ export namespace Prisma {
     landlordName: string
     password: string
     landlordCarnetUrl: string
+    profilePhotoUrl?: string | null
     role?: string
     regionId: number
     createdAt?: Date | string
@@ -17226,6 +17314,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17241,6 +17330,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17256,6 +17346,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     studentCollege?: StringFieldUpdateOperationsInput | string
     studentCertificateUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17268,6 +17359,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17283,6 +17375,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17298,6 +17391,7 @@ export namespace Prisma {
     landlordName?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     landlordCarnetUrl?: StringFieldUpdateOperationsInput | string
+    profilePhotoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
     regionId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

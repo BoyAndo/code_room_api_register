@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth/authRoutes";
 import userRoutes from "./routes/user/userRoutes";
 import locationRoutes from "./routes/location/locationRoutes";
+import profileRoutes from "./routes/profile/profileRoutes";
 
 const app = express();
 
@@ -23,7 +24,9 @@ app.use(
       "Authorization",
       "X-Requested-With",
       "Origin",
-    ], // ✅ Agregar Origin
+      "Accept",
+    ],
+    exposedHeaders: ["set-cookie"],
   })
 );
 
@@ -35,6 +38,7 @@ app.use(cookieParser()); // ← Importante: Agregar cookie-parser
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/locations", locationRoutes);
+app.use("/profile", profileRoutes);
 
 console.log("Starting server...");
 
