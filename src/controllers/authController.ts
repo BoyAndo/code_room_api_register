@@ -12,11 +12,50 @@ const prisma = new PrismaClient();
 
 export const getMeController = async (req: Request, res: Response) => {
   try {
-    const user = getCurrentUser(req);
+    const userFromToken = getCurrentUser(req);
+    
+    // Consultar la base de datos para obtener datos actualizados (incluyendo profilePhotoUrl)
+    let userFromDB;
+    
+    if (userFromToken.role === "student") {
+      userFromDB = await prisma.student.findUnique({
+        where: { id: userFromToken.id },
+        select: {
+          id: true,
+          studentRut: true,
+          studentEmail: true,
+          studentName: true,
+          studentCollege: true,
+          studentCertificateUrl: true,
+          profilePhotoUrl: true,
+          role: true,
+        },
+      });
+    } else if (userFromToken.role === "landlord") {
+      userFromDB = await prisma.landlord.findUnique({
+        where: { id: userFromToken.id },
+        select: {
+          id: true,
+          landlordRut: true,
+          landlordEmail: true,
+          landlordName: true,
+          landlordCarnetUrl: true,
+          profilePhotoUrl: true,
+          role: true,
+        },
+      });
+    }
+
+    if (!userFromDB) {
+      return res.status(404).json({
+        success: false,
+        message: "Usuario no encontrado",
+      });
+    }
 
     return res.status(200).json({
       success: true,
-      user: user,
+      user: userFromDB,
       message: "Usuario obtenido exitosamente",
     });
   } catch (error) {

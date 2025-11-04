@@ -1,20 +1,63 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 const MINIO_ENDPOINT = process.env.MINIO_ENDPOINT!;
-const MINIO_USER = process.env.MINIO_USER!;
-const MINIO_PASS = process.env.MINIO_PASS!;
+const MINIO_PORT = process.env.MINIO_PORT!;
+const MINIO_ACCESS_KEY = process.env.MINIO_ACCESS_KEY!;
+const MINIO_SECRET_KEY = process.env.MINIO_SECRET_KEY!;
 const URL_S3_CERTIFICADOS = process.env.URL_S3_CERTIFICADOS!;
 const URL_S3_CARNETS = process.env.URL_S3_CARNETS!;
 
 const s3 = new S3Client({
   region: "us-east-1",
-  endpoint: MINIO_ENDPOINT,
+  endpoint: `http://${MINIO_ENDPOINT}:${MINIO_PORT}`,
   credentials: {
-    accessKeyId: MINIO_USER,
-    secretAccessKey: MINIO_PASS,
+    accessKeyId: MINIO_ACCESS_KEY,
+    secretAccessKey: MINIO_SECRET_KEY,
   },
   forcePathStyle: true,
 });
+
+// Importar los comandos necesarios para crear buckets
+import { CreateBucketCommand, HeadBucketCommand } from "@aws-sdk/client-s3";
+
+// Lista de buckets necesarios
+const REQUIRED_BUCKETS = ["certificados", "carnets", "profilephotos"];
+
+// Función para verificar si un bucket existe
+const bucketExists = async (bucketName: string): Promise<boolean> => {
+  try {
+    await s3.send(new HeadBucketCommand({ Bucket: bucketName }));
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+// Función para crear un bucket si no existe
+const createBucketIfNotExists = async (bucketName: string): Promise<void> => {
+  try {
+    const exists = await bucketExists(bucketName);
+    if (!exists) {
+      console.log(`Creando bucket: ${bucketName}`);
+      await s3.send(new CreateBucketCommand({ Bucket: bucketName }));
+      console.log(`Bucket ${bucketName} creado exitosamente`);
+    } else {
+      console.log(`Bucket ${bucketName} ya existe`);
+    }
+  } catch (error) {
+    console.error(`Error al crear bucket ${bucketName}:`, error);
+    throw error;
+  }
+};
+
+// Función para inicializar todos los buckets necesarios
+export const initializeBuckets = async (): Promise<void> => {
+  console.log("Inicializando buckets de MinIO...");
+  for (const bucket of REQUIRED_BUCKETS) {
+    await createBucketIfNotExists(bucket);
+  }
+  console.log("Inicialización de buckets completada");
+};
 
 /**
  * Sube un archivo PDF a MinIO/S3 desde memoria (buffer)
