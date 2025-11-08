@@ -4,7 +4,7 @@
   "description": "auth and register backend for code_room project",
   "main": "src/app.ts",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "cross-env MINIO_PORT=9000 tsx watch src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "cross-env": "^10.1.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jimp": "^1.6.0",
