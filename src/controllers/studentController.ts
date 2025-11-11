@@ -112,3 +112,58 @@ export const getAllStudents = async (req: Request, res: Response) => {
     throw error;
   }
 };
+
+// Eliminar estudiante
+export const deleteStudent = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+    
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "No autorizado",
+      });
+    }
+
+    // Verificar que el usuario existe
+    const student = await prisma.student.findUnique({
+      where: { id: userId },
+    });
+
+    if (!student) {
+      return res.status(404).json({
+        success: false,
+        message: "Estudiante no encontrado",
+      });
+    }
+
+    // Eliminar el estudiante (las refresh tokens se eliminan automáticamente por cascade)
+    await prisma.student.delete({
+      where: { id: userId },
+    });
+
+    // Limpiar las cookies
+    res.clearCookie("authToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    });
+
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Cuenta eliminada exitosamente",
+    });
+  } catch (error) {
+    console.error("Error al eliminar estudiante:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error interno del servidor",
+    });
+  }
+};

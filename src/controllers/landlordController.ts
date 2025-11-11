@@ -179,3 +179,64 @@ export const getLandlords = async (req: Request, res: Response) => {
       .json({ success: false, message: "Error al obtener landlords" });
   }
 };
+
+// Eliminar landlord y sus propiedades
+export const deleteLandlord = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+    
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "No autorizado",
+      });
+    }
+
+    // Verificar que el landlord existe
+    const landlord = await prisma.landlord.findUnique({
+      where: { id: userId },
+      include: {
+        properties: true, // Para ver cuántas propiedades tiene
+      },
+    });
+
+    if (!landlord) {
+      return res.status(404).json({
+        success: false,
+        message: "Propietario no encontrado",
+      });
+    }
+
+    console.log(`Eliminando landlord ${landlord.landlordName} con ${landlord.properties.length} propiedades`);
+
+    // Eliminar el landlord (las propiedades y refresh tokens se eliminan automáticamente por cascade)
+    await prisma.landlord.delete({
+      where: { id: userId },
+    });
+
+    // Limpiar las cookies
+    res.clearCookie("authToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    });
+
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Cuenta y propiedades eliminadas exitosamente",
+      deletedProperties: landlord.properties.length,
+    });
+  } catch (error) {
+    console.error("Error al eliminar landlord:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error interno del servidor",
+    });
+  }
+};
