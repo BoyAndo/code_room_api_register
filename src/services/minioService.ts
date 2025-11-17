@@ -7,22 +7,36 @@ const minioClient = new Client({
     port: parseInt(process.env.MINIO_PORT || "9000"),
     useSSL: process.env.MINIO_USE_SSL === "true",
     accessKey: process.env.MINIO_ACCESS_KEY || "minioadmin",
-    secretKey: process.env.MINIO_SECRET_KEY || "minioadmin123"
+    secretKey: process.env.MINIO_SECRET_KEY || "minioadmin123",
+    region: "us-east-1" // Agregar región por defecto
 });
 
 const BUCKET_NAME = "profilephotos";
 
 export const uploadProfilePhoto = async (file: Express.Multer.File, userId: string) => {
     try {
+        // Verificar que el bucket existe, si no, crearlo
+        const bucketExists = await minioClient.bucketExists(BUCKET_NAME);
+        if (!bucketExists) {
+            await minioClient.makeBucket(BUCKET_NAME, 'us-east-1');
+            console.log(`Bucket ${BUCKET_NAME} creado exitosamente`);
+        }
+
         const extension = file.originalname.split(".").pop();
         const fileName = `${userId}-${uuidv4()}.${extension}`;
-        const fileStream = Readable.from(file.buffer);
+        
         const metaData = {
             "Content-Type": file.mimetype,
-            "X-Amz-Meta-Original-Name": file.originalname
         };
 
-        await minioClient.putObject(BUCKET_NAME, fileName, fileStream, file.size, metaData);
+        // Usar putObject con buffer directamente
+        await minioClient.putObject(
+            BUCKET_NAME, 
+            fileName, 
+            file.buffer, 
+            file.size, 
+            metaData
+        );
 
         const baseUrl = `http://${process.env.MINIO_ENDPOINT}:${process.env.MINIO_PORT}`;
         return `${baseUrl}/${BUCKET_NAME}/${fileName}`;

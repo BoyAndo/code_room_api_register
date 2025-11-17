@@ -231,15 +231,6 @@ exports.Prisma.RefreshTokenScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.MessageScalarFieldEnum = {
-  id: 'id',
-  senderId: 'senderId',
-  recipientId: 'recipientId',
-  content: 'content',
-  propertyId: 'propertyId',
-  timestamp: 'timestamp'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -304,13 +295,6 @@ exports.Prisma.RefreshTokenOrderByRelevanceFieldEnum = {
   token: 'token',
   userType: 'userType'
 };
-
-exports.Prisma.MessageOrderByRelevanceFieldEnum = {
-  senderId: 'senderId',
-  recipientId: 'recipientId',
-  content: 'content',
-  propertyId: 'propertyId'
-};
 exports.PropertyType = exports.$Enums.PropertyType = {
   APARTMENT: 'APARTMENT',
   HOUSE: 'HOUSE',
@@ -326,8 +310,7 @@ exports.Prisma.ModelName = {
   PropertyAmenity: 'PropertyAmenity',
   Region: 'Region',
   Comuna: 'Comuna',
-  RefreshToken: 'RefreshToken',
-  Message: 'Message'
+  RefreshToken: 'RefreshToken'
 };
 
 /**

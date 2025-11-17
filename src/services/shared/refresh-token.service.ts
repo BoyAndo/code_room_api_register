@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || JWT_SECRET;
-const ACCESS_TOKEN_EXPIRES_IN = "15m"; // 15 minutos
-const REFRESH_TOKEN_EXPIRES_IN = "7d"; // 7 días
+const ACCESS_TOKEN_EXPIRES_IN = "3h"; // 3 horas
+const REFRESH_TOKEN_EXPIRES_IN = "30d"; // 30 días
 
 if (!JWT_SECRET) {
   throw new Error("JWT_SECRET no está configurado en las variables de entorno");
@@ -67,9 +67,9 @@ export const generateRefreshToken = async (
     expiresIn: REFRESH_TOKEN_EXPIRES_IN,
   });
 
-  // Calcular fecha de expiración (7 días)
+  // Calcular fecha de expiración (30 días)
   const expiresAt = new Date();
-  expiresAt.setDate(expiresAt.getDate() + 7);
+  expiresAt.setDate(expiresAt.getDate() + 30);
 
   // Almacenar en base de datos
   await prisma.refreshToken.create({

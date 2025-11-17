@@ -81,9 +81,21 @@ export const uploadLandlordPhoto = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error("Error al subir la foto de perfil del propietario:", error);
+    
+    // Mensaje más específico según el tipo de error
+    let errorMessage = "Error al subir la foto de perfil. Por favor, intenta nuevamente.";
+    
+    if (error instanceof Error) {
+      if (error.message.includes('SignatureDoesNotMatch')) {
+        errorMessage = "Error de configuración del servidor de almacenamiento. Por favor, contacta al administrador.";
+      } else if (error.message.includes('ConnectionRefused')) {
+        errorMessage = "El servicio de almacenamiento no está disponible. Por favor, intenta más tarde.";
+      }
+    }
+    
     res.status(500).json({
       success: false,
-      message: "Error al subir la foto de perfil",
+      message: errorMessage,
     });
   }
 };
