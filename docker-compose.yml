@@ -4,8 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: code-room-api-register
-    env_file:
-      - .env  # Lee variables del archivo .env en la instancia EC2
+    # env_file eliminado, las variables se definen en el Dockerfile
     ports:
       - "3001:3001"
     environment:
