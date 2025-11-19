@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# ========================================
+# Script para crear .env en la instancia EC2
+# ========================================
+# Ejecuta este script EN LA INSTANCIA EC2:
+# ssh -i tu-clave.pem ubuntu@tu-ip-ec2
+# cd /home/ubuntu/code_room_api_register
+# nano setup-env-on-ec2.sh
+# chmod +x setup-env-on-ec2.sh
+# ./setup-env-on-ec2.sh
+
+echo "🔧 Creando archivo .env para Code Room API Register..."
+
+# Crear archivo .env
+cat > .env <<'EOF'
+PORT=3001
+
+# Database (CAMBIAR AL RDS O BASE DE DATOS DE PRODUCCIÓN)
+DATABASE_URL=mysql://root:howlin404@uroom.cbmkwgi8u37x.us-east-1.rds.amazonaws.com:3306/code_room
+MYSQL_USER=root
+MYSQL_PASSWORD=howlin404
+MYSQL_DB=code_room
+
+# JWT Keys
+JWT_SECRET=kJ8#mN9$pQ2@wE5!rT7&yU1*iO3^aS6%dF4+gH0-lK9=xC2@vB5!nM8%zQ7*wE3&
+JWT_EXPIRES_IN=120h
+
+# MinIO S3 (CAMBIAR SI USAS OTRO SERVIDOR DE MinIO O AWS S3)
+MINIO_ENDPOINT=localhost
+MINIO_PORT=9000
+MINIO_ACCESS_KEY=minioadmin
+MINIO_SECRET_KEY=minioadmin123
+URL_S3_CARNETS=http://localhost:9000/carnets/
+URL_S3_CERTIFICADOS=http://localhost:9000/certificados/
+EOF
+
+echo "✅ Archivo .env creado en $(pwd)/.env"
+echo ""
+echo "⚠️  IMPORTANTE: Edita el archivo y cambia los valores según tu entorno:"
+echo "   nano .env"
+echo ""
+echo "📝 Cambia especialmente:"
+echo "   - DATABASE_URL (debe apuntar a tu base de datos de producción)"
+echo "   - MINIO_ENDPOINT (si MinIO está en otro servidor)"
+echo "   - MYSQL_PASSWORD (la contraseña real de producción)"
+echo ""
+echo "🔒 Protege el archivo .env:"
+echo "   chmod 600 .env"
+echo "   chown ubuntu:ubuntu .env"

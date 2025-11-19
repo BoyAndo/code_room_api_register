@@ -1,0 +1,30 @@
+services:
+  api-register:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: code-room-api-register
+    env_file:
+      - .env  # Lee variables del archivo .env en la instancia EC2
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    volumes:
+      - /tmp/uploads:/tmp/uploads  # Para archivos temporales
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1.5G
+        reservations:
+          cpus: '0.5'
+          memory: 768M
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
