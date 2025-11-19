@@ -10,14 +10,11 @@ import profileRoutes from "./routes/profile/profileRoutes";
 
 const app = express();
 
-// ✅ Configuración CORS
+// ✅ CORS abierto para todos los orígenes (solo para desarrollo o pruebas)
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000", // Frontend Next.js
-      "http://127.0.0.1:3000", // Frontend Next.js
-    ],
-    credentials: true, // Permitir cookies httpOnly
+    origin: "*",
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
