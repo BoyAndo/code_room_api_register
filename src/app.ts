@@ -10,10 +10,13 @@ import profileRoutes from "./routes/profile/profileRoutes";
 
 const app = express();
 
-// ✅ CORS abierto para todos los orígenes (solo para desarrollo o pruebas)
+// ✅ CORS abierto para cualquier origen PERO compatible con credenciales
 app.use(
   cors({
-    origin: "*",
+    origin: (origin, callback) => {
+      // Permite cualquier origen, pero no usa '*', necesario para credentials
+      callback(null, origin || true);
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
