@@ -89,6 +89,7 @@ ENV PORT=3001 \
     MINIO_ACCESS_KEY=minioadmin \
     MINIO_SECRET_KEY=minioadmin123 \
     URL_S3_CARNETS=http://44.206.67.3:9000/carnets/ \
+    PYTHON_SERVICE_URL=http://98.95.218.170:8002 \
     URL_S3_CERTIFICADOS=http://44.206.67.3:9000/certificados/
 
 # Comando de inicio
