@@ -24,7 +24,8 @@ WORKDIR /app
 # Instalar dependencias necesarias para compilación
 RUN apk add --no-cache libc6-compat python3 make g++
 
-# Copiar dependencias instaladas
+
+# Copiar dependencias instaladas (asegura que node_modules exista en builder)
 COPY --from=deps /app/node_modules ./node_modules
 
 # Copiar código fuente
@@ -54,7 +55,8 @@ RUN apk add --no-cache \
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 expressjs
 
-# Copiar node_modules y código compilado
+
+# Copiar node_modules y código fuente generado
 COPY --from=builder --chown=expressjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=expressjs:nodejs /app/src ./src
 COPY --from=builder --chown=expressjs:nodejs /app/prisma ./prisma

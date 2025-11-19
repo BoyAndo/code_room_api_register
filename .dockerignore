@@ -4,9 +4,6 @@ node_modules
 npm-debug.log*
 *.log
 
-# Archivos de desarrollo
-.env.local
-.env.development
 
 # Build outputs
 dist
