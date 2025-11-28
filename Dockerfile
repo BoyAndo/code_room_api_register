@@ -78,19 +78,19 @@ EXPOSE 3001
 
 # Variables de entorno requeridas para producción
 ENV PORT=3001 \
-    DATABASE_URL="mysql://root:howlin404@uroom.cbmkwgi8u37x.us-east-1.rds.amazonaws.com:3306/code_room" \
+    DATABASE_URL="mysql://root:howlin404@uroom.cgt0cmaispf3.us-east-1.rds.amazonaws.com:3306/code_room" \
     MYSQL_USER="root" \
     MYSQL_PASSWORD="" \
     MYSQL_DB="code_room" \
     JWT_SECRET="kJ8#mN9$pQ2@wE5!rT7&yU1*iO3^aS6%dF4+gH0-lK9=xC2@vB5!nM8%zQ7*wE3&" \
     JWT_EXPIRES_IN=120h \
-    MINIO_ENDPOINT=44.206.67.3 \
+    MINIO_ENDPOINT=34.193.38.162 \
     MINIO_PORT=9000 \
     MINIO_ACCESS_KEY=minioadmin \
     MINIO_SECRET_KEY=minioadmin123 \
-    URL_S3_CARNETS=http://44.206.67.3:9000/carnets/ \
-    PYTHON_SERVICE_URL=http://98.95.218.170:8002 \
-    URL_S3_CERTIFICADOS=http://44.206.67.3:9000/certificados/
+    URL_S3_CARNETS=http://34.193.38.162:9000/carnets/ \
+    PYTHON_SERVICE_URL=http://100.24.130.132:8002 \
+    URL_S3_CERTIFICADOS=http://34.193.38.162:9000/certificados/
 
 # Comando de inicio
 CMD ["npx", "tsx", "src/server.ts"]
