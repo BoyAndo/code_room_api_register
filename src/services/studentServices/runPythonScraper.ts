@@ -26,9 +26,8 @@ export const runPythonScraper = async (url: string): Promise<any> => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ url }),
-      // Timeout de 2 minutos para CAPTCHA complejos
-      signal: AbortSignal.timeout(120000),
+      body: JSON.stringify({ url })
+      // Espera indefinida, sin timeout
     });
 
     if (!response.ok) {
