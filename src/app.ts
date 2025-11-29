@@ -13,10 +13,7 @@ const app = express();
 // ✅ CORS abierto para cualquier origen PERO compatible con credenciales
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Permite cualquier origen, pero no usa '*', necesario para credentials
-      callback(null, origin || true);
-    },
+    origin: "http://52.70.135.202:3000", // IP exacta del frontend
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
