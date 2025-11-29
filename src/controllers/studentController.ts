@@ -66,9 +66,10 @@ export const registerStudent = async (req: Request, res: Response) => {
 
     // Configurar cookie httpOnly para auto-login después del registro
     res.cookie("authToken", token, {
-      httpOnly: true, //no accesible con xss
-      sameSite: "lax", //balance entre seguridad y UX - permite navegación por enlaces externos
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     // Responder al frontend
