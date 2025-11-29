@@ -101,14 +101,14 @@ export const loginController = async (req: Request, res: Response) => {
     // Configurar cookies httpOnly para ambos tokens
     res.cookie("authToken", accessToken, {
       httpOnly: true,
-      secure: true, // Siempre true para cross-origin y SameSite: 'none'
-      sameSite: "none", // Necesario para cross-origin cookies
+      secure: false, // HTTP para desarrollo/pruebas
+      sameSite: "none",
       maxAge: 15 * 60 * 1000,
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });

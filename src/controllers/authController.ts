@@ -79,13 +79,13 @@ export const logoutController = async (req: Request, res: Response) => {
     // Clear both authentication cookies
     res.clearCookie("authToken", {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
     });
 
     res.clearCookie("refreshToken", {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
     });
 
@@ -186,14 +186,14 @@ export const refreshTokenController = async (req: Request, res: Response) => {
     // Configurar nuevas cookies
     res.cookie("authToken", newAccessToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
       maxAge: 15 * 60 * 1000,
     });
 
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
