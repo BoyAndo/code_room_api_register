@@ -64,13 +64,15 @@ export const registerStudent = async (req: Request, res: Response) => {
       role: newStudent.role,
     });
 
-    // Configurar cookie httpOnly para auto-login después del registro
+    console.log("🔑 Token JWT generado:", token);
+
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: false,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+    console.log("🍪 Cookie enviada: authToken (httpOnly, sameSite:none, secure:false)");
 
     // Responder al frontend
     return res.status(201).json({
