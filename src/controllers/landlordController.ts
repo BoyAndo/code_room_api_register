@@ -105,7 +105,7 @@ export const registerLandlord = async (req: Request, res: Response) => {
     // Crear arrendador en la base de datos
     const newLandlord = await createLandlord(landlordRegisterInfo, carnetUrl);
 
-    // Generar token JWT
+    // Generar access token JWT
     const token = generateLandlordToken({
       id: newLandlord.id,
       landlordRut: newLandlord.landlordRut,
@@ -114,13 +114,30 @@ export const registerLandlord = async (req: Request, res: Response) => {
       role: newLandlord.role,
     });
 
-    // Configurar cookie httpOnly para auto-login después del registro
+    console.log("🔑 Access Token JWT generado");
+
+    // ✅ Generar refresh token para mantener la sesión
+    const { generateRefreshToken } = await import("../services/shared/refresh-token.service.js");
+    const refreshToken = await generateRefreshToken(newLandlord.id, "landlord");
+
+    console.log("🔄 Refresh Token generado");
+
+    // Configurar cookies httpOnly para auto-login después del registro
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      maxAge: 15 * 60 * 1000, // 15 minutos
     });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,  // ✅ HTTPS enabled
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+    });
+
+    console.log("🍪 Cookies enviadas: authToken + refreshToken (httpOnly, sameSite:lax, secure:true)");
 
     console.log(
       "✅ Arrendador registrado exitosamente:",

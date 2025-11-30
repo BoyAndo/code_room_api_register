@@ -53,7 +53,7 @@ export const registerStudent = async (req: Request, res: Response) => {
     // Registrar al usuario
     const newStudent = await createUser(studentRegisterInfo, pdfUrl);
 
-    // Generar token
+    // Generar access token
     const token = generateClientToken({
       id: newStudent.id,
       studentRut: newStudent.studentRut,
@@ -64,15 +64,30 @@ export const registerStudent = async (req: Request, res: Response) => {
       role: newStudent.role,
     });
 
-    console.log("🔑 Token JWT generado:", token);
+    console.log("🔑 Access Token JWT generado:", token);
 
+    // ✅ Generar refresh token para mantener la sesión
+    const { generateRefreshToken } = await import("../services/shared/refresh-token.service.js");
+    const refreshToken = await generateRefreshToken(newStudent.id, "student");
+
+    console.log("🔄 Refresh Token generado");
+
+    // Configurar cookies para ambos tokens
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      maxAge: 15 * 60 * 1000, // 15 minutos
     });
-    console.log("🍪 Cookie enviada: authToken (httpOnly, sameSite:lax, secure:true)");
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,  // ✅ HTTPS enabled
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+    });
+
+    console.log("🍪 Cookies enviadas: authToken + refreshToken (httpOnly, sameSite:lax, secure:true)");
 
     // Responder al frontend
     return res.status(201).json({
