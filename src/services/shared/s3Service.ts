@@ -4,12 +4,14 @@ const MINIO_ENDPOINT = process.env.MINIO_ENDPOINT!;
 const MINIO_PORT = process.env.MINIO_PORT!;
 const MINIO_ACCESS_KEY = process.env.MINIO_ACCESS_KEY!;
 const MINIO_SECRET_KEY = process.env.MINIO_SECRET_KEY!;
+const MINIO_USE_SSL = process.env.MINIO_USE_SSL === "true";
 const URL_S3_CERTIFICADOS = process.env.URL_S3_CERTIFICADOS!;
 const URL_S3_CARNETS = process.env.URL_S3_CARNETS!;
 
+const protocol = MINIO_USE_SSL ? "https" : "http";
 const s3 = new S3Client({
   region: "us-east-1",
-  endpoint: `http://${MINIO_ENDPOINT}:${MINIO_PORT}`,
+  endpoint: `${protocol}://${MINIO_ENDPOINT}:${MINIO_PORT}`,
   credentials: {
     accessKeyId: MINIO_ACCESS_KEY,
     secretAccessKey: MINIO_SECRET_KEY,
