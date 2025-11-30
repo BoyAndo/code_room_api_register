@@ -80,13 +80,13 @@ export const logoutController = async (req: Request, res: Response) => {
     res.clearCookie("authToken", {
       httpOnly: true,
       secure: false,
-      sameSite: "none",
+      sameSite: "lax",
     });
 
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: false,
-      sameSite: "none",
+      sameSite: "lax",
     });
 
     return res.status(200).json({
@@ -187,14 +187,14 @@ export const refreshTokenController = async (req: Request, res: Response) => {
     res.cookie("authToken", newAccessToken, {
       httpOnly: true,
       secure: false,
-      sameSite: "none",
+      sameSite: "lax",
       maxAge: 15 * 60 * 1000,
     });
 
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
       secure: false,
-      sameSite: "none",
+      sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 

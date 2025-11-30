@@ -69,7 +69,7 @@ export const registerStudent = async (req: Request, res: Response) => {
     res.cookie("authToken", token, {
       httpOnly: true,
       secure: false,
-      sameSite: "none",
+      sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     console.log("🍪 Cookie enviada: authToken (httpOnly, sameSite:none, secure:false)");
