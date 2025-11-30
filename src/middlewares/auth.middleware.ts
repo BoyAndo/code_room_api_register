@@ -57,7 +57,15 @@ export const verifyToken = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies.authToken;
+
+  // Permitir token por cookie o por header Authorization
+  let token = req.cookies.authToken;
+  if (!token && req.headers.authorization) {
+    const authHeader = req.headers.authorization;
+    if (authHeader.startsWith("Bearer ")) {
+      token = authHeader.slice(7);
+    }
+  }
 
   if (!token) {
     return res.status(401).json({
