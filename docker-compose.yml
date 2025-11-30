@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: code-room-api-register
     ports:
-      - "3001:3001"
+      - "80:3001"
     environment:
       - NODE_ENV=production
       - PORT=3001
