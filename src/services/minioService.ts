@@ -38,7 +38,15 @@ export const uploadProfilePhoto = async (file: Express.Multer.File, userId: stri
             metaData
         );
 
-        const baseUrl = `http://${process.env.MINIO_ENDPOINT}:${process.env.MINIO_PORT}`;
+        // ✅ Usar URL pública con HTTPS si está configurada, sino usar la interna
+        const publicUrl = process.env.MINIO_PUBLIC_URL;
+        if (publicUrl) {
+            return `${publicUrl}/${BUCKET_NAME}/${fileName}`;
+        }
+        
+        // Fallback a URL interna (solo para desarrollo)
+        const protocol = process.env.MINIO_USE_SSL === "true" ? "https" : "http";
+        const baseUrl = `${protocol}://${process.env.MINIO_ENDPOINT}:${process.env.MINIO_PORT}`;
         return `${baseUrl}/${BUCKET_NAME}/${fileName}`;
     } catch (error) {
         console.error("Error uploading profile photo to MinIO:", error);
