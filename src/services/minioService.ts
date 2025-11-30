@@ -15,13 +15,9 @@ const BUCKET_NAME = "profilephotos";
 
 export const uploadProfilePhoto = async (file: Express.Multer.File, userId: string) => {
     try {
-        // Verificar que el bucket existe, si no, crearlo
-        const bucketExists = await minioClient.bucketExists(BUCKET_NAME);
-        if (!bucketExists) {
-            await minioClient.makeBucket(BUCKET_NAME, 'us-east-1');
-            console.log(`Bucket ${BUCKET_NAME} creado exitosamente`);
-        }
-
+        // ⚠️ Asumimos que el bucket 'profilephotos' ya existe
+        // No verificamos su existencia para evitar problemas con HTTPS proxy
+        
         const extension = file.originalname.split(".").pop();
         const fileName = `${userId}-${uuidv4()}.${extension}`;
         
