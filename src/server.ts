@@ -5,8 +5,11 @@ const PORT = process.env.PORT;
 
 const startServer = async () => {
   try {
-    // Inicializar buckets de MinIO
-    await initializeBuckets();
+    // ⚠️ Inicialización de buckets deshabilitada
+    // Los buckets deben crearse manualmente en MinIO una vez
+    // await initializeBuckets();
+    
+    console.log("⚠️ Bucket initialization skipped - ensure buckets exist in MinIO");
 
     // Iniciar el servidor
     app.listen(PORT, () => {

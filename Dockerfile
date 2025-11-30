@@ -84,9 +84,9 @@ ENV PORT=3001 \
     MYSQL_DB="code_room" \
     JWT_SECRET="kJ8#mN9$pQ2@wE5!rT7&yU1*iO3^aS6%dF4+gH0-lK9=xC2@vB5!nM8%zQ7*wE3&" \
     JWT_EXPIRES_IN=120h \
-    MINIO_ENDPOINT=172.31.75.220 \
-    MINIO_PORT=9000 \
-    MINIO_USE_SSL=false \
+    MINIO_ENDPOINT=uroom_api_storage.gabogrobier.dev \
+    MINIO_PORT=443 \
+    MINIO_USE_SSL=true \
     MINIO_ACCESS_KEY=minioadmin \
     MINIO_SECRET_KEY=minioadmin123 \
     MINIO_PUBLIC_URL=https://uroom_api_storage.gabogrobier.dev \
