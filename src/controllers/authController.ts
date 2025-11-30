@@ -81,12 +81,14 @@ export const logoutController = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
+      domain: ".gabogrobier.dev",  // ? Compartir entre subdominios
     });
 
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
+      domain: ".gabogrobier.dev",  // ? Compartir entre subdominios
     });
 
     return res.status(200).json({
@@ -188,6 +190,7 @@ export const refreshTokenController = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
+      domain: ".gabogrobier.dev",  // ? Compartir entre subdominios
       maxAge: 15 * 60 * 1000,
     });
 
@@ -195,6 +198,7 @@ export const refreshTokenController = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
+      domain: ".gabogrobier.dev",  // ? Compartir entre subdominios
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 

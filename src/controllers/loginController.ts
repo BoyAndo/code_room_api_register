@@ -103,6 +103,7 @@ export const loginController = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
+      domain: ".gabogrobier.dev",  // ✅ Compartir entre subdominios
       maxAge: 15 * 60 * 1000,
     });
 
@@ -110,6 +111,7 @@ export const loginController = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
+      domain: ".gabogrobier.dev",  // ✅ Compartir entre subdominios
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
