@@ -10,10 +10,10 @@ import profileRoutes from "./routes/profile/profileRoutes";
 
 const app = express();
 
-// ✅ CORS abierto para cualquier origen PERO compatible con credenciales
+// ✅ CORS configurado para el dominio HTTPS del frontend
 app.use(
   cors({
-    origin: "http://52.70.135.202:3000", // IP exacta del frontend
+    origin: "https://uroom-frontend.gabogrobier.dev", // ✅ Subdominio HTTPS del frontend
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
