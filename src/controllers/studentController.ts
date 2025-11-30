@@ -68,11 +68,11 @@ export const registerStudent = async (req: Request, res: Response) => {
 
     res.cookie("authToken", token, {
       httpOnly: true,
-      secure: false,
+      secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    console.log("🍪 Cookie enviada: authToken (httpOnly, sameSite:none, secure:false)");
+    console.log("🍪 Cookie enviada: authToken (httpOnly, sameSite:lax, secure:true)");
 
     // Responder al frontend
     return res.status(201).json({

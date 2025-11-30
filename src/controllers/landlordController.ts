@@ -117,7 +117,7 @@ export const registerLandlord = async (req: Request, res: Response) => {
     // Configurar cookie httpOnly para auto-login después del registro
     res.cookie("authToken", token, {
       httpOnly: true,
-      secure: false,
+      secure: true,  // ✅ HTTPS enabled
       sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
