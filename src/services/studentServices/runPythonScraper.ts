@@ -13,7 +13,7 @@ interface ScrapingResponse {
  * @returns Objeto con los datos del estudiante
  */
 export const runPythonScraper = async (url: string): Promise<any> => {
-  const PYTHON_SERVICE_URL = "http://10.147.17.91:8002";
+  const PYTHON_SERVICE_URL = "http://10.147.17.182:8002";
 
   console.log(
     `🔗 Making request to Python scraper service: ${PYTHON_SERVICE_URL}/scrape`
