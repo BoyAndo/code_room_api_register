@@ -11,8 +11,8 @@ WORKDIR /app
 # Copiar archivos de dependencias
 COPY package.json package-lock.json* ./
 
-# Instalar dependencias (incluyendo devDependencies para Prisma)
-RUN npm ci --legacy-peer-deps --include=dev
+# Instalar dependencias
+RUN npm ci --legacy-peer-deps
 
 # ========================================
 # STAGE 2: Builder
@@ -28,15 +28,11 @@ RUN apk add --no-cache libc6-compat python3 make g++
 # Copiar dependencias instaladas (asegura que node_modules exista en builder)
 COPY --from=deps /app/node_modules ./node_modules
 
-# Copiar primero solo el esquema de Prisma y package.json
-COPY package.json ./
-COPY prisma ./prisma
+# Copiar código fuente
+COPY . .
 
 # Generar Prisma Client
 RUN npx prisma generate
-
-# Copiar resto del código fuente
-COPY . .
 
 # ========================================
 # STAGE 3: Runner (Producción)
