@@ -10,7 +10,7 @@ import profileRoutes from "./routes/profile/profileRoutes";
 
 const app = express();
 
-// ✅ CORS configurado para el dominio HTTPS del frontend
+// ✅ CORS
 app.use(
   cors({
     origin: "https://uroom-frontend.gabogrobier.dev", // ✅ Subdominio HTTPS del frontend
@@ -24,7 +24,7 @@ app.use(
       "Accept",
     ],
     exposedHeaders: ["set-cookie"],
-  })
+  }),
 );
 
 // ✅ Middlewares básicos
