@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth/authRoutes";
 import userRoutes from "./routes/user/userRoutes";
 import locationRoutes from "./routes/location/locationRoutes";
 import profileRoutes from "./routes/profile/profileRoutes";
+import { setupSwagger } from "./config/swagger";
 
 const app = express();
 
@@ -30,6 +31,9 @@ app.use(
 // ✅ Middlewares básicos
 app.use(express.json());
 app.use(cookieParser()); // ← Importante: Agregar cookie-parser
+
+// 📚 Swagger Documentation
+setupSwagger(app);
 
 // ✅ Rutas
 app.use("/auth", authRoutes);

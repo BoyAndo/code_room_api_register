@@ -11,12 +11,67 @@ import { resolveNames } from "../../controllers/DataController";
 
 const router = express.Router();
 
-// Ruta existente: Obtener todos los estudiantes
+/**
+ * @swagger
+ * /user/student:
+ *   get:
+ *     tags: [Students]
+ *     summary: Obtener todos los estudiantes
+ *     description: Devuelve la lista completa de estudiantes registrados (solo para landlords)
+ *     security:
+ *       - bearerAuth: []
+ *       - cookieAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de estudiantes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Student'
+ *       401:
+ *         description: No autenticado
+ *       403:
+ *         description: No autorizado (solo landlords)
+ */
 router.get("/student", verifyToken, requireLandlord, getAllStudents);
 
-// 🚨 2. AÑADIR LA NUEVA RUTA PARA EL CHAT
-// El proxy de Next.js llama a esta ruta sin prefijo, por lo que usamos la raíz ('/')
-// La ruta completa será: POST http://localhost:3001/user/resolve-names
+/**
+ * @swagger
+ * /user/resolve-names:
+ *   post:
+ *     tags: [Students]
+ *     summary: Resolver nombres de usuarios
+ *     description: Convierte IDs de usuarios a sus nombres y roles
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userIds]
+ *             properties:
+ *               userIds:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: ["1", "2", "3"]
+ *     responses:
+ *       200:
+ *         description: Nombres resueltos exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               additionalProperties:
+ *                 type: object
+ *                 properties:
+ *                   name:
+ *                     type: string
+ *                   role:
+ *                     type: string
+ */
 router.post("/resolve-names", resolveNames);
 
 export default router;
